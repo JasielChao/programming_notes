@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/7568b5b9e3.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div class="info_preferred_lang">Uno</div>
+    <br><br>
+    <div class="info_preferred_lang">Dos</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            /*Para agregar el evento clic al Icon Info */
+            const icon_info = document.querySelectorAll('.info_preferred_lang');
+            if (icon_info != null) {
+                for (i = 0; i < icon_info.length; i++) {
+                    icon_info[i].addEventListener('click', warning_info_language);
+                }
+            }
+
+
+        });
+        /*PopUp Warning */
+        /*Funcion parqa evitar que el Usuario haga scroll */
+        function disableScroll() {
+            var x = window.scrollX;
+            var y = window.scrollY;
+            window.onscroll = function() {
+                window.scrollTo(x, y)
+                console.log('Entro!!!');
+            };
+
+        }
+        //Encapsulo para el PopUp Warning
+        function warning_info_language() {
+
+
+            /*vento para inhabilitar el scroll*/
+            window.addEventListener('scroll', disableScroll());
+
+            //Creo los elementos 
+            //Icono <i class="fad fa-eye-slash"></i>
+            const warning_icon = document.createElement('i');
+            warning_icon.classList.add('my_warning_icon');
+            warning_icon.classList.add('fa-solid');
+            warning_icon.classList.add('fa-circle-info');
+
+            //Enunciado
+            const warning_enun = document.createElement('h4');
+            warning_enun.innerHTML = "Preferred Language";
+
+            //Texto
+            //Enunciado
+            const warning_text = document.createElement('p');
+            warning_text.innerHTML = "Please select your preferred language for medical communications.";
+
+            //Boton "Agree"
+            const warning_btn_close = document.createElement('button');
+            warning_btn_close.innerHTML = "Close";
+            warning_btn_close.classList.add('my_warning_btn');
+            warning_btn_close.onclick = function() {
+                //Evento para cerrar el PopUp
+                const my_warning_ventana = document.querySelector('.my_warning_container');
+                my_warning_ventana.remove();
+                //Evento para habilitar el scroll
+                window.removeEventListener('scroll', disableScroll);
+                window.onscroll = null;
+            }
+
+            //Contenedor grid
+            const my_warning_grid = document.createElement('div');
+            my_warning_grid.classList.add('my_warning_grid');
+
+            //Agregando los elementos al contenedor Grid
+            my_warning_grid.appendChild(warning_icon);
+            my_warning_grid.appendChild(warning_enun);
+            my_warning_grid.appendChild(warning_text);
+            my_warning_grid.appendChild(warning_btn_close);
+
+            //Contenedor global
+            const my_warning_container = document.createElement('div');
+            my_warning_container.classList.add('my_warning_container');
+            //Agregando el contenedor grid al contenedor global
+            my_warning_container.appendChild(my_warning_grid);
+
+            //Agregando el contenedor global al body documento html
+            //Agregando al body
+            const body = document.querySelector('body');
+            body.appendChild(my_warning_container);
+        };
+    </script>
+    <style>
+        .my_warning_container {
+            background-color: rgba(242, 225, 211, 0.5);
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        
+        .my_warning_grid {
+            width: 95%;
+            max-width: 500px;
+            margin: auto;
+            padding: 25px 20px;
+            background-color: #f3f3f3;
+            box-shadow: 0 0 15px #303e47c5;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .my_warning_icon {
+            height: 50px;
+            width: auto;
+            color: rgba(242, 225, 211, 1);
+            margin: auto;
+        }
+        
+        .my_warning_grid h4 {
+            text-align: center;
+            font-family: "Josefin Sans", Sans-serif;
+            font-size: 22px;
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: none;
+            letter-spacing: 3px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            color: rgb(123, 122, 122);
+        }
+        
+        .my_warning_grid p {
+            text-align: center;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 30px;
+            letter-spacing: .015em;
+            color: #616161;
+            margin-bottom: 20px;
+        }
+        
+        .my_warning_btn {
+            max-width: 300px;
+            margin: auto;
+            border: none;
+            display: inline-block;
+            outline: none;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 1.2;
+            text-align: center;
+            letter-spacing: 0.265em;
+            text-indent: 0.265em;
+            text-transform: uppercase;
+            padding: 17px 30px 17px 30px;
+            color: white;
+            background-color: #303e47;
+            cursor: pointer;
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            height: 100vh;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>

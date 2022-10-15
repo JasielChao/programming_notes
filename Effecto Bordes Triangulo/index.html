@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="header-content">
+
+        </div>
+    </div>
+    <div class="top_corner_body"></div>
+</body>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        height: 150vh;
+    }
+    
+    .header {
+        min-height: 80vh;
+        width: 100%;
+        background-color: #222;
+    }
+    
+    .top_corner_body {
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .top_corner_body:before {
+        content: '';
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 50%;
+        height: 75px;
+        position: absolute;
+        top: -30px;
+        left: 0;
+        transform: skewY(3deg);
+        background-color: #ffffff;
+    }
+    
+    .top_corner_body:after {
+        content: '';
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 50%;
+        height: 75px;
+        position: absolute;
+        top: -30px;
+        right: 0;
+        transform: skewY(-3deg);
+        background-color: #ffffff;
+    }
+</style>
+
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/7568b5b9e3.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <div class="my_warning_container">
+        <div class="my_warning_grid">
+
+            <svg class="my_warning_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M150.7 92.77C195 58.27 251.8 32 320 32C400.8 32 465.5 68.84 512.6 112.6C559.4 156 590.7 207.1 605.5 243.7C608.8 251.6 608.8 260.4 605.5 268.3C592.1 300.6 565.2 346.1 525.6 386.7L630.8 469.1C641.2 477.3 643.1 492.4 634.9 502.8C626.7 513.2 611.6 515.1 601.2 506.9L9.196 42.89C-1.236 34.71-3.065 19.63 5.112 9.196C13.29-1.236 28.37-3.065 38.81 5.112L150.7 92.77zM223.1 149.5L313.4 220.3C317.6 211.8 320 202.2 320 191.1C320 180.5 316.1 169.7 311.6 160.4C314.4 160.1 317.2 159.1 320 159.1C373 159.1 416 202.1 416 255.1C416 269.7 413.1 282.7 407.1 294.5L446.6 324.7C457.7 304.3 464 280.9 464 255.1C464 176.5 399.5 111.1 320 111.1C282.7 111.1 248.6 126.2 223.1 149.5zM320 480C239.2 480 174.5 443.2 127.4 399.4C80.62 355.1 49.34 304 34.46 268.3C31.18 260.4 31.18 251.6 34.46 243.7C44 220.8 60.29 191.2 83.09 161.5L177.4 235.8C176.5 242.4 176 249.1 176 255.1C176 335.5 240.5 400 320 400C338.7 400 356.6 396.4 373 389.9L446.2 447.5C409.9 467.1 367.8 480 320 480H320z"/></svg>
+            <h4>Sensitive Content</h4>
+            <p>This gallery page may contain nudity and graphic content. If you are at least 18 years of age and wish to continue, please click the &#x22 Agree &#x22 button now. Otherwise please clic on the &#x22 Back &#x22 button.</p>
+            <div class="my_popUp_twoColumn">
+                <button class="my_warning_btn">Agree</button>
+                <button class="my_warning_btn">Back</button>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script>
+        /*PopUp Warning */
+        //Encapsulo todas las funciones
+        (function() {
+            /*Funcion parqa evitar que el Usuario haga scroll */
+            function disableScroll() {
+                console.log('Entro!!! 2');
+                var x = window.scrollX;
+                var y = window.scrollY;
+                window.onscroll = function() {
+                    window.scrollTo(x, y)
+                    console.log('Entro!!!');
+                };
+
+            }
+
+            /*vento para inhabilitar el scroll*/
+            window.addEventListener('scroll', disableScroll());
+
+            //Creo los elementos 
+            //Icono <i class="fad fa-eye-slash"></i>
+            const warning_icon = document.createElement('i');
+            warning_icon.classList.add('my_warning_icon');
+            warning_icon.classList.add('fad');
+            warning_icon.classList.add('fa-eye-slash');
+
+            //Enunciado
+            const warning_enun = document.createElement('h4');
+            warning_enun.innerHTML = "Sensitive Content";
+
+            //Texto
+            //Enunciado
+            const warning_text = document.createElement('p');
+            warning_text.innerHTML = "This gallery page may contain nudity and graphic content. If you are at least 18 years of age and wish to continue, please click the &#x22 Agree &#x22 button now. Otherwise please clic on the &#x22 Back &#x22 button.";
+
+            //Boton "Agree"
+            const warning_btn_agree = document.createElement('button');
+            warning_btn_agree.innerHTML = "Agree";
+            warning_btn_agree.classList.add('my_warning_btn');
+            warning_btn_agree.onclick = function() {
+                console.log('Click!!!!');
+                //Evento para cerrar el PopUp
+                const my_warning_ventana = document.querySelector('.my_warning_container');
+                my_warning_ventana.remove();
+                console.log('Paso 1');
+                //Evento para habilitar el scroll
+                window.removeEventListener('scroll', disableScroll);
+                window.onscroll = null;
+                console.log('Paso 2');
+            }
+
+            //Boton "Back"
+            const warning_btn_back = document.createElement('button');
+            warning_btn_back.innerHTML = "Back";
+            warning_btn_back.classList.add('my_warning_btn');
+            warning_btn_back.onclick = function() {
+                //Evento para habilitar el scroll
+                window.removeEventListener('scroll', disableScroll);
+                window.onscroll = null;
+                //Evento para devolver al usuario a la pagina anterior o al home
+                let prevUrl = document.referrer;
+                //Si la pagina anterior pertenece al sitio web
+                if (prevUrl.indexOf(window.location.host) !== -1) {
+                    // Ir a la página anterior
+                    window.history.back();
+                } else {
+                    window.location.href = "https://mgcosmeticcenter.com/";
+                }
+            }
+
+            //Contenedor botones
+            const my_popUp_twoColumn = document.createElement('div');
+            my_popUp_twoColumn.classList.add('my_popUp_twoColumn');
+            my_popUp_twoColumn.appendChild(warning_btn_agree);
+            my_popUp_twoColumn.appendChild(warning_btn_back);
+
+
+            //Contenedor grid
+            const my_warning_grid = document.createElement('div');
+            my_warning_grid.classList.add('my_warning_grid');
+
+            //Agregando los elementos al contenedor Grid
+            my_warning_grid.appendChild(warning_icon);
+            my_warning_grid.appendChild(warning_enun);
+            my_warning_grid.appendChild(warning_text);
+            my_warning_grid.appendChild(my_popUp_twoColumn);
+
+            //Contenedor global
+            const my_warning_container = document.createElement('div');
+            my_warning_container.classList.add('my_warning_container');
+            //Agregando el contenedor grid al contenedor global
+            my_warning_container.appendChild(my_warning_grid);
+
+            //Agregando el contenedor global al body documento html
+            //Agregando al body
+            const body = document.querySelector('body');
+            body.appendChild(my_warning_container);
+        }());
+    </script>
+    <style>
+        .my_warning_container {
+            background-color: rgba(242, 225, 211, 0.5);
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        
+        .my_warning_grid {
+            width: 95%;
+            max-width: 500px;
+            margin: auto;
+            padding: 25px 20px;
+            background-color: #f3f3f3;
+            box-shadow: 0 0 15px #303e47c5;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .my_warning_icon {
+            height: 50px;
+            width: auto;
+            color: rgba(242, 225, 211, 1);
+            margin: auto;
+        }
+        
+        .my_warning_grid h4 {
+            text-align: center;
+            font-family: "Josefin Sans", Sans-serif;
+            font-size: 22px;
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: none;
+            letter-spacing: 3px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            color: rgb(123, 122, 122);
+        }
+        
+        .my_warning_grid p {
+            text-align: center;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 30px;
+            letter-spacing: .015em;
+            color: #616161;
+            margin-bottom: 20px;
+        }
+        
+        .my_warning_btn {
+            max-width: 300px;
+            margin: auto;
+            border: none;
+            display: inline-block;
+            outline: none;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 1.2;
+            text-align: center;
+            letter-spacing: 0.265em;
+            text-indent: 0.265em;
+            text-transform: uppercase;
+            padding: 17px 30px 17px 30px;
+            color: white;
+            background-color: #303e47;
+            cursor: pointer;
+        }
+        
+        .my_popUp_twoColumn {
+            display: grid;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            column-gap: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .my_popUp_twoColumn {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            height: 100vh;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>

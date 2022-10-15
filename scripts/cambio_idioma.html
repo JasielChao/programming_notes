@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function cambiar_idioma(url_idioma) {
+            const ingles = document.querySelector('.pagina_ingles');
+
+            const header_top_right = document.querySelector('.header_top_right');
+
+            const link_change_language = document.createElement('a');
+            /*Condicional  para saber si la pagina esta en español o ingles*/
+            link_change_language.classList.add('cambiar_idioma');
+            if (ingles != null) {
+                link_change_language.classList.add('my_esp_flag');
+            } else {
+                link_change_language.classList.add('my_ing_flag');
+            }
+            link_change_language.href = url_idioma;
+
+            //Agregando al header
+            header_top_right.appendChild(link_change_language);
+        };
+    </script>
+</body>
+
+</html>

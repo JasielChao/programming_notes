@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<div id="my_wrap">
+    <h2>Send a Message</h2>
+    <div id="my_form-wrap">
+        <form action=""></form>
+    </div>
+</div>
+
+<body>
+    <style>
+        #my_wrap {
+            background-color: antiquewhite;
+            width: 530px;
+            margin: 20px auto 0;
+            height: 1000px;
+        }
+        
+        #my_form-wrap {
+            overflow: hidden;
+            height: 447px;
+            position: relative;
+            top: 0;
+            transition: all 1s ease-in-out 0.3s;
+        }
+        
+        #my_form-wrap::before {
+            content: "";
+            position: absolute;
+            bottom: 128px;
+            left: 0;
+            background: url(before.png);
+            width: 530px;
+            height: 317px;
+        }
+        
+        #my_form-wrap::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: url(after.png);
+            width: 530px;
+            height: 259px;
+        }
+        
+        #my_form-wrap.hide::before,
+        #my_form-wrap.hide::after {
+            display: none;
+        }
+        
+        #my_form-wrap:hover {
+            height: 777px;
+            top: -200px;
+        }
+    </style>
+    <Style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+    </Style>
+
+</body>
+
+</html>

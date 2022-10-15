@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <div class="div_Specifications">
+        <h3>Specifications</h3>
+        <div class="my_popUp_twoColumn">
+            <ul>
+                <li>Year: 2001</li>
+                <li>Length: 103ft</li>
+                <li>Boat type : 22ft</li>
+                <li>Manufacturer: Maiora</li>
+            </ul>
+            <ul>
+                <li>Engines: 2</li>
+                <li>Model: Motor Yacht</li>
+                <li>Max Speed: 24 kn</li>
+                <li>Number of Cabins: 4</li>
+            </ul>
+        </div>
+
+        <button class="my_readMore">Click Me</button>
+
+    </div>
+
+
+
+
+    <script>
+        /*Funcion parqa evitar que el Usuario haga scroll */
+        function disableScroll() {
+            var x = window.scrollX;
+            var y = window.scrollY;
+            window.onscroll = function() {
+                window.scrollTo(x, y)
+            };
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const readMore = document.querySelector('.my_readMore');
+            readMore.addEventListener('click', () => {
+                //Evento para inhabilitar el scroll
+                window.addEventListener('scroll', disableScroll());
+
+                //Creo los elementos 
+                const enun_list = document.createElement('h4');
+                enun_list.innerHTML = "Amenities";
+                //Lista 1
+                const list_1 = document.createElement('ul');
+                const list_1_1 = document.createElement('li');
+                list_1_1.innerHTML = "TV with satellite receiver";
+                list_1.appendChild(list_1_1);
+                const list_1_2 = document.createElement('li');
+                list_1_2.innerHTML = "Teak deck";
+                list_1.appendChild(list_1_2);
+                const list_1_3 = document.createElement('li');
+                list_1_3.innerHTML = "Water Sport Equipment";
+                list_1.appendChild(list_1_3);
+                const list_1_4 = document.createElement('li');
+                list_1_4.innerHTML = "Jacuzzi bath";
+                list_1.appendChild(list_1_4);
+                const list_1_5 = document.createElement('li');
+                list_1_5.innerHTML = "Required safety gear";
+                list_1.appendChild(list_1_5);
+                const list_1_6 = document.createElement('li');
+                list_1_6.innerHTML = "Bow Thrusters";
+                list_1.appendChild(list_1_6);
+                const list_1_7 = document.createElement('li');
+                list_1_7.innerHTML = "Chart Plotter";
+                list_1.appendChild(list_1_7);
+                const list_1_8 = document.createElement('li');
+                list_1_8.innerHTML = "Climate Control";
+                list_1.appendChild(list_1_8);
+                const list_1_9 = document.createElement('li');
+                list_1_9.innerHTML = "Autopilot";
+                list_1.appendChild(list_1_9);
+                const list_1_10 = document.createElement('li');
+                list_1_10.innerHTML = "Stove / grill";
+                list_1.appendChild(list_1_10);
+                const list_1_11 = document.createElement('li');
+                list_1_11.innerHTML = "Fresh Water System";
+                list_1.appendChild(list_1_11);
+                //Lista 2
+                const list_2 = document.createElement('ul');
+                const list_2_1 = document.createElement('li');
+                list_2_1.innerHTML = "Wet bar in salon";
+                list_2.appendChild(list_2_1);
+                const list_2_2 = document.createElement('li');
+                list_2_2.innerHTML = "Ice maker";
+                list_2.appendChild(list_2_2);
+                const list_2_3 = document.createElement('li');
+                list_2_3.innerHTML = "Freezer and refrigerator";
+                list_2.appendChild(list_2_3);
+                const list_2_4 = document.createElement('li');
+                list_2_4.innerHTML = "Washers and dryers";
+                list_2.appendChild(list_2_4);
+                const list_2_5 = document.createElement('li');
+                list_2_5.innerHTML = "Audio system with 18 speakers";
+                list_2.appendChild(list_2_5);
+                const list_2_6 = document.createElement('li');
+                list_2_6.innerHTML = "Microwave oven";
+                list_2.appendChild(list_2_6);
+                const list_2_7 = document.createElement('li');
+                list_2_7.innerHTML = "Radio/CD player/DVD";
+                list_2.appendChild(list_2_7);
+                const list_2_8 = document.createElement('li');
+                list_2_8.innerHTML = "Air Conditioning";
+                list_2.appendChild(list_2_8);
+                const list_2_9 = document.createElement('li');
+                list_2_9.innerHTML = "Generator";
+                list_2.appendChild(list_2_9);
+                const list_2_10 = document.createElement('li');
+                list_2_10.innerHTML = "Jet ski";
+                list_2.appendChild(list_2_10);
+                const list_2_11 = document.createElement('li');
+                list_2_11.innerHTML = "Seabob";
+                list_2.appendChild(list_2_11);
+                //Contenedor listas
+                const my_popUp_twoColumn = document.createElement('div');
+                my_popUp_twoColumn.classList.add('my_popUp_twoColumn');
+                my_popUp_twoColumn.appendChild(list_1);
+                my_popUp_twoColumn.appendChild(list_2);
+
+                //Resto de Enunciados
+                const enun_1 = document.createElement('h4');
+                enun_1.innerHTML = "General Features";
+                const text_1 = document.createElement('p');
+                text_1.innerHTML = "Furniture and all bulkheads in lacquered wood, gloss or satin. Floors and tops of galley and bathrooms are covered with marble or granite as well as the tops of the bars and some floor sections particularly subject to traffic.";
+
+                const enun_2 = document.createElement('h4');
+                enun_2.innerHTML = "Accommodations";
+                const text_2 = document.createElement('p');
+                text_2.innerHTML = "Owner &amp; Guests: Sleeps 9 in four staterooms on lower deck; access through staircase from the main foyer amidships (starboard).";
+
+                const enun_3 = document.createElement('h4');
+                enun_3.innerHTML = "Bathrooms";
+                const text_3 = document.createElement('p');
+                text_3.innerHTML = "4 owners and guests plus day head on deck and 2 crew’s bathrooms. Jacuzzi with separate marble shower for master; stall showers for other bathrooms (day head excluded); ceramic sinks, Microphor Heads; Mirrors; cabinets; accessories; portholes; exhaust fans. Marble in all floors and counters; lacquered wood or laminate on ceilings and walls.";
+
+                const enun_4 = document.createElement('h4');
+                enun_4.innerHTML = "Master Stateroom";
+                const text_4 = document.createElement('p');
+                text_4.innerHTML = "King size bed, two night stands, a chest of drawers, writing desk and vanity, safe, spring mattress with pillows, bedspread, halogen ceiling lighting, accent lighting (at sides and at the base of the bed), 55” Samsung flatscreen TV with satellite receiver, multi-system VHS, radio/stereo with CD player, walk-in closet with wardrobe, drawers, shelving and jacuzzi bath.";
+
+                const enun_5 = document.createElement('h4');
+                enun_5.innerHTML = "VIP Stateroom";
+                const text_5 = document.createElement('p');
+                text_5.innerHTML = "King size bed, spring mattress and pillows, bedspread, two nightstands, wardrobes, a chest of drawers, mattress and pillows, halogen ceiling lights, accent lighting. There is also a TV with satellite receiver, multi-system VHS, stereo with CD player.";
+
+                const enun_6 = document.createElement('h4');
+                enun_6.innerHTML = "2 Guest Staterooms";
+                const text_6 = document.createElement('p');
+                text_6.innerHTML = "Two twins with pullman and Full size bed respectively, object holders placed on the wall beside, nightstand, wardrobe, drawers, mattresses and pillows, bedspreads, halogen ceiling lights, accent lighting, TV with satellite receiver, multi-system VHS, radio/stereo with CD player, halogen lights.";
+
+                const enun_7 = document.createElement('h4');
+                enun_7.innerHTML = "Salon";
+                const text_7 = document.createElement('p');
+                text_7.innerHTML = "The salon has electrically operated glass door from the aft deck and features two curved symmetrically styled large plush sofas. There is a curved bar amidships forward, with marble surface. The wet bar has Icemaker, stainless steel circular sink and ample storage. Behind and above the bar is a 42′ Samsung Plasma TV. The entertainment system is comprised of a DVD and CD players, satellite TV receiver and complete Audio surround system. The starboard door leads to the main foyer with the day head and the staircase to the cabins and side exit door while the port door leads to the formal dining room.";
+
+                const enun_8 = document.createElement('h4');
+                enun_8.innerHTML = "Galley";
+                const text_8 = document.createElement('p');
+                text_8.innerHTML = "The Galley is located forward of the wheelhouse with access to the dining room, side deck door and crew accommodation, the galley has a 4-burner electric Gaggenau ceramic cook top, convection oven, Whirlpool microwave oven, double door Sub-zero refrigerator/freezer, Gaggenau dishwasher, granite counter tops, two stainless steel sinks and cabinetry with storage. There is also a flat screen TV with satellite receiver and a radio/CD player, and closed circuit TV monitor. The galley has a pantograph door with access to the port side deck.";
+
+                const enun_9 = document.createElement('h4');
+                enun_9.innerHTML = "Crew Quarters";
+                const text_9 = document.createElement('p');
+                text_9.innerHTML = "The Crew Quarters have three separate rooms and a Captain’s cabin with ensuite bathroom, single bed, closet, dresser, safe, night table and reading lamp; a crew cabin with two beds, closet, drawers and reading lamps and a third cabin with a double bed. All three cabins have their own flat screen TV with satellite receiver and a radio/CD player. Finish is the same as the rest of the yacht.";
+
+
+                //Boton Cerrar
+                const my_popUp_close = document.createElement('i');
+                my_popUp_close.classList.add('my_popUp_close');
+                my_popUp_close.classList.add('fas');
+                my_popUp_close.classList.add('fa-times-circle');
+                my_popUp_close.onclick = function() {
+                    //Evento para cerrar el PopUp
+                    const my_popUp_ventana = document.querySelector('.my_popUp');
+                    my_popUp_ventana.remove();
+                    //Evento para habilitar el scroll
+                    window.removeEventListener('scroll', disableScroll);
+                    window.onscroll = null;
+                }
+
+                //Contenedor grid
+                const my_popUp_card = document.createElement('div');
+                my_popUp_card.classList.add('my_popUp_card');
+
+                //Agregando los elementos al contenedor Grid
+                my_popUp_card.appendChild(my_popUp_close);
+                my_popUp_card.appendChild(enun_list);
+                my_popUp_card.appendChild(my_popUp_twoColumn);
+                my_popUp_card.appendChild(enun_1);
+                my_popUp_card.appendChild(text_1);
+                my_popUp_card.appendChild(enun_2);
+                my_popUp_card.appendChild(text_2);
+                my_popUp_card.appendChild(enun_3);
+                my_popUp_card.appendChild(text_3);
+                my_popUp_card.appendChild(enun_4);
+                my_popUp_card.appendChild(text_4);
+                my_popUp_card.appendChild(enun_5);
+                my_popUp_card.appendChild(text_5);
+                my_popUp_card.appendChild(enun_6);
+                my_popUp_card.appendChild(text_6);
+                my_popUp_card.appendChild(enun_7);
+                my_popUp_card.appendChild(text_7);
+                my_popUp_card.appendChild(enun_8);
+                my_popUp_card.appendChild(text_8);
+                my_popUp_card.appendChild(enun_9);
+                my_popUp_card.appendChild(text_9);
+
+
+                //Contenedor global
+                const my_popUp = document.createElement('div');
+                my_popUp.classList.add('my_popUp');
+                //Agregando el contenedor grid al contenedor global
+                my_popUp.appendChild(my_popUp_card);
+
+                //Agregando el contenedor global al body documento html
+                //Agregando al body
+                const body = document.querySelector('body');
+                body.appendChild(my_popUp);
+
+
+
+
+            });
+
+        });
+    </script>
+    <style>
+        .my_readMore {
+            max-width: 300px;
+            margin: auto;
+            padding: 0;
+            background: none;
+            border: none;
+            font-weight: bold;
+            color: #31a9b6;
+            font-size: 15px;
+        }
+        
+        .div_Specifications {
+            max-width: 500px;
+            margin: auto;
+            padding: 15px 20px;
+        }
+        
+        .div_Specifications h3 {
+            margin-bottom: 15px;
+        }
+        
+        .div_Specifications ul {
+            margin-left: 15px;
+        }
+        
+        .my_popUp {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            height: 100vh;
+            width: 100%;
+            background-color: rgba(24, 24, 24, 0.4);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2.5vh 15px;
+        }
+        
+        .my_popUp_card {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 95%;
+            max-width: 1200px;
+            min-height: 500px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(24, 24, 24, 0.8);
+            ;
+            border-radius: 5px;
+            overflow: auto;
+            max-height: 95vh;
+            padding: 30px 15px;
+            position: relative;
+        }
+        
+        @media (min-width: 768px) {
+            .my_popUp_card {
+                padding: 50px 35px;
+            }
+        }
+        
+        .my_popUp_close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            height: 35px;
+            width: 35px;
+            border: none;
+            border-radius: 50%;
+            background-color: #31a9b6;
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+            transition: all 0.4s ease;
+        }
+        
+        .my_popUp_close:hover {
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+        
+        .my_popUp_card h4,
+        .div_Specifications h3 {
+            font-family: Montserrat;
+            text-transform: uppercase;
+            font-size: 18px;
+            line-height: 1.2;
+            font-weight: 700;
+            color: #444;
+        }
+        
+        .my_popUp_card p {
+            line-height: 1.3;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .my_popUp_twoColumn {
+            display: grid;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            column-gap: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .my_popUp_twoColumn {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .my_popUp_twoColumn ul {
+            padding: 0;
+        }
+        
+        .my_popUp_twoColumn ul li {
+            list-style: none;
+            line-height: 1.5;
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            height: 150vh;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>

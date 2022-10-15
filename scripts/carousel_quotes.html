@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Viewport" content="width=divice-width, scale-initial=1.0">
+</head>
+
+<body>
+    <div class="my_slideshow-container">
+
+        <div class="my_Slides">
+            <q>I love you the more in that I believe you had liked me for my
+                    own sake and for nothing else</q>
+            <p class="author">- John Keats</p>
+        </div>
+
+        <div class="my_Slides">
+            <q>But man is not made for defeat. A man can be destroyed but
+                    not defeated.</q>
+            <p class="author">- Ernest Hemingway</p>
+        </div>
+
+        <div class="my_Slides">
+            <q>I have not failed. I've just found 10,000 ways that won't
+                    work.</q>
+            <p class="author">- Thomas A. Edison</p>
+        </div>
+
+        <a class="my_slideshow-btn prev">❮</a>
+        <a class="my_slideshow-btn next">❯</a>
+
+
+        <div class="my_dot-container">
+            <div class="my_dot active"></div>
+            <div class="my_dot"></div>
+            <div class="my_dot"></div>
+        </div>
+
+    </div>
+
+
+
+    <style>
+        .my_slideshow-container {
+            padding: 35px 60px;
+            padding: 50px 35px 100px 35px;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+        }
+        /*Review Slider */
+        
+        .my_slideshow-container .my_Slides {
+            display: inline-block;
+            transition: all .4s ease-in-out;
+            height: 100%;
+            width: 100%;
+            padding: 35px 60px;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            bottom: 0;
+        }
+        /*Botones Slider */
+        
+        .my_slideshow-container .my_slideshow-btn {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 50px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 25px;
+            padding: 10px;
+            user-select: unset;
+            text-decoration: none;
+        }
+        
+        .my_slideshow-container .my_slideshow-btn.prev {
+            left: 0;
+        }
+        
+        .my_slideshow-container .my_slideshow-btn.next {
+            right: 0;
+        }
+        /* Dot Slider */
+        
+        .my_slideshow-container .my_dot-container {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .my_slideshow-container .my_dot-container .my_dot {
+            width: 7px;
+            height: 7px;
+            transition: all .2s ease-in-out;
+            border-radius: 5px;
+            background-color: #9d9c9b;
+            margin: 0 4px;
+            cursor: pointer;
+        }
+        
+        .my_slideshow-container .my_dot-container .my_dot.active {
+            width: 30px;
+            background-color: #c3a775;
+        }
+    </style>
+    <script>
+        function minHeigthCarousel() {
+
+            //Nexus con el DOM para los eventos del Slider
+            let my_slideshow_container = document.querySelector('.my_slideshow-container');
+            let reviews = document.querySelectorAll('.my_Slides');
+            let min_heigth = 200;
+
+            //Verifico si no falta ninguno de los elementos necesarios para los eventos JS  
+            if (my_slideshow_container != null && my_slideshow_container != 'Undefined') {
+
+                //Obtengo el alto minimo basado en el review con la propiedad el valor heigth más alto
+                for (let i = 0; i < reviews.length; i++) {
+                    if (reviews[i].firstChild.offsetHeight > min_heigth) {
+                        min_heigth = reviews[i].firstChild.offsetHeight;
+                    }
+                }
+                min_heigth += 80;
+                my_slideshow_container.style = 'min-height: ' + min_heigth + 'px';
+
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+
+            minHeigthCarousel();
+
+            //Nexus con el DOM para los eventos del Slider
+            let reviews = document.querySelectorAll('.my_Slides');
+            let btn_reviews = document.querySelectorAll('.my_slideshow-btn');
+            let dot_reviews = document.querySelectorAll('.my_dot');
+
+
+            //Verifico si no falta ninguno de los elementos necesarios para los eventos JS  
+            if (reviews.length > 0 && btn_reviews.length > 0 && dot_reviews.length > 0) {
+
+
+                //Inicializo el primer slider como activo
+                reviews[0].style = 'left: 0;';
+
+
+                //Evento click para para los Botones del Slider
+                for (let i = 0; i < btn_reviews.length; i++) {
+
+                    btn_reviews[i].addEventListener('click', function() {
+
+                        let position_review_activo = 0;
+
+                        //Detecto que Review esta Activo
+                        for (let i = 0; i < reviews.length; i++) {
+
+                            if (reviews[i].style.left == '0px') {
+                                position_review_activo = i;
+                            }
+
+                        }
+
+                        //Si es el Boton Prev
+                        if (this.classList.contains('prev')) {
+                            //Si el Review Activo no es el primero
+                            if (position_review_activo > 0) {
+                                reviews[position_review_activo].style = 'left: 100%';
+                                dot_reviews[position_review_activo].classList.remove('active');
+                                reviews[position_review_activo - 1].style = 'left: 0';
+                                dot_reviews[position_review_activo - 1].classList.add('active');
+                            }
+
+                        } else {
+                            //Si es el Boton Next
+                            //Si el Review Activo no es el ultimo
+                            if (position_review_activo < reviews.length - 1) {
+                                reviews[position_review_activo].style = 'left: -100%';
+                                dot_reviews[position_review_activo].classList.remove('active');
+                                reviews[position_review_activo + 1].style = 'left: 0';
+                                dot_reviews[position_review_activo + 1].classList.add('active');
+                            }
+                        }
+
+                    });
+                }
+
+                //Evento click para para los puntos del Slider
+                for (let i = 0; i < dot_reviews.length; i++) {
+
+                    dot_reviews[i].addEventListener('click', function() {
+
+                        let position_review_activo = 0;
+                        let position_dot;
+
+
+                        //Detecto que Review esta Activo
+                        for (let i = 0; i < reviews.length; i++) {
+
+                            if (reviews[i].style.left == '0px') {
+                                position_review_activo = i;
+                            }
+
+                        }
+
+                        //Detecto la posicion del punto en que punto se dio click
+                        for (let i = 0; i < dot_reviews.length; i++) {
+
+                            if (dot_reviews[i] == this) {
+                                position_dot = i;
+                            }
+                        }
+
+                        console.log('position_dot: ' + position_dot);
+
+
+                        //Para ir a la izquierda
+                        if (position_review_activo > position_dot) {
+                            //Recorro los reviews desde el la posicion actual hasta la deseada
+                            for (let i = position_review_activo; i >= position_dot; i--) {
+                                reviews[i].style = 'left: 100%';
+                                dot_reviews[position_review_activo].classList.remove('active');
+                                reviews[position_dot].style = 'left: 0';
+                                dot_reviews[position_dot].classList.add('active');
+                            }
+                        } else {
+                            ///Para ir a la derecha
+                            //Recorro los reviews desde el la posicion actual hasta la deseada
+                            for (let i = position_review_activo; i <= position_dot; i++) {
+                                reviews[i].style = 'left: -100%';
+                                dot_reviews[position_review_activo].classList.remove('active');
+                                reviews[position_dot].style = 'left: 0';
+                                dot_reviews[position_dot].classList.add('active');
+                            }
+                        }
+
+
+
+
+
+                    });
+                }
+
+
+                //Evento drag and drog para los Slider
+                for (let i = 0; i < reviews.length; i++) {
+
+                    reviews[i].addEventListener("drag", function(e) {
+                        e = e || window.event;
+                        var dragX = e.pageX,
+                            dragY = e.pageY;
+
+                        console.log("X: " + dragX + " Y: " + dragY);
+                    }, false);
+
+                }
+
+
+
+
+            }
+        });
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</body>
+
+</html>
