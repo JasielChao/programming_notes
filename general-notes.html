@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Just for Testing</title>
+</head>
+<body>
+
+    <!-- Picture Tag -->
+    <picture>
+        <source srcset="img.webp" type="image/webp">
+        <source srcset="img.jpg" type="image/jpeg"> 
+        <img src="img_orange_flowers.jpg" alt="Flowers" style="width:auto;" onerror="if (this.src != 'error.jpg') this.src = 'error.jpg';">
+    </picture>
+
+    <!-- Thumbnail Youtube -->
+    <div>
+        <script>
+            // Max Resolution maxresdefault.jpg
+            // Standart Hight Resolution hqdefault.jpg
+
+            //Function to prevent missing maxresdefault images youtube 
+            document.addEventListener('DOMContentLoaded', ()=>{
+                    let maxresdefault = document.querySelectorAll('.maxresdefault');
+
+                    if(maxresdefault){
+                        maxresdefault.forEach(thumbnail => {
+
+                          if (thumbnail.naturalWidth < 300){
+                            thumbnail.src = thumbnail.src.replace("maxresdefault", "hqdefault");
+                          }
+                        });
+                    }
+            })
+        </script>
+
+    </div>
+
+    <!-- Cognito Forms-->
+    <div>
+           <!-- KEY:COGNITO v2 -->
+        <div>
+            <!-- [[KEY:COGNITO v2]] -->
+                <script src="https://www.cognitoforms.com/f/seamless.js" data-key="or_12nlnoUKokQ0b0rrIVQ" data-form="1"></script>
+                <script>
+                Cognito.mount("2", ".cognito").prefill(
+                                {
+                                "PageTitle": document.title,
+                                "PageUrl": window.location.href
+                                });
+                </script> 
+        </div>
+
+        <!-- Iframe KEY:COGNITO v2 -->
+        <div>
+            <!-- Documentation -> https://www.cognitoforms.com/support/168/style-publish/iframe-embedding -->
+            <script>
+                 Cognito("#cognito15").setCss("#cognito .cog-abuse {display: none;} .cog-branding  {display: none;};");
+                Cognito("#form2").setCss("#cognito .cog-button--primary{background-color:#5ACEC8;}");
+            </script>
+            <script>Cognito.setCss('https://mysite.com/site.css');</script>
+
+            <script>
+                Cognito("#form1").prefill({"Name": {"First":"John","Last":"Smith"},"Phone":"8034567890","Email":"jsmith@gmail.com"});
+                Cognito("#form2").prefill({"Name": {"First":"Jane","Last":"Murphy","Phone":"8030987654","Email":"jsmurphy@gmail.com"}});
+            </script>
+
+        </div>
+        
+    </div>
+
+</body>
+
+</html>
