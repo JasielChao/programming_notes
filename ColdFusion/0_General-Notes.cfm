@@ -16,6 +16,16 @@
 </div>  
 
 
+<!--- Conditionals --->
+<cfif #nameVariable# EQ 'chaparral'>
+        <!-- Case 1  -->
+<cfelseif  #nameVariable#EQ 'four-winns'>
+        <!-- Case 2  -->
+<cfelse>
+        <!-- Case 3  -->
+</cfif>
+
+
 <!--  Replace Subtring ColdFusion  -->       
 <cfoutput> #replace(string,"subtring","newSubstring","all")# </cfoutput>
 
