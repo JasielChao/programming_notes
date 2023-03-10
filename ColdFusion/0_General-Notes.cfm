@@ -25,6 +25,9 @@
         <!-- Case 3  -->
 </cfif>
 
+ <!--- Include --->
+ <cfinclude template="partials/partial.file.cfm" />
+
 
 <!--  Replace Subtring ColdFusion  -->       
 <cfoutput> #replace(string,"subtring","newSubstring","all")# </cfoutput>
