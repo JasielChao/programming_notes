@@ -1,4 +1,7 @@
 <!-- ColdFusion -->
+<!-- Link to test code fragment in live 
+    https://trycf.com/
+-->
 
 <!--   Variables ColdFusion  -->  
 <cfset variablename="value">  
@@ -16,7 +19,13 @@
 </div>  
 
 
-<!--- Conditionals --->
+<!--- Conditionals | ColdFusion	
+        Operator                            Symbol
+        GT, GREATER THAN	                >
+        LT, LESS THAN	                    <
+        GTE, GREATER THAN OR EQUAL	        >=
+        LTE, LESS THAN OR EQUAL	            <=  
+--->
 <cfif #nameVariable# EQ 'chaparral'>
         <!-- Case 1  -->
 <cfelseif  #nameVariable#EQ 'four-winns'>
@@ -34,3 +43,26 @@
 
 <!--  Get Current Path ColdFusion  -->        
 <cfoutput> GetDirectoryFromPath(GetBaseTemplatePath())  </cfoutput>
+
+
+<!-- Array in ColdFusion-->
+<cfscript>
+    // Declare an array
+    myArray=["Google","Microsoft","Adobe","Facebook","Amazon"];
+    myConvertedList=myArray.toList();
+    WriteOutput(myConvertedList);
+</cfscript>
+
+<!-- JSON-->
+<cfscript>
+    altImages= deserializeJSON('[
+        { 
+        "img": "Left Image Content Block",
+        "alt": "Presents a responsive flex row with an image to the left of the content"
+    },
+    { 
+        "img": "Left Image Content Block",
+        "alt": "Presents a responsive flex row with an image to the left of the content"
+    }
+    ]');
+</cfscript>
