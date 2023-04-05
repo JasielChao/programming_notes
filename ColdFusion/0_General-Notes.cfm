@@ -9,6 +9,13 @@
     #variablename#
 </cfoutput>
 
+<!-- check if a variable exists coldfusion -->
+<cfif IsDefined("customTitle")>
+    <title>#customTitle#</title>
+<cfelse>
+    <title>#request.defaultSitePageTitle#</title>
+</cfif>
+
 <!--  Var Dump ColdFusion  -->
  <div style="display: none; max-width: 98vw;max-height: 80vh;position: absolute;z-index: 9;left: 0;">
     <pre>

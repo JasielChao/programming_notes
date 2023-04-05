@@ -24,6 +24,8 @@
 <!-- Convert String into an Array PHP -->
 <?php 
     $string_array = str_split($string);
+    //To Replace
+    echo str_replace("world","Peter","Hello world!");
 ?>
 
 
