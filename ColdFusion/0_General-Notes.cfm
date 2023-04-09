@@ -9,6 +9,13 @@
     #variablename#
 </cfoutput>
 
+<!-- check if a variable exists coldfusion -->
+<cfif IsDefined("customTitle")>
+    <title>#customTitle#</title>
+<cfelse>
+    <title>#request.defaultSitePageTitle#</title>
+</cfif>
+
 <!--  Var Dump ColdFusion  -->
  <div style="display: none; max-width: 98vw;max-height: 80vh;position: absolute;z-index: 9;left: 0;">
     <pre>
@@ -66,3 +73,32 @@
     }
     ]');
 </cfscript>
+
+
+<!-- SQL Filter -->
+<div>
+<!-- For more documentation go to:
+    https://www.3gpp2.org/cfdocs/htmldocs/Developing/WSc3ff6d0ea77859461172e0811cbec0e4fd-7ff0.html  -->
+
+    <!-- Example -->
+    <cfinvoke
+    component        ="manager.modules.gallery.galleries"
+    method           ="listRecords"
+    sqlWhere         ="isArchived = 0 or isArchived = NULL and galleryDate <= '#dateLimiter#'"
+    sortBy           ="galleryDate desc"
+    returnVariable   ="allGalleries" 
+    />
+
+</div>
+
+
+<!-- URL Parameter -->
+<div>
+    <!--- Checking if the URL parameter exist --->
+    <cfif structKeyExists(url,'filter')>
+        <!--- Setting the existing URL parameter to a variable--->
+        <cfset variableFilter=url.filter>  
+    <cfelse>
+        <!--- The  URL parameter dont exist--->
+    </cfif>
+</div>
