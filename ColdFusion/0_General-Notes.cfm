@@ -32,6 +32,10 @@
         LT, LESS THAN	                    <
         GTE, GREATER THAN OR EQUAL	        >=
         LTE, LESS THAN OR EQUAL	            <=  
+        EQ, IS EQUAL                        ==
+        NEQ, IS NOT EQUAL                   !=
+
+
 --->
 <cfif #nameVariable# EQ 'chaparral'>
         <!-- Case 1  -->
