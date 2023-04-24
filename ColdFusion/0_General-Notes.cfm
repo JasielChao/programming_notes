@@ -53,7 +53,7 @@
 <cfoutput> #replace(string,"subtring","newSubstring","all")# </cfoutput>
 
 <!--  Get Current Path ColdFusion  -->        
-<cfoutput> GetDirectoryFromPath(GetBaseTemplatePath())  </cfoutput>
+<cfoutput> #GetDirectoryFromPath(GetBaseTemplatePath())#  </cfoutput>
 
 
 <!-- Array in ColdFusion-->
