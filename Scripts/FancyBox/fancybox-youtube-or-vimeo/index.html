@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Fancybox Youtube or Vimeo</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css'>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<a href="https://source.unsplash.com/IvfoDk30JnI/1500x1000" data-fancybox="group-1" data-caption="This image has a caption">
+    <img src="https://source.unsplash.com/IvfoDk30JnI/320x180" />
+  </a>
+
+  <a href="https://source.unsplash.com/0JYgd2QuMfw/1500x1000" data-fancybox="group-1" data-width="2048" data-height="1365">
+    <img src="https://source.unsplash.com/0JYgd2QuMfw/320x180" />
+  </a>
+<a data-fancybox href="https://www.youtube.com/watch?v=AC1cREPIw_o&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0">
+        <img class="card-img-top img-fluid" src="http://img.youtube.com/vi/AC1cREPIw_o/mqdefault.jpg" />
+      </a>
+
+<a data-fancybox href="https://vimeo.com/95673122?color=ff0000">
+    Vimeo video - custom color
+</a>
+<a data-fancybox data-width="640" data-height="360" href="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4">
+        <img src="https://source.unsplash.com/IvfoDk30JnI/320x180" />
+  HTML5 Video
+      </a>
+<!-- Function to get Vimeo thumbnils using video ID -->
+<!-- <?php
+                function getVimeoThumb($id) {
+                    $data = file_get_contents("http://vimeo.com/api/v2/video/$id.json");
+                    $data = json_decode($data);
+                    return $data[0]->thumbnail_medium;
+                }
+
+?> -->
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js'></script>
+</body>
+</html>
