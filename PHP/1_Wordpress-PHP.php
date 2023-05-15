@@ -1,5 +1,8 @@
 <!-- General Wordpress PHP  -->
 
+<!-- Get the Current Route Source Dynamically -->
+<?php echo get_template_directory_uri();?>
+
 <!-- Wordpress Query  -->   
 <div>
     <!-- First Way  -->   
@@ -70,5 +73,29 @@
         update_metadata( 'post', $id_Post, 'meta_key', 'new_meta_value', $prev_value );
     }
 ?>
+
+<!-- Load Gallery -- >
+// More Info
+// https://code.tutsplus.com/articles/creating-your-own-image-gallery-page-template-in-wordpress--wp-23721
+<?php
+	$args = array(
+		'numberposts' => -1, // Using -1 loads all posts 
+		'orderby' => 'menu_order', // This ensures images are in the order set in the page media manager 
+		'order'=> 'ASC',
+		'post_mime_type' => 'image', // Make sure it doesn't pull other resources, like videos 
+		'post_parent' => $post->ID, // Important part - ensures the associated images are loaded 
+		'post_status' => null,
+		'post_type' => 'attachment'
+	);
+	$images = get_children( $args );
+?>
+
+<?php if($images){ ?>
+	<div id="slider">
+		<?php foreach($images as $image){ ?>
+		<img src="<?php echo $image->guid; ?>" alt="<?php echo $image->post_title; ?>" title="<?php echo $image->post_title; ?>" />
+		<?php	} ?>
+	</div>
+<?php } ?>
 
 
