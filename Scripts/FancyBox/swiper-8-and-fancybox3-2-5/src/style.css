@@ -1,0 +1,9 @@
+.swiper-wrapper img{
+  width: 100%;
+  height: auto;
+  
+}
+
+ul.swiper-wrapper {
+  list-style-type: none;
+}
