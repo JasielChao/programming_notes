@@ -17,7 +17,7 @@
 </cfif>
 
 <!--  Var Dump ColdFusion  -->
- <div style="display: none; max-width: 98vw;max-height: 80vh;position: absolute;z-index: 9;left: 0;">
+<div style="display: none; max-width: 98vw;max-height: 80vh;position: absolute;z-index: 9;left: 0;">
     <pre>
         <cfoutput>
             <cfdump var="#request.myNews#">
