@@ -50,3 +50,16 @@
     }
 ?>
 
+<!-- Escaping of the Quotation Marks -->
+<?php 
+    /*  Example if the get a text from any source that contain quotation marks, that will 
+        broke the code. Text example: 2014 CANTIERE DELLE MARCHE 89' 1" 
+        for this situation use the function addslashes();
+    */
+    # 
+    echo addslashes($text_quotation_marks);
+?>
+<script>
+    /* Example use with PHP and JS */
+    let muh_vessel_title = "<?php echo addslashes($text_quotation_marks); ?>";
+</script>   
