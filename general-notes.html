@@ -11,9 +11,11 @@
 
     <!-- Picture Tag -->
     <picture>
+        <source media="(min-width:650px)" srcset="img_pink_flowers.jpg">
+        <source media="(min-width:465px)" srcset="img_white_flower.jpg">
         <source srcset="img.webp" type="image/webp">
         <source srcset="img.jpg" type="image/jpeg"> 
-        <img src="img_orange_flowers.jpg" alt="Flowers" style="width:auto;" onerror="if (this.src != 'error.jpg') this.src = 'error.jpg';">
+        <img src="img_orange_flowers.jpg" alt="Flowers" style="width:auto;" onerror="this.onerror = null;this.parentNode.children[0].srcset = this.parentNode.children[1].srcset = this.src;" />
     </picture>
 
     <!-- Thumbnail Youtube -->
