@@ -23,7 +23,12 @@
             <cfdump var="#request.myNews#">
         </cfoutput>
     </pre>
-</div>  
+</div> 
+
+<!--- Counts List element --->
+<cfoutput>
+    <p>Count: #articlePhotos.recordcount# </p>
+</cfoutput>
 
 
 <!--- Conditionals | ColdFusion	
