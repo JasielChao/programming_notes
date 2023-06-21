@@ -22,7 +22,7 @@ if (isset($b)) {
     <div>This NOT going to Show up</div>
 <?php endif; ?>
 
-<!-- Var_Dump PHP  Please -->   
+<!-- Var_Dump PHP  Please removed when you finish the test -->   
 <div style="display: none;">
     <pre>
     <?php var_dump($variableName); ?>
