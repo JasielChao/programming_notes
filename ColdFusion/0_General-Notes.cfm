@@ -140,3 +140,30 @@
 </cffunction>
 
 Does it exist? #urlExists(urlSpecSheet)#<br />
+
+
+<!--- ---------------------------- --->
+<!---------- Date Functions ---------->
+<!--- ---------------------------- --->
+
+<!---------- Get Current Date ---------->
+<cfoutput> #DateFormat(now(), 'MMMM DD, yyyy')# </cfoutput>
+
+<!---------- Compare Date 
+
+DateCompare(date1, date2 [, datePart])
+
+Returns
+    -1, if date1 is earlier than date2
+    0, if date1 is equal to date2
+    1, if date1 is later than date2
+
+---------->
+    <cfset currentDate= #DateFormat(now(), 'MMMM DD, yyyy')#>  
+    <cfset compareDate= #DateFormat(articleDate, 'MMMM DD, yyyy')#>  
+
+    <cfif #DateCompare(currentDate, compareDate)# EQ '-1'>
+            <p>upcoming Dates</p>
+    <cfelse>
+            <p>Previous Dates</p>
+    </cfif>
