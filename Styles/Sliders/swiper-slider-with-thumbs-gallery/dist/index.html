@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Swiper  slider with Thumbs Gallery</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+  
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+
+
+
+
+
+<!-- Swiper -->
+  <div class="swiper-container gallery-top">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url(https://source.unsplash.com/random)"></div>
+           <div class="swiper-slide" style="background-image:url(https://source.unsplash.com/random)"></div>     <div class="swiper-slide" style="background-image:url(https://source.unsplash.com/random)"></div>     <div class="swiper-slide" style="background-image:url(https://source.unsplash.com/random)"></div>
+      
+    </div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next swiper-button-white"></div>
+    <div class="swiper-button-prev swiper-button-white"></div>
+  </div>
+  <div class="swiper-container gallery-thumbs">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url(https://source.unsplash.com/random)"></div>
+       <div class="swiper-slide" style="background-image:url(https://source.unsplash.com/random)"></div>
+       <div class="swiper-slide" style="background-image:url(https://source.unsplash.com/random)"></div>
+       <div class="swiper-slide" style="background-image:url(https://source.unsplash.com/random)"></div>
+      
+    </div>
+  </div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesVisibility: true,
+      watchSlidesProgress: true,
+    });
+    var galleryTop = new Swiper('.gallery-top', {
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      thumbs: {
+        swiper: galleryThumbs
+      }
+    });
+  </script>
+
+  
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
