@@ -1,0 +1,16 @@
+<!--- This is a custom function to make dynamic this process /* (Jasiel) */ ---> 
+<script defer>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        
+        /* Getting all the <a> tags on the page */
+        let phoneLinkArray = document.querySelectorAll('a')
+
+        phoneLinkArray.forEach(phoneLink => {
+            /* Selecting just the <a> tags for phone calls */
+            if (phoneLink.href.startsWith('tel:')) {
+                /* Setting onclick attribute */
+                phoneLink.setAttribute("onclick", "return gtag_report_conversion('" + phoneLink.href + "');");
+            }
+        })
+    })
+</script>
