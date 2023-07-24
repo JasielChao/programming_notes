@@ -16,7 +16,7 @@
     <title>#request.defaultSitePageTitle#</title>
 </cfif>
 
-<!--  Var Dump ColdFusion  -->
+<!--  Var Dump ColdFusion  Please remove it when you finish the test -->   
 <div style="display: none; max-width: 98vw;max-height: 80vh;position: absolute;z-index: 9;left: 0;">
     <pre>
         <cfoutput>
