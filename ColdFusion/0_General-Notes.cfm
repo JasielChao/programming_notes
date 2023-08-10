@@ -77,13 +77,13 @@
     {"reason": "email address is unknown", "email": "ff@ff.com"},
     {"reason": "Known bad domain", "email": "rr@hotmai.com"},
     {"reason": "email address is unknown", "email": "ll@pp.rr.com"}]'>
-   
+    
     <cfset JsonData=REReplace(JsonData,"^\s*[[:word:]]*\s*\(\s*","")>
     <cfset JsonData=REReplace(JsonData, "\s*\)\s*$", "")>
-   
+    
     <cfset cfData=DeserializeJSON(JsonData)>
     <cfloop from="1" to="#arraylen(cfData)#" index="i">
-         #cfData[i].email# -    #cfData[i].reason#<br />
+        #cfData[i].email# -    #cfData[i].reason#<br />
     </cfloop>
 </cfoutput>
 
