@@ -12,6 +12,24 @@
 <!-- To get the Main Post page -->
 <?php
     while(have_posts()) : the_post();
-        #Here all the functions to get the main post info
+        # Here all the functions to get the main post info
+
+            # Function to get the post title
+            the_title("<h1 class='text-center'>","</h1>");
+
+            # Function to get the post Feature imagen
+            the_post_thumbnail();
+            # With parameters
+            the_post_thumbnail('full', array("class" => "name-class"));
+
+            # Function to get the post content
+            the_content();
+
     endwhile;
 ?>
+
+<!-- To get partials files, don't use the partial-file extension -->
+<?php
+    get_template_part('template-parts/partial-file');
+?>
+
