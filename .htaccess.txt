@@ -1,0 +1,17 @@
+# BEGIN ASNET THEME COREVITALS
+<ifModule mod_headers.c>
+
+    <FilesMatch ".(gif|ico|jpg|jpeg|mp4|mpeg|png|svg|webp|woff|woff2|ttf|otf)$">
+        Header set Cache-Control "max-age=604800, public"
+    </FilesMatch>
+
+    <filesMatch ".(js|pdf)$">
+        Header set Cache-Control "max-age=84600, public"
+    </FilesMatch>
+
+    <FilesMatch ".(css)$">
+        Header set Cache-Control "max-age=84600, public"
+    </FilesMatch>    
+
+</ifModule>
+# END ASNET ASNET THEME COREVITALS
