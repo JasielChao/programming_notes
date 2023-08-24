@@ -71,6 +71,29 @@
             </script>
 
         </div>
+
+            <div class="cognito-2">
+                <script defer>
+                    /* Lazy Cognito Form  */
+                    setTimeout(() => {
+                        console.log('Entro');
+                        let scriptCognito = document.createElement("script");
+                        scriptCognito.setAttribute("src", "https://www.cognitoforms.com/f/seamless.js");
+                        scriptCognito.setAttribute("data-key", "zqSmu7YHj0aGFnkCnk9mhQ");
+                        scriptCognito.setAttribute("data-form", "2");
+                        document.body.appendChild(scriptCognito);
+                    }, 3000);
+                    setTimeout(() => {
+                        Cognito.mount("2", ".cognito-2").prefill(
+                                    {
+                                        "PageURL": window.location.href
+                                    });
+
+
+                    }, 3500);
+                    /* Lazy Cognito Form Ends */
+                </script> 
+            </div>
         
     </div>
 
