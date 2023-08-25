@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Courgette&family=Noto+Serif+Vithkuqi:wght@500&family=Quicksand:wght@300&family=Satisfy&family=Shadows+Into+Light&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chonburi&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+section {
+  position: relative;
+  width: calc(min(47rem, 90%));
+  margin: 0 auto;
+  min-height: 100vh;
+  column-gap: 3rem;
+  padding-block: min(20vh, 3rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+section h2 {
+  letter-spacing: 0.8px;
+  font-weight: 700;
+  font-size: 2.6rem;
+  line-height: 1.2;
+}
+section p {
+  font-size: 0.9rem;
+  max-width: 680px;
+  line-height: 1.6;
+  margin-inline: auto;
+  margin-top: 10px;
+}
+
+.swiper-container {
+  position: relative;
+}
+
+.swiper {
+  width: 100%;
+  padding: 60px 0 95px 0;
+}
+
+.swiper-slide {
+  width: 10rem;
+  height: 22rem;
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: -1px 5px 15px #0000001f;
+}
+.swiper-slide h3 {
+  color: #fff;
+  font-size: 2.5rem;
+  line-height: 1.4;
+  margin-bottom: 0.625rem;
+  letter-spacing: 0.8px;
+  position: relative;
+}
+.swiper-slide p {
+  color: #fff;
+  line-height: 1.6;
+  font-size: 0.8rem;
+}
+.swiper-slide .slide-content {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  width: 90%;
+}
+.swiper-slide .author {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  position: absolute;
+  bottom: -90px;
+  width: 100%;
+  display: none;
+  opacity: 0;
+}
+.swiper-slide .author span {
+  color: #111;
+  display: block;
+  margin: 5px 0 10px 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.swiper-slide .author img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3.5px solid white;
+}
+.swiper-slide .author ul {
+  display: flex;
+  align-items: center;
+}
+.swiper-slide .author ul li svg {
+  width: 20px;
+  color: orange;
+}
+
+.swiper-slide-active .author {
+  display: grid;
+  opacity: 1;
+}
+
+.swiper-slide--one {
+  background: #0575e6;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #021b79, #0575e6);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #021b79, #0575e6);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.swiper-slide--one h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+}
+
+.swiper-slide--two {
+  background: #23074d;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #cc5333, #23074d);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #cc5333, #23074d);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.swiper-slide--two h3 {
+  font-family: "Quicksand", sans-serif;
+}
+
+.swiper-slide--three {
+  background: #159957;
+}
+.swiper-slide--three h3 {
+  font-family: "Satisfy", cursive;
+  font-weight: 300;
+}
+
+.swiper-slide--four {
+  background: #b06ab3;
+}
+.swiper-slide--four h3 {
+  font-family: "Courgette", cursive;
+  font-weight: 300;
+}
+
+.swiper-slide--five {
+  background: #093028;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #237a57, #093028);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #237a57, #093028);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.swiper-slide--five h3 {
+  font-family: "Noto Serif Vithkuqi", serif;
+  font-weight: 300;
+}
+
+.swiper-slide--six {
+  background: #b9f;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #b9f, #3b2421);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #b9f, #3b2421);
+}
+.swiper-slide--six h3 {
+  font-family: "Chonburi", cursive;
+  font-weight: 400;
+}
+
+.swiper-button-prev {
+  background: white;
+  border-radius: 50%;
+  top: 47%;
+  left: -30px;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.17);
+}
+.swiper-button-prev::after {
+  font-size: 1.4rem;
+  content: "";
+}
+.swiper-button-prev svg {
+  width: 25px;
+}
+
+.swiper-button-next {
+  background: white;
+  border-radius: 50%;
+  top: 47%;
+  right: -30px;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.17);
+}
+.swiper-button-next::after {
+  font-size: 1.4rem;
+  content: "";
+}
+.swiper-button-next svg {
+  width: 25px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  display: none;
+}
+@media (min-width: 760px) {
+  .swiper-button-prev,
+.swiper-button-next {
+    display: flex;
+  }
+}
