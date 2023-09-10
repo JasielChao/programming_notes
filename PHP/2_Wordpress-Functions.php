@@ -28,6 +28,12 @@
     endwhile;
 ?>
 
+<!-- To get the header and footer -->
+<?php 
+    get_header(); 
+    get_footer();    
+?>
+
 <!-- To get partials files, don't use the partial-file extension -->
 <?php
     get_template_part('template-parts/partial-file');
