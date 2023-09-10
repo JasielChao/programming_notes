@@ -23,7 +23,7 @@ if (isset($b)) {
 <?php endif; ?>
 
 <!-- Var_Dump PHP  Please remove it when you finish the test -->   
-<div style="display: none; max-width: 98vw;max-height: 80vh;position: absolute;z-index: 9;left: 0;">
+<div style="display: none; max-width: 98vw;max-height: 80vh;position: absolute;z-index: 9;left: 0; background: white; overflow: scroll;">
     <pre>
     <?php var_dump($variableName); ?>
     </pre>

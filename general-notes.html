@@ -18,7 +18,7 @@
         <img src="img_orange_flowers.jpg" alt="Flowers" style="width:auto;"   onerror="this.onerror = null;this.parentNode.children[0].srcset = this.parentNode.children[1].srcset;  this.parentNode.children[1].srcset = this.src;" />
     </picture>
 
-    <!-- Thumbnail Youtube -->
+    <!-- Thumbnail Youtube Example: https://img.youtube.com/vi/I1t-x5OuOEw/maxresdefault.jpg-->
     <div>
         <script>
             // Max Resolution maxresdefault.jpg
@@ -43,7 +43,7 @@
 
     <!-- Cognito Forms-->
     <div>
-           <!-- KEY:COGNITO v2 -->
+        <!-- KEY:COGNITO v2 -->
         <div>
             <!-- [[KEY:COGNITO v2]] -->
                 <script src="https://www.cognitoforms.com/f/seamless.js" data-key="or_12nlnoUKokQ0b0rrIVQ" data-form="1"></script>
@@ -70,6 +70,57 @@
                 Cognito("#form2").prefill({"Name": {"First":"Jane","Last":"Murphy","Phone":"8030987654","Email":"jsmurphy@gmail.com"}});
             </script>
 
+        </div>
+
+        <!-- Lazy load cognito Iframe-->
+        <div id='cognitoHere' class="cognito">
+
+            <!--- Example of how looks the normal code cognito iframe 
+                <iframe src="https://www.cognitoforms.com/f/zqSmu7YHj0aGFnkCnk9mhQ/2" style="border:0;width:100%;" height="517"></iframe>
+                <script src="https://www.cognitoforms.com/f/iframe.js"></script>
+            -->
+
+            <!--- Now lets create a empty iframe for the cognito form with an ID -->
+            <iframe id="cognitoIframe" src="" style="border:0;width:100%;" height="461"></iframe>
+
+            <!--- Script to Lazy load the cognito Iframe -->
+            <script defer>
+                /* First Part: Lazy Cognito Form  */
+                setTimeout(() => {
+                    console.log('Starting the lazy load Cognito form ');
+                    /* Note: 3 Seconds is the right time to escape the Google Audit */
+
+                    /* Getting empty Cognito Iframe by ID */
+                    let cognitoIframe2 = document.querySelector('#cognitoIframe');
+
+                    /* Setting the original URL source of the cognito iframe */
+                    cognitoIframe2.setAttribute("src", "https://www.cognitoforms.com/f/zqSmu7YHj0aGFnkCnk9mhQ/2");
+
+                    /* Creating script to load the external cognito library  */
+                    let scriptCognito = document.createElement("script");
+                    /* Setting the original URL source of the cognito iframe */
+                    scriptCognito.setAttribute("src", "https://www.cognitoforms.com/f/iframe.js");
+                    scriptCognito.setAttribute("type", "text/javascript");
+                    /* Adding to the Cognito container with the ID #cognitoHere */
+                    let cognitoHere = document.querySelector('#cognitoHere');
+                    cognitoHere.appendChild(scriptCognito);
+                }, 3000);
+
+                 /* Last Part: Lazy Cognito Form  */
+                setTimeout(() => {
+                    /* Note: Run this at least 500 milliseconds after the first part */
+                    console.log('Loading Cognito')
+
+                    /* Setting Iframe Cognito Styles  */
+                    Cognito("#cognitoIframe").setCss("#cognito .cog-abuse {display: none;} .cog-branding  {display: none;};");
+
+                    /* Sending prefill data */
+                    Cognito("#cognitoIframe").prefill({"PageURL": window.location.href});
+
+                    console.log('End lazy load Cognito form ');
+                }, 3500);
+                /* Lazy Cognito Form Ends */
+            </script>
         </div>
         
     </div>
