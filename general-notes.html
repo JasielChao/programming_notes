@@ -18,6 +18,32 @@
         <img src="img_orange_flowers.jpg" alt="Flowers" style="width:auto;"   onerror="this.onerror = null;this.parentNode.children[0].srcset = this.parentNode.children[1].srcset;  this.parentNode.children[1].srcset = this.src;" />
     </picture>
 
+    <!-- Video Tag -->
+    <video width="100" height="100" id='videoHero' muted playsinline autoplay loop src="/huckins-sportsman-38-hero-video.mp4"
+        poster="/preload-video-homepage.webp" >
+    </video>
+
+    <script defer>
+        document.addEventListener('DOMContentLoaded', ()=>{
+           
+            let videoHero = document.querySelector('#videoHero');
+            let widthScreem = window.innerWidth;
+
+            if(videoHero){
+                /* To make responsive the video and compatible with any browser */
+                if (widthScreem < 768){
+                    videoHero.src = "<cfoutput>#request.MyUrl#</cfoutput>/re-build/assets/Video/huckins-sportsman-38-hero-video-mobile.mp4";
+                     /* To auto play video in safari */
+                    setTimeout(()=>{ videoHero.play(); }, 400)
+                }else{
+                     /* To auto play video in safari */
+                    setTimeout(()=>{ videoHero.play(); }, 300)
+                }
+            }
+   
+        })
+    </script>
+
     <!-- Thumbnail Youtube Example: https://img.youtube.com/vi/I1t-x5OuOEw/maxresdefault.jpg-->
     <div>
         <script>
@@ -134,7 +160,8 @@
     Multiply the quotient by the preferred width, e.g. 0.75 * 300 = 225
     The resulting figure is your new height given in pixels.
 
-
+     
+    
 </body>
 
 </html>

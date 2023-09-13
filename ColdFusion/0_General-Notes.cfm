@@ -109,13 +109,22 @@
 
     <!-- Example -->
     <cfinvoke
-    component        ="manager.modules.gallery.galleries"
-    method           ="listRecords"
-    sqlWhere         ="isArchived = 0 or isArchived = NULL and galleryDate <= '#dateLimiter#'"
-    sortBy           ="galleryDate desc"
-    returnVariable   ="allGalleries" 
+        component        ="manager.modules.gallery.galleries"
+        method           ="listRecords"
+        sqlWhere         ="isArchived = 0 or isArchived = NULL and galleryDate <= '#dateLimiter#'"
+        sortBy           ="galleryDate desc"
+        returnVariable   ="allGalleries" 
     />
 
+    <!-- Example Multiples Conditions-->
+    <cfinvoke
+        component        ="manager.modules.gallery.galleries"
+        method           ="listRecords"
+        sqlWhere         ="(isArchived = 0 or isArchived = NULL) and (articlePlacement = 2 or articlePlacement = 3)"
+        sortBy           ="galleryDate desc"
+        returnVariable   ="allGalleries" 
+    />
+    
 </div>
 
 
