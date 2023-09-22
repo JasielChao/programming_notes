@@ -1,0 +1,6 @@
+.hidden {
+  display: none;
+}
+.hidden div.red {
+  background: red;
+}
