@@ -59,6 +59,8 @@
 
 <!--  Get Current Path ColdFusion  -->        
 <cfoutput> #GetDirectoryFromPath(GetBaseTemplatePath())#  </cfoutput>
+<!--  Get Current File Name ColdFusion  -->    
+<cfoutput> #GetFileFromPath(GetBaseTemplatePath())#  </cfoutput>
 
 
 <!-- Array in ColdFusion-->
