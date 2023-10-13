@@ -159,17 +159,51 @@
     Multiply the quotient by the preferred width, e.g. 0.75 * 300 = 225
     The resulting figure is your new height given in pixels.
 
-<script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-        setTimeout(()=>{
-            let iframeArray = document.querySelectorAll(iframe);
+    <!--- Defer Load Iframe Video -->
+    <iframe src="" data-video="https://player.vimeo.com/video/658582624?h=00b6786d26"></iframe>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', ()=>{
 
+            function loadIframes(){
+
+                // Variables 
+                let iframeArray = document.querySelectorAll('iframe');
+                let urlHome = 'https://' + window.location.hostname;
+                let urlHome2 = urlHome + '/';
+                let counter = 0;
+
+                console.log("Event Scroll");
+
+                // Loop Iframes
                 iframeArray.forEach(element => {
-                    console.log("Iframe: " + element.src);
+
+                    // If the Iframe have an SRC empty
+                    if(element.src == "" || element.src == urlHome  || element.src == urlHome2){
+                        //Get the data-video URL
+                        let videoSRC = element.getAttribute('data-video');
+
+                        // If have a data-video URL
+                        if(videoSRC){
+                            //Increase counter
+                            counter++;
+                            //Add the video URL to the Iframe
+                            element.src = videoSRC;
+                        }
+                    }
                 });
-        }, 100);
-    })
-</script>
+
+                // If I didn't find any iframe to defer
+                if(counter == 0){
+                    // Remove Event Listener Scroll
+                    document.removeEventListener("scroll", loadIframes);
+                }
+            }
+
+            // Adding Event Listener Scroll
+            document.addEventListener("scroll", loadIframes);
+        
+        })
+    </script>
     
 </body>
 
