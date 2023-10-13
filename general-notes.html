@@ -159,7 +159,17 @@
     Multiply the quotient by the preferred width, e.g. 0.75 * 300 = 225
     The resulting figure is your new height given in pixels.
 
-     
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        setTimeout(()=>{
+            let iframeArray = document.querySelectorAll(iframe);
+
+                iframeArray.forEach(element => {
+                    console.log("Iframe: " + element.src);
+                });
+        }, 100);
+    })
+</script>
     
 </body>
 
