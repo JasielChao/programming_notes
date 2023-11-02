@@ -24,23 +24,47 @@
 
     <script defer>
         document.addEventListener('DOMContentLoaded', ()=>{
-           
+
+            /* Video Hero Deferred */
             let videoHero = document.querySelector('#videoHero');
             let widthScreem = window.innerWidth;
+            let videoLoaded = false;
 
-            if(videoHero){
-                /* To make responsive the video and compatible with any browser */
-                if (widthScreem < 768){
-                    videoHero.src = "<cfoutput>#request.MyUrl#</cfoutput>/re-build/assets/Video/huckins-sportsman-38-hero-video-mobile.mp4";
-                     /* To auto play video in safari */
-                    setTimeout(()=>{ videoHero.play(); }, 400)
-                }else{
-                     /* To auto play video in safari */
-                    setTimeout(()=>{ videoHero.play(); }, 300)
+            function loadVideo (scroll, mouse){
+                if(videoHero && videoLoaded == false){
+                    /* To make responsive the video and compatible with any browser */
+                    if (widthScreem < 768){
+                        videoHero.src = "<?php echo get_template_directory_uri();?>/re-build/assets/videos/about-us-new-video-hero-mobile.mp4";
+                        videoHero.poster = "<?php echo $heroVideoImgMobile;?>";
+                        /* To auto play video in safari */
+                        setTimeout(()=>{ videoHero.play(); }, 400)
+                    }else{
+                        videoHero.src = "<?php echo get_template_directory_uri();?>/re-build/assets/videos/about-us-new-video-hero.mp4";
+                        /* To auto play video in safari */
+                        setTimeout(()=>{ videoHero.play(); }, 300)
+                    }
+
+                    videoLoaded = true;
+                }
+
+                if(scroll){
+                    document.removeEventListener("scroll", loadVideo);
+                }
+
+                if(mouse){
+                    document.removeEventListener("mousemove", loadVideo);
                 }
             }
-   
-        })
+
+            setTimeout(() => {
+                loadVideo();
+            }, 7000);
+
+            document.addEventListener("scroll", loadVideo);
+            document.addEventListener("mousemove", loadVideo);
+
+            /* Video Hero Deferred */
+        });
     </script>
 
     <!-- Thumbnail Youtube Example: https://img.youtube.com/vi/I1t-x5OuOEw/maxresdefault.jpg-->
