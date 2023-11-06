@@ -1,31 +1,35 @@
-    //Scroll Smooth effect just for Links (<a> tags)
+    //Scroll Smooth effect just for Anchors Links (<a> tags)
     document.addEventListener("DOMContentLoaded", () => {
-        //Select all the links on the map and save them in a constant
-        let linksArray = document.querySelectorAll('.scrollSmooth');
-
-        linksArray.forEach(element => {
-            //Assign an event to each link
-            element.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                let sectionScroll  = e.target.getAttribute("href");
-
-                /* To prevent a null target */
-                if(sectionScroll == null){
-                    let elementTarget = e.target.parentElement;
-                    while(sectionScroll == null){
-                        sectionScroll = elementTarget.getAttribute("href");
-                        elementTarget = elementTarget.parentElement;
-                    }
+        /* Scroll Smooth effect just for Anchors Links (<a> tags)
+            Select all the links on the map and save them in a constant */
+            let anchorsLinksArray = document.querySelectorAll('a');
+            anchorsLinksArray.forEach(anchorsLink => {
+                
+                //Save Attribute href
+                let link_href = anchorsLink.getAttribute("href");
+                if (link_href.startsWith('#')) {
+                    //Assign an event to each link
+                    anchorsLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+    
+                        let sectionScroll  = e.target.getAttribute("href");
+    
+                        /* To prevent a null target */
+                        if(sectionScroll == null){
+                            let elementTarget = e.target.parentElement;
+                            while(sectionScroll == null){
+                                sectionScroll = elementTarget.getAttribute("href");
+                                elementTarget = elementTarget.parentElement;
+                            }
+                        }
+                        //Save the section in a constant
+                        let section = document.querySelector(sectionScroll);
+                        //Scroll to the section applying the smooth effect
+                        section.scrollIntoView({ behavior: "smooth" });
+                    });
                 }
-
-                //Save the section in a constant
-                let section = document.querySelector(sectionScroll);
-                //Scroll to the section applying the smooth effect
-                section.scrollIntoView({ behavior: "smooth" });
             });
-
-        });
+            /* End Scroll Smooth effect just for Anchors Links (<a> tags) */
     });
     
     //Scroll Smooth effect for <button data-href=''> and <a href=''>
