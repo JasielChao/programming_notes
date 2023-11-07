@@ -33,6 +33,10 @@ if (isset($b)) {
 <div>
     <!-- String  Functions-->
     <?php
+    
+        #Return the length of the string "Hello":
+        echo strlen("Hello");
+        
         # To Convert String into an Array
         $string_array = str_split($string);
 
@@ -48,6 +52,27 @@ if (isset($b)) {
         /* The substr() function returns a part of a string.
         substr(string,start,length)                        */
         echo substr("Hello world",0 ,6);
+    ?>
+
+    
+    <!-- Compare two strings (case-sensitive): -->
+    <?php
+        /* If this function returns 0, the two strings are equal. */
+        echo strcmp("Hello world!","Hello world!");
+    ?>
+
+    <!-- Cut String without cutting a word -->
+    <?php
+         $string_array = str_split($guest_review);
+         $guest_review = "";
+         for ($i=0; $i < count($string_array); $i++) { 
+
+             if($i > 170 && strcmp($string_array[$i], ' ') == 0){
+                 break;
+             }
+
+             $guest_review .= $string_array[$i];
+         }
     ?>
 </div>
 
