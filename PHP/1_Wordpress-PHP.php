@@ -6,6 +6,9 @@
 <!-- To include a partial file-->
 <?php include get_template_directory() . '/template-parts/cognitos/cognito-form-1.php' ?>
 
+<!--  Get File Name -->
+<?php $fileName = substr(basename(__FILE__), 0, strrpos(basename(__FILE__), ".")); ?>
+
 <!-- Wordpress Query  -->   
 <div>
     <!-- First Way  -->   
