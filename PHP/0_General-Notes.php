@@ -103,3 +103,33 @@ if (isset($b)) {
     /* Example use with PHP and JS */
     let muh_vessel_title = "<?php echo addslashes($text_quotation_marks); ?>";
 </script>   
+
+
+<!-- Mathematical operations-->
+<?php 
+    /* Get if a number is even or odd */
+    $number = 20;
+    if ($number % 2 == 0) {
+            print "It's even";
+    }
+
+    /* Divide to numbers and get an integer*/ 
+    $dividend = 10;
+    $divisor = 3;
+    $quotient = intval($dividend / $divisor);
+
+    // To round up
+    function divide_and_round_up($dividend, $divisor){
+        $result = intval($dividend / $divisor);
+
+        if($dividend  % 2 == 0 &&  $divisor % 2 != 0){
+            $result++;
+        } elseif ($dividend  % 2 != 0 &&  $divisor % 2 == 0){
+            $result++;
+        }
+
+        return $result;
+    }
+
+
+?>
