@@ -133,3 +133,14 @@ if (isset($b)) {
 
 
 ?>
+
+<!-- Convert string into a executable command  -->
+<?php 
+    /* https://www.php.net/manual/en/function.eval.php */
+    /* Use the function eval()  */
+    $test =  "echo 'test';";
+    eval($test);
+
+?>
+
+
