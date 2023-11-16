@@ -25,6 +25,10 @@
             # Function to get the post content
             the_content();
 
+            # Get The link
+            get_post_permalink();
+
+
     endwhile;
 ?>
 
@@ -38,4 +42,65 @@
 <?php
     get_template_part('template-parts/partial-file');
 ?>
+<!-- Example Pagination --->
+<section class="news-posts">
+	<div class="results">
+		<?php
+        $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+		$args = array(
+			'post_type' => 'news',
+			'posts_per_page' => 9,
+			'paged' => $paged
+		);
+		$the_query = new WP_Query( $args ); ?>
+		<?php if ( $the_query->have_posts() ) : ?>
+			<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+				<a class="result" href="<?php echo get_permalink(); ?>">
+					<div class="image">
+						<img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="">
+					</div>
+					<div class="date"><?php echo get_the_date(); ?></div>
+					<div class="title">
+						<h2><?php echo get_the_title(); ?></h2>
+					</div>
+					<div class="excerpt">
+						<p><?php echo get_the_excerpt(); ?></p>
+					</div>
+					<div class="button">READ MORE <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/button-arrow.svg" alt=""></div>
+				</a>
+			<?php endwhile; ?>
+			<?php wp_reset_postdata(); ?>
+		<?php else : ?>
+			<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
+		<?php endif; ?>
+	</div>
+	<div class="pagination">
+		<?php 
+			echo paginate_links( array(
+				'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
+				'total'        => $the_query->max_num_pages,
+				'current'      => max( 1, get_query_var( 'paged' ) ),
+				'format'       => '?paged=%#%',
+				'show_all'     => false,
+				'type'         => 'plain',
+				'end_size'     => 2,
+				'mid_size'     => 1,
+				'prev_next'    => true,
+				'prev_text'    => sprintf( '<i></i> %1$s', __( '<img src="/wp-content/themes/asnet-core/assets/images/button-arrow.svg" />', 'text-domain' ) ),
+				'next_text'    => sprintf( '%1$s <i></i>', __( '<img src="/wp-content/themes/asnet-core/assets/images/button-arrow.svg" />', 'text-domain' ) ),
+				'add_args'     => false,
+				'add_fragment' => '#articles',
+			) );
+		?>
+	</div>
+</section>
 
+<?php
+ // Add to functions.php
+/* ********************************************  */
+/* Fix pagination on archive pages */
+/* ********************************************  */
+add_action('init', function() {
+	add_rewrite_rule('(.?.+?)/page/?([0-9]{1,})/?$', 'index.php?pagename=$matches[1]&paged=$matches[2]', 'top');
+});
+?>
