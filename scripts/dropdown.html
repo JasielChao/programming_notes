@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="search-form-container container">
+        <form class="search-form" action="./simple-listing.cfm" method="get">
+    
+            <div class="dropdown">
+                <input class="text-box" type="text" placeholder="Location" readonly>
+                <div class="options-wrap">
+                    <div class="option">Option 1</div>
+                    <div class="option">Option 2</div>
+                </div>
+            </div>
+    
+            <div class="dropdown">
+                <input class="text-box" type="text" placeholder="Bedrooms" readonly>
+                <div class="options-wrap">
+                    <div class="option">Option 1</div>
+                    <div class="option">Option 2</div>
+                </div>
+            </div>
+    
+                
+            <div class="dropdown">
+                <input class="text-box" type="text" placeholder="Bathrooms" readonly>
+                <div class="options-wrap">
+                    <div class="option">Option 1</div>
+                    <div class="option">Option 2</div>
+                </div>
+            </div>
+    
+            <div class="dropdown">
+                <input class="text-box" type="text" placeholder="Weekly Rate" readonly>
+                <div class="options-wrap">
+                    <div class="option">Option 1</div>
+                    <div class="option">Option 2</div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <!--- Local Scripts --->
+    <script defer>
+        document.addEventListener("DOMContentLoaded", () => {
+            function show(value) {
+                document.querySelector(".text-box").value = value;
+            }
+            
+            let dropDown_Array = document.querySelectorAll(".search-form-container .dropdown");
+    
+            for (let i = 0; i < dropDown_Array.length; i++) {
+                dropDown_Array[i].addEventListener('click', ()=>{
+    
+                    //If the element clicked is the current active dropDown
+                    if(dropDown_Array[i].classList.contains("active")){
+                            // just toggle the class active
+                            dropDown_Array[i].classList.toggle("active");
+                    }else{
+                        //If not, remove all current active dropDown
+                        for (let j = 0; j < dropDown_Array.length; j++) {
+                            
+                            if(dropDown_Array[j].classList.contains('active')){
+                                dropDown_Array[j].classList.remove('active')
+                            }
+                        }
+    
+                        // And then, Active the dropDown selected
+                        dropDown_Array[i].classList.add('active')
+                    }
+                    
+                })
+            }
+    
+            let dropDownOption_Array = document.querySelectorAll(".search-form-container .dropdown .option");
+    
+            for (let i = 0; i < dropDownOption_Array.length; i++) {
+                dropDownOption_Array[i].addEventListener('click', (e)=>{
+    
+                    //Get the Option Value
+                    let newValue = e.target.innerHTML
+                    //Get Dropdown parent of the option selected
+                    let parentElement = e.target.parentElement; // .options-wrap
+                    parentElement  = parentElement.parentElement; // .dropdown
+                    //Get the input child of the Dropdown (needs to be the first child of the Dropdown)
+                    let dropdownInput = parentElement.firstElementChild; 
+    
+                    //Set new value
+                    dropdownInput.value = newValue;
+                })
+            }
+        });
+    </script>
+
+    <style>
+        
+        .search-form-container.container {
+            position: absolute;
+            bottom: 250px;
+            z-index: 1;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        form.search-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+        }
+
+        .dropdown {
+            position: relative;
+            width: 300px;
+            height: 50px;
+        }
+
+        .dropdown::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            z-index: 1000;
+            width: 8px;
+            height: 8px;
+            border: 2px solid #333;
+            border-top: 2px solid #fff;
+            border-right: 2px solid #fff;
+            transform: rotate(-45deg);
+            transition: all 0.4s;
+            pointer-events: none;
+        }
+
+        .dropdown.active::before {
+            top: 22px;
+            transform: rotate(-225deg);
+        }
+
+        .dropdown input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            background: #fff;
+            font-size: 1.2em;
+            border: none;
+            outline: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            padding: 12px 20px;
+            border-radius: 10px;
+        }
+
+        .dropdown .options-wrap {
+            position: absolute;
+            top: calc(100% + 5px);
+            width: 100%;
+            height: fit-content;
+            max-height: 0px;
+            background: #fff;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s;
+        }
+
+        .dropdown.active .options-wrap {
+            opacity: 1;
+            visibility: visible;
+            max-height: 600px;
+        }
+
+        .dropdown .options-wrap div {
+            padding: 12px 20px;
+            cursor: pointer;
+        }
+
+        .dropdown .options-wrap div:hover {
+            background: #62baea;
+            color: #fff;
+        }
+    </style>
+    
+    
+</body>
+</html>
