@@ -70,7 +70,7 @@
     <!-- Thumbnail Youtube Example: https://img.youtube.com/vi/I1t-x5OuOEw/maxresdefault.jpg-->
     <div>
         <script>
-            // Max Resolution maxresdefault.jpg
+           // Max Resolution maxresdefault.jpg
             // Standart Hight Resolution hqdefault.jpg
 
             //Function to prevent missing maxresdefault images youtube 
@@ -80,9 +80,28 @@
                     if(maxresdefault){
                         maxresdefault.forEach(thumbnail => {
 
-                          if (thumbnail.naturalWidth < 300){
-                            thumbnail.src = thumbnail.src.replace("maxresdefault", "hqdefault");
-                          }
+                        if (thumbnail.naturalWidth < 300){
+                            //If the URL has parameters
+                            if(thumbnail.src.includes("?")){
+                                //Remove all parameters
+                                thumbnail.src = thumbnail.src.split('?')[0];
+                                // add the image to the URL
+                                thumbnail.src = thumbnail.src + "/maxresdefault.jpg"
+                                // Let's check this image second time just in case
+                                setTimeout(() => {
+                                    if (thumbnail.naturalWidth < 300){
+                                        // Just replace the image to the next highest quality
+                                        thumbnail.src = thumbnail.src.replace("maxresdefault", "hqdefault");
+                                    }
+                                }, 300);
+                            }else{
+                                // Just replace the image to the next highest quality
+                                thumbnail.src = thumbnail.src.replace("maxresdefault", "hqdefault");
+                            }
+                        
+
+                        
+                        }
                         });
                     }
             })

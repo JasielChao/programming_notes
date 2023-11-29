@@ -1,0 +1,25 @@
+<script defer>
+    // Using fetch
+    const imgs = document.querySelectorAll('.gallery img');
+    imgs.forEach(img => {
+        img.src = img.src.split('?')[0];
+        console.log(img.src)
+
+        downloadImage(img.src)
+    });
+
+
+    async function downloadImage(imageSrc) {
+        let image = await fetch(imageSrc)
+        let imageBlog = await image.blob()
+        let imageURL = URL.createObjectURL(imageBlog)
+
+        let link = document.createElement('a')
+        link.href = imageURL
+        link.download = 'image file name here'
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+    }
+    
+</script>

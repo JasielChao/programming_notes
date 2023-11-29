@@ -32,6 +32,13 @@
     endwhile;
 ?>
 
+<!-- Count post -->
+<?php 
+	if($wp_query->found_posts > 0 ) {
+		 // Do somenthing
+	}
+?>
+
 <!-- To get the header and footer -->
 <?php 
     get_header(); 
