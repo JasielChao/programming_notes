@@ -80,28 +80,37 @@
     }
 ?>
 
-<!-- Load Gallery -- >
-// More Info
-// https://code.tutsplus.com/articles/creating-your-own-image-gallery-page-template-in-wordpress--wp-23721
-<?php
-	$args = array(
-		'numberposts' => -1, // Using -1 loads all posts 
-		'orderby' => 'menu_order', // This ensures images are in the order set in the page media manager 
-		'order'=> 'ASC',
-		'post_mime_type' => 'image', // Make sure it doesn't pull other resources, like videos 
-		'post_parent' => $post->ID, // Important part - ensures the associated images are loaded 
-		'post_status' => null,
-		'post_type' => 'attachment'
-	);
-	$images = get_children( $args );
-?>
+<!-- Get Post Template -->   
+<div>
+    <?php echo get_page_template() ?>
 
-<?php if($images){ ?>
-	<div id="slider">
-		<?php foreach($images as $image){ ?>
-		<img src="<?php echo $image->guid; ?>" alt="<?php echo $image->post_title; ?>" title="<?php echo $image->post_title; ?>" />
-		<?php	} ?>
-	</div>
-<?php } ?>
+</div>
 
+
+<!-- Load Partials files -->   
+<div>
+    <?php 
+        foreach(glob(get_template_directory() . "/assets/css*.php") as $file){
+            require $file;
+        }
+
+    ?>
+
+</div>
+
+<!-- Get the template slug -->   
+<div>
+    <?php 
+        function get_templete_name() {
+            //Get the template slug
+            $template_slug = get_page_template_slug();
+            // Remove "templates/" and ".php"
+            $template_slug = str_replace("templates/", "", $template_slug);
+            $template_slug = str_replace(".php", "", $template_slug);
+
+            return $template_slug;
+        }
+    ?>
+
+</div>
 

@@ -47,7 +47,20 @@
 
 <!-- To get partials files, don't use the partial-file extension -->
 <?php
+	// get_template_part( string $slug, string $name = null, array $args = null  )
+	
     get_template_part('template-parts/partial-file');
+
+	// Example Parameter
+	get_template_part( 'template-parts/partial-file', null, 
+		array( 
+			'class' => 'featured-home',
+			'data'  => array(
+				'size' => 'large',
+				'is-active' => true,
+			)
+		) 
+	);
 ?>
 <!-- Example Pagination --->
 <section class="news-posts">

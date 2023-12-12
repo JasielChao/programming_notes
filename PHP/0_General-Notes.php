@@ -154,3 +154,5 @@ if (isset($b)) {
 ?>
 
 
+<!--  Get File Name -->
+<?php $fileName = substr(basename(__FILE__), 0, strrpos(basename(__FILE__), ".")); ?>
