@@ -121,6 +121,68 @@
                 </script> 
         </div>
 
+         <!-- SeamLess Cognito - Lazy Load -->
+         <div>
+            <!-- Original: 
+                <script src="https://www.cognitoforms.com/f/seamless.js" data-key="or_12nlnoUKokQ0b0rrIVQ" data-form="1"></script>
+            -->
+            <div id="Cognito_1_here"></div>
+
+            <!--- Script to Lazy load the SeamLess cognito-->
+            <script defer>
+                document.addEventListener('DOMContentLoaded', ()=>{
+
+                    /* Lazy Cognito Form  */
+                    let cognitoLoaded = false;
+
+                    function lazyCognito (scroll, mouse){
+                        /* Getting empty div to append the cognito script */
+                        let CognitoHere = document.querySelector('#Cognito_1_here');
+
+                        if(CognitoHere && cognitoLoaded == false){
+                            /* To make responsive the video and compatible with any browser */
+                            
+                            /* Creating script to load the external cognito library  */
+                            let scriptCognito = document.createElement("script");
+                            scriptCognito.setAttribute("src", "https://www.cognitoforms.com/f/seamless.js");
+                            scriptCognito.setAttribute("data-key", "or_12nlnoUKokQ0b0rrIVQ");
+                            scriptCognito.setAttribute("data-form", "1");
+
+                            /* Adding to the Cognito container with the ID #lazyCognito */
+                            lazyCognito.appendChild(scriptCognito);
+
+                            // Calling the prefill function of this cognito form
+                            Cognito.mount("1", ".cognito").prefill(
+                            {
+                                "PageTitle": document.title,
+                                "PageUrl": window.location.href
+                            });
+
+                            // Update variable
+                            cognitoLoaded = true;
+                        }
+
+                        if(scroll){
+                            document.removeEventListener("scroll", loadVideo);
+                        }
+
+                        if(mouse){
+                            document.removeEventListener("mousemove", loadVideo);
+                        }
+                    }
+
+                    setTimeout(() => {
+                        lazyCognito();
+                    }, 7000);
+
+                    document.addEventListener("scroll",  lazyCognito);
+                    document.addEventListener("mousemove",  lazyCognito);
+                    /* Lazy Cognito Form Ends */
+
+                });
+            </script>
+        </div>
+
         <!-- Iframe KEY:COGNITO v2 -->
         <div>
             <!-- Documentation -> https://www.cognitoforms.com/support/168/style-publish/iframe-embedding -->
@@ -134,6 +196,8 @@
                 Cognito("#form1").prefill({"Name": {"First":"John","Last":"Smith"},"Phone":"8034567890","Email":"jsmith@gmail.com"});
                 Cognito("#form2").prefill({"Name": {"First":"Jane","Last":"Murphy","Phone":"8030987654","Email":"jsmurphy@gmail.com"}});
             </script>
+
+        
 
         </div>
 
