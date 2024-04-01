@@ -23,7 +23,7 @@ if (isset($b)) {
 <?php endif; ?>
 
 <!-- Var_Dump PHP  Please remove it when you finish the test -->   
-<div style="display: none; max-width: 98vw;max-height: 80vh;position: absolute;z-index: 9;left: 0; background: white; overflow: scroll;">
+<div style="display: none; max-width: 98vw;max-height: 80vh;position: absolute;z-index: 9;left: 0; background: white; overflow: scroll; color: black;">
     <pre>
     <?php var_dump($variableName); ?>
     </pre>
@@ -52,6 +52,14 @@ if (isset($b)) {
         /* The substr() function returns a part of a string.
         substr(string,start,length)                        */
         echo substr("Hello world",0 ,6);
+    ?>
+
+    <?php
+        /* remove url parameters php */
+        $url = "http://www.test.com/test.html?parameter=hey&parameter2=ho";
+        $url = strtok($url, "?");
+
+        echo $url;
     ?>
 
     
@@ -159,3 +167,32 @@ if (isset($b)) {
 
 <!-- Sort Array -->
 <?php sort($locations_distance_array);  ?>
+
+<!--- Sort Especift index of an array --->
+<?php
+
+    $array = [
+        0 => 'a', 
+        1 => 'c', 
+        2 => 'd', 
+        3 => 'b', 
+        4 => 'e',
+    ];
+    function moveElementArray(&$array, $a, $b) {
+        $out = array_splice($array, $a, 1);
+        array_splice($array, $b, 0, $out);
+    }
+
+    /* To clarify $a is $fromIndex and $b is $toIndex" */
+    moveElementArray($array, 3, 1);
+
+
+    // Result:
+    [
+        0 => 'a',
+        1 => 'b',
+        2 => 'c',
+        3 => 'd',
+        4 => 'e',
+    ];
+?>

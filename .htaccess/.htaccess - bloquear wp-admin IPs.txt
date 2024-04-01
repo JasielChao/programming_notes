@@ -1,0 +1,70 @@
+# BEGIN ASNET THEME COREVITALS
+
+<ifModule mod_headers.c>
+
+    <filesMatch ".(gif|ico|jpg|jpeg|mp4|mpeg|png|svg|webp|woff|woff2|ttf|otf|avif)$">
+        Header set Cache-Control "max-age=604800, public"
+    </filesMatch>
+
+    <filesMatch ".(js|pdf)$">
+        Header set Cache-Control "max-age=84600, public"
+    </filesMatch>
+
+    <filesMatch ".(css)$">
+        Header set Cache-Control "max-age=84600, public"
+    </filesMatch>    
+
+		BrowserMatchNoCase "GnowitNewsbot" badbot
+		BrowserMatchNoCase "DataForSeoBot" badbot
+		BrowserMatchNoCase "SerpStatBot" badbot
+		BrowserMatchNoCase "DotBot" badbot
+		BrowserMatchNoCase "PetalBot" badbot
+		Deny from env=badbot
+
+# LOCKING DOWN /WP-ADMIN TO SPECIFIC IP ADDRESSES
+
+		RewriteCond %{REQUEST_URI} ^/wp-admin [NC,OR]
+		RewriteCond %{REQUEST_URI} ^/wp-login\.php [NC]
+    
+    # Advantage Services Office
+    RewriteCond %{REMOTE_ADDR} !=170.55.179.125 
+    
+    # Elizabeth Gomez Fleet Advantage
+    RewriteCond %{REMOTE_ADDR} !=170.55.68.162
+    RewriteCond %{REMOTE_ADDR} !=73.124.225.81
+    
+    # Tracy Derival Fleet Advantage
+    RewriteCond %{REMOTE_ADDR} !=18.209.24.173
+    RewriteCond %{REMOTE_ADDR} !=73.1.88.206
+
+    # Advantage Services - Jasiel House
+    RewriteCond %{REMOTE_ADDR} !=73.204.205.195 
+    
+    RewriteRule ^ - [R=403,L]
+
+# END OF IP LOCKDOWN
+
+</ifModule>
+
+
+
+
+
+
+# END ASNET ASNET THEME COREVITALS
+
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

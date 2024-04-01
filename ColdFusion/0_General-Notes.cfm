@@ -57,6 +57,10 @@
 <!--  Replace Subtring ColdFusion  -->       
 <cfoutput> #replace(string,"subtring","newSubstring","all")# </cfoutput>
 
+<!--  String Lower Case  -->   
+<cfoutput> #LCase(string)# </cfoutput>
+
+
 <!--  Get Current Path ColdFusion  -->        
 <cfoutput> #GetDirectoryFromPath(GetBaseTemplatePath())#  </cfoutput>
 <!--  Get Current File Name ColdFusion  -->    

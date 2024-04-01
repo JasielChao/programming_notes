@@ -62,6 +62,7 @@
 		) 
 	);
 ?>
+
 <!-- Example Pagination --->
 <section class="news-posts">
 	<div class="results">
