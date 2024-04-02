@@ -1,0 +1,74 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/instantsearch.css@7/themes/satellite-min.css"
+    />
+    <title>InstantSearch | Autocomplete</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <div id="autocomplete"></div>
+    </header>
+
+    <div class="container">
+      <div>
+        <div id="categories"></div>
+      </div>
+      <div>
+        <div id="hits"></div>
+        <div id="pagination"></div>
+      </div>
+    </div>
+
+
+    <script>
+        import algoliasearch from 'algoliasearch/lite';
+        import instantsearch from 'instantsearch.js';
+        import historyRouter from 'instantsearch.js/es/lib/routers/history';
+        import {
+        searchBox,
+        hierarchicalMenu,
+        hits,
+        pagination,
+        } from 'instantsearch.js/es/widgets';
+
+        import '@algolia/autocomplete-theme-classic';
+
+        const searchClient = algoliasearch(
+        'latency',
+        '6be0576ff61c053d5f9a3225e2a90f76',
+        );
+        const INSTANT_SEARCH_INDEX_NAME = 'instant_search';
+        const instantSearchRouter = historyRouter();
+        const search = instantsearch({
+        searchClient,
+        indexName: INSTANT_SEARCH_INDEX_NAME,
+        routing: instantSearchRouter,
+        });
+
+        search.addWidgets([
+        searchBox({
+            container: '#searchbox',
+            placeholder: 'Search for products',
+        }),
+        hierarchicalMenu({
+            container: '#categories',
+            attributes: ['hierarchicalCategories.lvl0', 'hierarchicalCategories.lvl1'],
+        }),
+        hits({
+            container: '#hits',
+        }),
+        pagination({
+            container: '#pagination',
+        }),
+        ]);
+
+        search.start();
+
+    </script>
+  </body>
+</html>

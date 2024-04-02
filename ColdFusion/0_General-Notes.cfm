@@ -42,6 +42,11 @@
 
 
 --->
+
+<cfif len(trim(#jobMoreDescription#)) >
+    <cfoutput>#jobMoreDescription#</cfoutput>
+</cfif>
+
 <cfif #nameVariable# EQ 'chaparral'>
         <!-- Case 1  -->
 <cfelseif  #nameVariable#EQ 'four-winns'>
