@@ -27,16 +27,15 @@
   HTML5 Video
       </a>
 <!-- Function to get Vimeo thumbnils using video ID -->
-<!-- <?php
-                function getVimeoThumb($id) {
-                    $data = file_get_contents("http://vimeo.com/api/v2/video/$id.json");
-                    $data = json_decode($data);
-                    return $data[0]->thumbnail_medium;
-                }
 
-?> -->
 <!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+<script>
+  Fancybox.bind("[data-fancybox]", {
+    // Your custom options
+  });
+</script>
+
 </body>
 </html>
