@@ -60,6 +60,9 @@
 <!--  String Lower Case  -->   
 <cfoutput> #LCase(string)# </cfoutput>
 
+<!--  concatenate string coldfusion  -->   
+<cfoutput> "string" & "string2" </cfoutput>
+
 
 <!--  Get Current Path ColdFusion  -->        
 <cfoutput> #GetDirectoryFromPath(GetBaseTemplatePath())#  </cfoutput>

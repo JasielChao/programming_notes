@@ -61,6 +61,9 @@
 			)
 		) 
 	);
+
+	// Example get Parameter
+	$class = isset($args['class']) ? $args['class'] : "";
 ?>
 
 <!-- Example Pagination --->
