@@ -17,5 +17,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
   backTop.on('click', function(e) {
     e.preventDefault();
     $('html, body').animate({scrollTop:0}, '300');
+    // JS Native: window.scrollTo({top: 0, behavior: 'smooth'});
   });
 });

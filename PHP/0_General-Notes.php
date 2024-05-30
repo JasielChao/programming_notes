@@ -29,6 +29,12 @@ if (isset($b)) {
     </pre>
 </div>
 
+<div style="padding: 4rem; display:none;">
+	<?php /* Only for test 
+		include_once( ASNET_CORE_CFDUMP ); new dBug($muh_vessel);
+	*/?>
+</div>
+
 <!-- String and Substring PHP -->
 <div>
     <!-- String  Functions-->
@@ -55,6 +61,13 @@ if (isset($b)) {
     ?>
 
     <?php
+        /* Get url parameters php */
+        if (isset($_GET['link'])) {
+            $url = $_GET['link'];
+        } else {
+            // Fallback behaviour goes here
+        }
+
         /* remove url parameters php */
         $url = "http://www.test.com/test.html?parameter=hey&parameter2=ho";
         $url = strtok($url, "?");
@@ -202,4 +215,24 @@ if (isset($b)) {
         3 => 'd',
         4 => 'e',
     ];
+?>
+
+
+
+<!--- Dates --->
+<?php 
+	# Check if date between two dates
+	$date_today = date("Y/m/d");
+	$date_today = date('Y-m-d', strtotime($date_today));
+
+	$date_start = date('Y-m-d', strtotime("2024/04/18"));
+	$date_end = date('Y-m-d', strtotime("2024/04/21"));
+
+	if( ($date_start <= $date_today) && ($date_today <= $date_end) ){
+        echo "is between";
+    }else{
+        echo "NO GO!";  
+    }
+
+
 ?>
