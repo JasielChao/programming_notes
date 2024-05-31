@@ -114,6 +114,13 @@ if (isset($b)) {
     echo str_replace("world","Peter","Hello world!");
 ?>
 
+<!-- string contains character php -->
+<?php
+    if (str_contains('abc', '')) {
+        echo "Checking the existence of the empty string will always return true";
+    }
+?>
+
 <!-- Foreach -->
 <?php 
     foreach ($arr as &$value) {
