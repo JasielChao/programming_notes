@@ -45,6 +45,11 @@ if (isset($b)) {
         
         /* To convert to LowerCase a string */
         echo strtolower($string_variable);
+
+        /* String contains substring */
+        if (str_contains('How are you', 'are')) { 
+            echo 'true';
+        }
     ?>
 
     <!-- Substring Functions -->
