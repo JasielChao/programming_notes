@@ -82,9 +82,10 @@
 
                         if (thumbnail.naturalWidth < 300){
                             //If the URL has parameters
-                            if(thumbnail.src.includes("?")){
+                            if(thumbnail.src.includes("?") || thumbnail.src.includes("&")){
                                 //Remove all parameters
                                 thumbnail.src = thumbnail.src.split('?')[0];
+                                thumbnail.src = thumbnail.src.split('&')[0];
                                 // add the image to the URL
                                 thumbnail.src = thumbnail.src + "/maxresdefault.jpg"
                                 // Let's check this image second time just in case
