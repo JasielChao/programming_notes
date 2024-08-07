@@ -1,5 +1,14 @@
 <!-- General Wordpress PHP  -->
 
+<!-- Get Post Data  -->
+<?php  
+    /* Post Data */
+    $post_id = get_the_ID();
+    $post_slug = get_post_field( 'post_name', get_post() );
+    $post_title = get_the_title();
+    $post_thumbnail = get_the_post_thumbnail_url();
+?>
+
 <!-- Get the Current Route Source Dynamically -->
 <?php echo get_template_directory_uri();?>
 

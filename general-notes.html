@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -122,12 +121,20 @@
                 </script> 
         </div>
 
-         <!-- SeamLess Cognito - Lazy Load -->
-         <div>
+        <!-- SeamLess Cognito - Lazy Load -->
+        <div>
             <!-- Original: 
                 <script src="https://www.cognitoforms.com/f/seamless.js" data-key="or_12nlnoUKokQ0b0rrIVQ" data-form="1"></script>
             -->
-            <div id="Cognito_1_here"></div>
+            
+            <?php 
+                // Cognito Data
+                $data_form = 3; # You can get it from the cognito page, in the publish tab
+            ?>
+
+            <div class="form-wrap">
+                <div id="Cognito_<?php echo $data_form; ?>"></div> 
+            </div>
 
             <!--- Script to Lazy load the SeamLess cognito-->
             <script defer>
@@ -136,9 +143,9 @@
                     /* Lazy Cognito Form  */
                     let cognitoLoaded = false;
 
-                    function lazyCognito (scroll, mouse){
+                    function lazyCognito_<?php echo $data_form; ?> (scroll, mouse){
                         /* Getting empty div to append the cognito script */
-                        let CognitoHere = document.querySelector('#Cognito_1_here');
+                        let CognitoHere = document.querySelector('#Cognito_<?php echo $data_form; ?>');
 
                         if(CognitoHere && cognitoLoaded == false){
                             /* To make responsive the video and compatible with any browser */
@@ -146,38 +153,42 @@
                             /* Creating script to load the external cognito library  */
                             let scriptCognito = document.createElement("script");
                             scriptCognito.setAttribute("src", "https://www.cognitoforms.com/f/seamless.js");
-                            scriptCognito.setAttribute("data-key", "or_12nlnoUKokQ0b0rrIVQ");
-                            scriptCognito.setAttribute("data-form", "1");
+                            scriptCognito.setAttribute("data-key", "8-nmjBj4tEejiCtBE4BLaw");
+                            scriptCognito.setAttribute("data-form", "<?php echo $data_form; ?>");
 
-                            /* Adding to the Cognito container with the ID #lazyCognito */
-                            lazyCognito.appendChild(scriptCognito);
+                            /* Adding to the Cognito container with the ID #CognitoHere */
+                            CognitoHere.appendChild(scriptCognito);
 
-                            // Calling the prefill function of this cognito form
-                            Cognito.mount("1", ".cognito").prefill(
-                            {
-                                "PageTitle": document.title,
-                                "PageUrl": window.location.href
-                            });
+                            setTimeout(() => {
+                                // Calling the prefill function of this cognito form
+                                Cognito.mount("<?php echo $data_form; ?>", ".cognito").prefill(
+                                {
+                                    "pageTitle": document.title,
+                                    "pageUrl": window.location.href
+                                });
+                            }, 1000);
 
                             // Update variable
                             cognitoLoaded = true;
+
+                           
                         }
 
                         if(scroll){
-                            document.removeEventListener("scroll", loadVideo);
+                            document.removeEventListener("scroll", lazyCognito_<?php echo $data_form; ?>);
                         }
 
                         if(mouse){
-                            document.removeEventListener("mousemove", loadVideo);
+                            document.removeEventListener("mousemove", lazyCognito_<?php echo $data_form; ?>);
                         }
                     }
 
                     setTimeout(() => {
-                        lazyCognito();
+                        lazyCognito_<?php echo $data_form; ?>();
                     }, 7000);
 
-                    document.addEventListener("scroll",  lazyCognito);
-                    document.addEventListener("mousemove",  lazyCognito);
+                    document.addEventListener("scroll",  lazyCognito_<?php echo $data_form; ?>);
+                    document.addEventListener("mousemove",  lazyCognito_<?php echo $data_form; ?>);
                     /* Lazy Cognito Form Ends */
 
                 });
@@ -188,7 +199,7 @@
         <div>
             <!-- Documentation -> https://www.cognitoforms.com/support/168/style-publish/iframe-embedding -->
             <script>
-                 Cognito("#cognito15").setCss("#cognito .cog-abuse {display: none;} .cog-branding  {display: none;};");
+                Cognito("#cognito15").setCss("#cognito .cog-abuse {display: none;} .cog-branding  {display: none;};");
                 Cognito("#form2").setCss("#cognito .cog-button--primary{background-color:#5ACEC8;}");
             </script>
             <script>Cognito.setCss('https://mysite.com/site.css');</script>
@@ -264,15 +275,16 @@
     Multiply the quotient by the preferred width, e.g. 0.75 * 300 = 225
     The resulting figure is your new height given in pixels.
 
-    <!--- Defer Load Iframe Video -->
-    <iframe src="" data-video="https://player.vimeo.com/video/658582624?h=00b6786d26"></iframe>
+    <!--- Defer Load Iframes Video -->
+    <iframe class="defer-iframe" src="" data-video="https://player.vimeo.com/video/658582624?h=00b6786d26"></iframe>
+    <iframe title="YouTube video player" src="www.youtube.com/embed/QmAq3AMctaQ?si=Hk-0Qx6Ipelka-85" width="650" height="366" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
     <script defer>
         document.addEventListener('DOMContentLoaded', ()=>{
 
             function loadIframes(){
 
                 // Variables 
-                let iframeArray = document.querySelectorAll('iframe');
+                let iframeArray = document.querySelectorAll('.defer-iframe');
                 let urlHome = 'https://' + window.location.hostname;
                 let urlHome2 = urlHome + '/';
                 let counter = 0;
@@ -287,8 +299,12 @@
                         //Get the data-video URL
                         let videoSRC = element.getAttribute('data-video');
 
+                        console.log("Test 1");
+
                         // If have a data-video URL
                         if(videoSRC){
+                            console.log("Test 2");
+                            console.log(videoSRC);
                             //Increase counter
                             counter++;
                             //Add the video URL to the Iframe
@@ -309,7 +325,61 @@
         
         })
     </script>
+
+
+    <!--- Defer Load - Only One Iframe Video -->
+    <iframe id="deferIframe" class="defer-iframe" src="" data-video="https://player.vimeo.com/video/658582624?h=00b6786d26"></iframe>
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=>{
+
+            function loadIframe(){
+
+                // Variables 
+                let deferIframe = document.querySelector('#deferIframe');
+                console.log("Event Scroll");
+
+                // Loop Iframes
+                if(deferIframe){
+
+                    let urlHome = 'https://' + window.location.hostname;
+                    let urlHome2 = urlHome + '/';
+
+                    //Get the data-video URL
+                    let videoSRC = deferIframe.getAttribute('data-video');
+
+                    console.log("Test 1");
+
+                    // If have a data-video URL
+                    if(videoSRC){
+                        console.log("Test 2");
+                        console.log(videoSRC);
+                        //Add the video URL to the Iframe
+                        deferIframe.src = videoSRC;
+                        console.log("Iframe Defer Loaded");
+                    }
+
+                    // Remove Event Listener Scroll
+                    document.removeEventListener("scroll", loadIframe);
+
+                }else {
+                    // Remove Event Listener Scroll
+                    document.removeEventListener("scroll", loadIframe);
+                }
+            }
+
+            // Adding Event Listener Scroll
+            document.addEventListener("scroll", loadIframe);
+        
+        })
+    </script>
     
+   
 </body>
 
 </html>
+
+<style>
+    body {
+        min-height: 200vh;
+    }    
+</style>

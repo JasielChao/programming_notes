@@ -121,6 +121,13 @@ if (isset($b)) {
     }
 ?>
 
+<!-- string remove parameters php -->
+<?php
+    $string = "https://www.youtube.com/embed/5FnuAzf1TqA&t=1s";
+    $string = strtok($string, "?");
+    $string = strtok($string, "&");
+?>
+
 <!-- Foreach -->
 <?php 
     foreach ($arr as &$value) {
@@ -180,7 +187,6 @@ if (isset($b)) {
     eval($test);
 
 ?>
-
 
 <!--  Get File Name -->
 <?php $fileName = substr(basename(__FILE__), 0, strrpos(basename(__FILE__), ".")); ?>
