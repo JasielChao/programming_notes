@@ -121,76 +121,91 @@
                 </script> 
         </div>
 
-        <!-- SeamLess Cognito - Lazy Load -->
+        <!-- SeamLess Cognito - Lazy Load - PHP -->
         <div>
-            <!-- Original: 
-                <script src="https://www.cognitoforms.com/f/seamless.js" data-key="or_12nlnoUKokQ0b0rrIVQ" data-form="1"></script>
-            -->
-            
             <?php 
-                // Cognito Data
-                $data_form = 3; # You can get it from the cognito page, in the publish tab
+                /* ************************************************
+                * SeamLess Cognito - Custom Lazy Load
+                * This is dynamic template to defer the cognito forms, just adjusted the 
+                * data-key, data-form and prefill values for each form and should be work for any form
+                * 
+                * - Let me know if you have any questions
+                *                                -- Jasiel
+                ************************************************ */  
+            
+                #Cognito Data
+                $dataKey = "6VynGNDfXEO40f0wH4Yrsg";
+                $dataForm = "1";
+            
+                # Get Parameter
+                $vessel_ID = isset($args['vessel_ID']) ? $args['vessel_ID'] : "Vessel ID not found";
+                $vessel_Info = isset($args['vessel_Info']) ? $args['vessel_Info'] : "Vessel Info not found";
+                $brokerage_ID = isset($args['brokerage_ID']) ? $args['brokerage_ID'] : "Brokerage ID not found";
+                $broker_Name = isset($args['broker_Name']) ? $args['broker_Name'] : "Broker Name not found";
+                $broker_Email = isset($args['broker_Email']) ? $args['broker_Email'] : "Broker Email not found";
             ?>
-
-            <div class="form-wrap">
-                <div id="Cognito_<?php echo $data_form; ?>"></div> 
+            
+            <div id="Cognito_<?php echo $dataForm; ?>">
+                <div class="cognito-form"></div>
             </div>
-
+        
             <!--- Script to Lazy load the SeamLess cognito-->
             <script defer>
                 document.addEventListener('DOMContentLoaded', ()=>{
-
+            
                     /* Lazy Cognito Form  */
-                    let cognitoLoaded = false;
-
-                    function lazyCognito_<?php echo $data_form; ?> (scroll, mouse){
+                    let cognitoLoaded_<?php echo $dataForm; ?>= false;
+            
+                    function lazyCognito_<?php echo $dataForm; ?> (scroll, mouse){
                         /* Getting empty div to append the cognito script */
-                        let CognitoHere = document.querySelector('#Cognito_<?php echo $data_form; ?>');
-
-                        if(CognitoHere && cognitoLoaded == false){
+                        let CognitoHere = document.querySelector('#Cognito_<?php echo $dataForm; ?>');
+            
+                        if(CognitoHere && cognitoLoaded_<?php echo $dataForm; ?>== false){
                             /* To make responsive the video and compatible with any browser */
                             
                             /* Creating script to load the external cognito library  */
                             let scriptCognito = document.createElement("script");
                             scriptCognito.setAttribute("src", "https://www.cognitoforms.com/f/seamless.js");
-                            scriptCognito.setAttribute("data-key", "8-nmjBj4tEejiCtBE4BLaw");
-                            scriptCognito.setAttribute("data-form", "<?php echo $data_form; ?>");
-
-                            /* Adding to the Cognito container with the ID #CognitoHere */
+                            scriptCognito.setAttribute("data-key", "<?php echo $dataForm; ?>");
+                            scriptCognito.setAttribute("data-form", "<?php echo $dataForm; ?>");
+            
+                            /* Adding to the Cognito container with the ID #lazyCognito */
                             CognitoHere.appendChild(scriptCognito);
-
-                            setTimeout(() => {
-                                // Calling the prefill function of this cognito form
-                                Cognito.mount("<?php echo $data_form; ?>", ".cognito").prefill(
-                                {
-                                    "pageTitle": document.title,
-                                    "pageUrl": window.location.href
-                                });
-                            }, 1000);
-
+            
+                            // Calling the prefill function of this cognito form
+                            Cognito.mount("<?php echo $dataForm; ?>", "#Cognito_<?php echo $dataForm; ?> .cognito-form").prefill(
+                            {
+                                "vesselID":"<?php echo $vessel_ID; ?>",
+                                "vesselInfo":"<?php echo $vessel_Info; ?>",
+                                "brokerageID":"<?php echo $brokerage_ID; ?>",
+                                "brokerName":"<?php echo $broker_Name; ?>",
+                                "brokerEmail":"<?php echo $broker_Email; ?>",
+                                "pageURL":window.location.href,
+                                "ipAddress":"<?php echo getIPAddress(); ?>",
+                                "userAgent":"<?php echo $_SERVER['HTTP_USER_AGENT']; ?>",
+                            });
+            
                             // Update variable
-                            cognitoLoaded = true;
-
-                           
+                            cognitoLoaded_<?php echo $dataForm; ?>= true;
                         }
-
+            
                         if(scroll){
-                            document.removeEventListener("scroll", lazyCognito_<?php echo $data_form; ?>);
+                            document.removeEventListener("scroll", lazyCognito_<?php echo $dataForm; ?>);
                         }
-
+            
                         if(mouse){
-                            document.removeEventListener("mousemove", lazyCognito_<?php echo $data_form; ?>);
+                            document.removeEventListener("mousemove", lazyCognito_<?php echo $dataForm; ?>);
                         }
                     }
-
+            
                     setTimeout(() => {
-                        lazyCognito_<?php echo $data_form; ?>();
+                        lazyCognito_<?php echo $dataForm; ?>();
                     }, 7000);
-
-                    document.addEventListener("scroll",  lazyCognito_<?php echo $data_form; ?>);
-                    document.addEventListener("mousemove",  lazyCognito_<?php echo $data_form; ?>);
+            
+                    document.addEventListener("scroll",  lazyCognito_<?php echo $dataForm; ?>);
+                    document.addEventListener("mousemove",  lazyCognito_<?php echo $dataForm; ?>);
                     /* Lazy Cognito Form Ends */
-
+            
                 });
             </script>
         </div>
