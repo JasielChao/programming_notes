@@ -180,6 +180,17 @@
 	$class = isset($args['class']) ? $args['class'] : "";
 ?>
 
+<!-- To remove all inline styles -->
+<?php
+    add_filter('the_content', function( $content ){
+        //--Remove all inline styles--
+        $content = preg_replace('/ style=("|\')(.*?)("|\')/','',$content);
+        return $content;
+    }, 20);
+
+    # or just
+    echo preg_replace('/ style=("|\')(.*?)("|\')/','',$content);
+?>
 <!-- Example Pagination --->
 <section class="news-posts">
 	<div class="results">
