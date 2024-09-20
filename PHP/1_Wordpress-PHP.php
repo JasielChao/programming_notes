@@ -6,7 +6,22 @@
     $post_id = get_the_ID();
     $post_slug = get_post_field( 'post_name', get_post() );
     $post_title = get_the_title();
+
+    # post thumbnail
     $post_thumbnail = get_the_post_thumbnail_url();
+    # post thumbnail Sizes
+
+    //Default WordPress
+    the_post_thumbnail( 'thumbnail' );     // Thumbnail (150 x 150 hard cropped)
+    the_post_thumbnail( 'medium' );        // Medium resolution (300 x 300 max height 300px)
+    the_post_thumbnail( 'medium_large' );  // Medium Large (added in WP 4.4) resolution (768 x 0 infinite height)
+    the_post_thumbnail( 'large' );         // Large resolution (1024 x 1024 max height 1024px)
+    the_post_thumbnail( 'full' );          // Full resolution (original size uploaded)
+
+    //With WooCommerce
+    the_post_thumbnail( 'shop_thumbnail' ); // Shop thumbnail (180 x 180 hard cropped)
+    the_post_thumbnail( 'shop_catalog' );   // Shop catalog (300 x 300 hard cropped)
+    the_post_thumbnail( 'shop_single' );    // Shop single (600 x 600 hard cropped)
 ?>
 
 <!-- Get the Current Route Source Dynamically -->
