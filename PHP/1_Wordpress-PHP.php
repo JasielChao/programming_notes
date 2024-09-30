@@ -4,8 +4,10 @@
 <?php  
     /* Post Data */
     $post_id = get_the_ID();
+    $post_url = get_post_permalink();
     $post_slug = get_post_field( 'post_name', get_post() );
     $post_title = get_the_title();
+    $post_published_date = get_the_date();
 
     # post thumbnail
     $post_thumbnail = get_the_post_thumbnail_url();
