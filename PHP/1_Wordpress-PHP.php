@@ -11,6 +11,8 @@
 
     # post thumbnail
     $post_thumbnail = get_the_post_thumbnail_url();
+    $post_thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'large');
+
     # post thumbnail Sizes
 
     //Default WordPress
