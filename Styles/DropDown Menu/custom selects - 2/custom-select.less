@@ -1,0 +1,114 @@
+/* LESS Imports, Required for all pages                        */
+@import (reference) "../global/global-variables";
+@import (reference) "../global/global-reference";
+
+
+.custom-select {
+    position: relative;
+    width: 100%;
+
+    select {
+        display: none; 
+    }
+
+    .select-items div,.select-selected {
+        .font-variation(@font-family-primary, 20, 400, 0, 20);
+        color: #fff;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .select-selected {
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        max-width: 300px;
+        height: 60px;
+        padding: 0 45px 0 18px;
+        background: transparent;
+        border: none;
+        outline: none;
+
+        &::after{
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            margin-top: -8px;
+            z-index: 1;
+            width: 10px;
+            height: 10px;
+            border: 1.5px solid #fff;
+            border-top: 1.5px solid transparent;
+            border-right: 1.5px solid transparent;
+            transform: rotate(-45deg);
+            transition: .3s;
+            pointer-events: none;
+        }
+
+        &.select-arrow-active:after {
+            transform: rotate(-225deg);
+            margin-top: 0px;
+        }
+    }
+
+    .select-items {
+        position: absolute;
+        top: 65px;
+        width: 100%;
+        border-radius: @border-radius;
+        background: fade(#243e5d, 95%);
+        backdrop-filter: blur(5px);
+        overflow: auto;
+        z-index: 2;
+        max-height: 360px;
+
+        div {
+            padding: 12px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            &:hover {
+                background: @color-palette-2;
+                color: #fff;
+            }
+        }
+
+        /* Custom Scrollbar */
+        /* width */
+            &::-webkit-scrollbar {
+                width: 3px;
+            }
+            
+            /* Track */
+            &::-webkit-scrollbar-track {
+                background: fade(#222, 20%);
+            }
+            
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+                background: fade(#fff, 30%); 
+                border-radius: 5px;
+            }
+            
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+                background: #fff; 
+            }
+        /* End Custom Scrollbar */
+    }
+
+    .select-hide {
+        display: none;
+    }
+
+    @media(max-width: @break-phone) {
+        .select-selected {
+            max-width: 100%;
+        }
+    }
+}
