@@ -8,10 +8,13 @@
     $post_slug = get_post_field( 'post_name', get_post() );
     $post_title = get_the_title();
     $post_published_date = get_the_date();
+    $post_category = get_the_category( $post_id);
+    $post_category[0]->cat_name;
 
     # post thumbnail
     $post_thumbnail = get_the_post_thumbnail_url();
     $post_thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'large');
+    $post_thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
 
     # post thumbnail Sizes
 
