@@ -72,6 +72,10 @@
 <!--  concatenate string coldfusion  -->   
 <cfoutput> "string" & "string2" </cfoutput>
 
+<cfset varName = "Initial String">
+<cfset varName &= " Another String">
+<cfoutput>#varName#</cfoutput>
+
 
 <!--  Get Current Path ColdFusion  -->        
 <cfoutput> #GetDirectoryFromPath(GetBaseTemplatePath())#  </cfoutput>

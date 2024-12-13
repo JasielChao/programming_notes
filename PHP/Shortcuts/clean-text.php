@@ -1,4 +1,4 @@
-<?php /* Cleant Text Function - Version 1.0.0
+<?php /* Cleant Text Function - Version 1.0.1
         
         Useful Function to clean the WordPress or MLS dirty text. 
 
@@ -19,7 +19,8 @@ function asnet_cleanText($dirtyText) {
         array(
             '/ style=("|\')(.*?)("|\')/',   // Remove style attributes
             '/<br\s*\/?>/i',                // Remove all <br> variations
-            '/&nbsp;/i'                     // Remove &nbsp;
+            '/&nbsp;/i',                     // Remove &nbsp;
+            '/<p>\s*<\/p>/'                  // Remove empty <p> tags
         ), 
         '', 
         $dirtyText

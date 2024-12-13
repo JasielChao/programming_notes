@@ -43,7 +43,8 @@
 <!-- Wordpress Query  -->   
 <div>
     <!-- First Way  -->   
-    <div>
+    <?php
+
             $query = new WP_Query( array( 'post_type' => 'page' ) );
             $posts = $query->posts;
 
@@ -51,10 +52,11 @@
                 // Do your stuff, e.g.
                 // echo $post->post_name;
             }
-    </div>
+
+    ?>
 
     <!-- Second Way  -->   
-    <div>
+    <?php
         $query = new WP_Query( $args );
         if ( $query->have_posts() ) {
 
@@ -66,7 +68,11 @@
                 // $query->post->ID, $query->post->post_title, etc.
             }
         }
-    </div>
+    ?>
+    <!-- Count total post  --> 
+    <?php
+        $totalpost = $the_query->found_posts; 
+    ?>
 
 </div>
 
