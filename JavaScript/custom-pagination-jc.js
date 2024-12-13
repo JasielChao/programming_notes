@@ -1,13 +1,11 @@
 /**
- * Custom Pagination JC v1.0.0
+ * Custom Pagination JC v1.0.1
  * Custom Pagination with Native JS -- Jasiel Chao
- * 
- * Example: https://www.outerreefyachts.com/yachts/880-Cockpit-Motoryacht/10
  **/
 
 document.addEventListener("DOMContentLoaded", ()=>{
 
-    const itemsPerPageDefault = 9; //Customizable
+    const itemsPerPageDefault = 12; //Customizable
     const paginationDivClass = "custom-pagination-jc";
 
     const customPaginationJC = document.querySelectorAll("." + paginationDivClass);
@@ -24,16 +22,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
             let itemsPerPage = cPaginationJC.getAttribute('data-items-per-page');
             console.log("data-items-per-page: " + itemsPerPage );
             if(!itemsPerPage) { itemsPerPage = itemsPerPageDefault;}
-
-            console.log(cPaginationJC);
             
             if(targetPaginationJC){
 
                 // Let's get all the pagination items 
                 let cPaginationItems = document.querySelectorAll("#" + cPaginationJC.getAttribute('data-target') + " .pagination-item");
+                console.log("total items found: " + cPaginationItems.length );
                 // Set the total items
                 cPaginationJC.setAttribute("data-total", cPaginationItems.length);
                 cPaginationJC.setAttribute("data-page", "1");
+                
 
                 if(cPaginationItems.length > itemsPerPage){
                     // Let's hide all the not desired pagination items 
