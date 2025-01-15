@@ -11,9 +11,10 @@
     -- Jasiel Chao
 
 */
+/* For Images */
 (function() {
     // Get all images with the class "swiper-slide-image"
-    const images = document.querySelectorAll("img.swiper-slide-image");
+    const images = document.querySelectorAll(".scc-gc-desktop-thumbnails img");
 
     // Iterate through each image and download it
     images.forEach((img, index) => {
@@ -22,6 +23,7 @@
 
         // Set the href of the link to the image URL
         link.href = img.src;
+        link.target = "blank";
 
         // Assign a name to the file (you can customize this)
         link.download = `image_${index + 1}.jpg`;
@@ -35,4 +37,33 @@
     });
 
     console.log(`${images.length} images downloaded.`);
+})();
+
+<img alt="SLX 350 running port stern" class="scc-gallery-carousel-thumbnail" src="/content/dam/searay/2024/model-images/slx/slx-350/2024-SLX-350-SLX350-running-port-stern-03116.jpg.transform/searay-2880x2880boundedresize/image.jpg"></img>
+
+/* For Images Links */
+(function() {
+    // Get all images with the class "swiper-slide-image"
+    const imagesLink = document.querySelectorAll(".pp-photo-gallery-content a");
+
+    // Iterate through each image and download it
+    imagesLink.forEach((imgLink, index) => {
+        // Create a temporary link
+        const link = document.createElement("a");
+
+        // Set the href of the link to the image URL
+        link.href = imgLink.href;
+
+        // Assign a name to the file (you can customize this)
+        link.download = `image_${index + 1}.jpg`;
+
+        // Append the link to the document and simulate a click to start the download
+        document.body.appendChild(link);
+        link.click();
+
+        // Remove the link after the download
+        document.body.removeChild(link);
+    });
+
+    console.log(`${imagesLink.length} images downloaded.`);
 })();

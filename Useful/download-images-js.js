@@ -13,7 +13,7 @@
 */
 (function() {
     // Get all images with the class "swiper-slide-image"
-    const images = document.querySelectorAll("img.swiper-slide-image");
+    const images = document.querySelectorAll(".mySlidesModel img");
 
     // Iterate through each image and download it
     images.forEach((img, index) => {
