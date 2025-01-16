@@ -53,6 +53,9 @@
                 // echo $post->post_name;
             }
 
+            // Restore original Post Data.
+            wp_reset_postdata();
+
     ?>
 
     <!-- Second Way  -->   
@@ -68,6 +71,9 @@
                 // $query->post->ID, $query->post->post_title, etc.
             }
         }
+
+        // Restore original Post Data.
+        wp_reset_postdata();
     ?>
     <!-- Count total post  --> 
     <?php
@@ -207,6 +213,8 @@
 	// Example get Parameter
 	$class = isset($args['class']) ? $args['class'] : "";
 ?>
+
+
 
 <!-- To remove all inline styles -->
 <?php
