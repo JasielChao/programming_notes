@@ -8,10 +8,13 @@
     $post_slug = get_post_field( 'post_name', get_post() );
     $post_title = get_the_title();
     $post_published_date = get_the_date();
+    $post_category = get_the_category( $post_id);
+    $post_category[0]->cat_name;
 
     # post thumbnail
     $post_thumbnail = get_the_post_thumbnail_url();
     $post_thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'large');
+    $post_thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
 
     # post thumbnail Sizes
 
@@ -40,7 +43,8 @@
 <!-- Wordpress Query  -->   
 <div>
     <!-- First Way  -->   
-    <div>
+    <?php
+
             $query = new WP_Query( array( 'post_type' => 'page' ) );
             $posts = $query->posts;
 
@@ -48,10 +52,14 @@
                 // Do your stuff, e.g.
                 // echo $post->post_name;
             }
-    </div>
+
+            // Restore original Post Data.
+            wp_reset_postdata();
+
+    ?>
 
     <!-- Second Way  -->   
-    <div>
+    <?php
         $query = new WP_Query( $args );
         if ( $query->have_posts() ) {
 
@@ -63,7 +71,14 @@
                 // $query->post->ID, $query->post->post_title, etc.
             }
         }
-    </div>
+
+        // Restore original Post Data.
+        wp_reset_postdata();
+    ?>
+    <!-- Count total post  --> 
+    <?php
+        $totalpost = $the_query->found_posts; 
+    ?>
 
 </div>
 
@@ -198,6 +213,8 @@
 	// Example get Parameter
 	$class = isset($args['class']) ? $args['class'] : "";
 ?>
+
+
 
 <!-- To remove all inline styles -->
 <?php
