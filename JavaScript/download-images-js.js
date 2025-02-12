@@ -14,7 +14,7 @@
 /* For Images */
 (function() {
     // Get all images with the class "swiper-slide-image"
-    const images = document.querySelectorAll(".scc-gc-desktop-thumbnails img");
+    const images = document.querySelectorAll(".tabs-block img");
 
     // Iterate through each image and download it
     images.forEach((img, index) => {
