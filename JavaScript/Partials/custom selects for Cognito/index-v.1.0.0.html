@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Selects - Version 1.0.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>     
+
+<body>
+
+<h2>Custom Selects</h2>
+
+<!--- Custom Cognito Selects - Version 1.0.0
+    Just one Rule: 
+        Call the customCognitoSelect(); function after the Cognito.mount() function.
+
+        Visit the https://revolutionmarinegroup.com/ site to find an example
+        
+        Let me know if you have any questions.
+            -- Jasiel Chao        
+-->
+
+
+<script>
+    /* ******************************************************
+        Custom Cognito Selects Logic - Version 1.0.0
+    ****************************************************** */
+    const customCognitoSelect = () => {
+        let selectContainers, parentRow, selectElement, selectedDiv, optionListDiv, optionDiv, counter = 0;
+        
+        // Find all Cognito select elements
+        selectContainers = document.querySelectorAll(".cog-select .cog-picker");
+        
+        selectContainers.forEach((container) => {
+            // Apply custom styles
+            container.classList.add("custom-select");
+            
+            // Find the closest parent row
+            parentRow = container.parentElement;
+            while (counter < 10) {
+                if (parentRow.classList.contains("cog-row")) {
+                    parentRow.style.zIndex = "2";
+                    break;
+                }
+                parentRow = parentRow.parentElement;
+                counter++;
+            }
+
+            selectElement = container.getElementsByTagName("select")[0];
+            
+            // Create the selected item div
+            selectedDiv = document.createElement("DIV");
+            selectedDiv.setAttribute("class", "select-selected");
+            selectedDiv.setAttribute("tabindex", "0");  // Make it focusable for key events
+            selectedDiv.innerHTML = selectElement.options[selectElement.selectedIndex].innerHTML;
+            container.appendChild(selectedDiv);
+
+            // Create the dropdown list div
+            optionListDiv = document.createElement("DIV");
+            optionListDiv.setAttribute("class", "select-items select-hide");
+
+            for (let i = 1; i < selectElement.length; i++) {
+                // Create each option div
+                optionDiv = document.createElement("DIV");
+                optionDiv.innerHTML = selectElement.options[i].innerHTML;
+                optionDiv.addEventListener("click", function () {
+                    let selectedTextDiv, allOptions;
+                    selectedTextDiv = this.parentNode.previousSibling;
+
+                    // Update original select element
+                    for (let j = 0; j < selectElement.length; j++) {
+                        if (selectElement.options[j].innerHTML === this.innerHTML) {
+                            selectElement.selectedIndex = j;
+                            selectedTextDiv.innerHTML = this.innerHTML;
+                            
+                            // Dispatch change event to notify Cognito Forms
+                            selectElement.dispatchEvent(new Event("change", { bubbles: true }));
+
+                            allOptions = this.parentNode.getElementsByClassName("same-as-selected");
+                            for (let opt of allOptions) {
+                                opt.removeAttribute("class");
+                            }
+                            this.setAttribute("class", "same-as-selected");
+                            break;
+                        }
+                    }
+                    selectedTextDiv.click();
+                });
+                optionListDiv.appendChild(optionDiv);
+            }
+            container.appendChild(optionListDiv);
+
+            // Click event to toggle dropdown
+            selectedDiv.addEventListener("click", function (e) {
+                e.stopPropagation();
+                closeAllSelect(this);
+                this.nextSibling.classList.toggle("select-hide");
+                this.classList.toggle("select-arrow-active");
+            });
+
+            // Keyboard navigation for quick selection
+            selectedDiv.addEventListener("keydown", function (e) {
+                const dropdown = this.nextSibling;
+                if (!dropdown.classList.contains("select-hide")) {
+                    const keyPressed = e.key.toLowerCase();
+                    const options = dropdown.getElementsByTagName("div");
+                    for (let option of options) {
+                        if (option.innerHTML.toLowerCase().startsWith(keyPressed)) {
+                            option.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                            break;
+                        }
+                    }
+                }
+            });
+        });
+    };
+
+    // Function to close all dropdowns except the current one
+    function closeAllSelect(current) {
+        let allItems, allSelected, indexList = [];
+        allItems = document.getElementsByClassName("select-items");
+        allSelected = document.getElementsByClassName("select-selected");
+        
+        for (let i = 0; i < allSelected.length; i++) {
+            if (current === allSelected[i]) {
+                indexList.push(i);
+            } else {
+                allSelected[i].classList.remove("select-arrow-active");
+            }
+        }
+        
+        for (let i = 0; i < allItems.length; i++) {
+            if (!indexList.includes(i)) {
+                allItems[i].classList.add("select-hide");
+            }
+        }
+    }
+
+    // Close all select boxes when clicking outside
+    document.addEventListener("click", closeAllSelect);
+</script>
+
+
+</body>
+</html>
