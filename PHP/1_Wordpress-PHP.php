@@ -29,6 +29,9 @@
     the_post_thumbnail( 'shop_thumbnail' ); // Shop thumbnail (180 x 180 hard cropped)
     the_post_thumbnail( 'shop_catalog' );   // Shop catalog (300 x 300 hard cropped)
     the_post_thumbnail( 'shop_single' );    // Shop single (600 x 600 hard cropped)
+
+    // With Carbon Fields
+    $crb_image = wp_get_attachment_image_url($mobile_featured, 'full');
 ?>
 
 <!-- Get the Current Route Source Dynamically -->
