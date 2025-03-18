@@ -19,6 +19,25 @@
     // Get caption for featured image
     $post_thumbnail_Caption = get_post(get_post_thumbnail_id())->post_excerpt; 
 
+
+    // Get Alt from Image ID
+    $image_id = 123; // Reemplaza con el ID de la imagen
+    $alt_text = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+
+    echo $alt_text;
+
+    // Get Alt from Image URL
+    $image_url = 'https://yourwebsite.com/wp-content/uploads/2025/03/your-image.jpg'; // Reemplaza con la URL de tu imagen
+
+    // Step 1: Get the image ID from the URL
+    $image_id = attachment_url_to_postid( $image_url );
+
+    // Step 2: Get the alt attribute using the image ID
+    if ( $image_id ) {
+        $alt_text = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+    }
+
+
     # post thumbnail Sizes
 
     //Default WordPress
