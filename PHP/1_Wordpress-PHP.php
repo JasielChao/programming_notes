@@ -16,6 +16,9 @@
     $post_thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'large');
     $post_thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
 
+    // Get caption for featured image
+    $post_thumbnail_Caption = get_post(get_post_thumbnail_id())->post_excerpt; 
+
     # post thumbnail Sizes
 
     //Default WordPress
@@ -29,6 +32,33 @@
     the_post_thumbnail( 'shop_thumbnail' ); // Shop thumbnail (180 x 180 hard cropped)
     the_post_thumbnail( 'shop_catalog' );   // Shop catalog (300 x 300 hard cropped)
     the_post_thumbnail( 'shop_single' );    // Shop single (600 x 600 hard cropped)
+
+    // Carbon fields
+    $customCardImg = get_post_thumbnail_id(); // O el ID de la imagen que quieres
+    $img_size = 'medium'; // Puedes usar 'thumbnail', 'medium', 'large', 'full' o tamaños personalizados
+
+    $image = wp_get_attachment_image_src($customCardImg, $img_size);
+
+    if ($image) {
+        $img_url = $image[0]; // La URL de la imagen en el tamaño especificado
+        echo '<img src="' . esc_url($img_url) . '" alt="Custom Image">';
+    }
+
+    $img_thumbnail = wp_get_attachment_image_src($customCardImg, 'thumbnail')[0]; // 150x150 
+    $img_medium = wp_get_attachment_image_src($customCardImg, 'medium')[0]; // 300x300
+    $img_large = wp_get_attachment_image_src($customCardImg, 'large')[0]; // 1024x1024
+    $img_full = wp_get_attachment_image_src($customCardImg, 'full')[0]; // Tamaño original
+
+    // Si necesitas un tamaño personalizado, puedes registrarlo en functions.php con:
+    add_image_size('custom-size', 400, 300, true); // 400x300px, recorte exacto
+    // Y luego obtenerlo con:
+    $img_custom = wp_get_attachment_image_src($customCardImg, 'custom-size')[0];
+
+    // Get caption for image
+    $imgCaption = wp_get_attachment_caption($customCardImg);
+
+
+
 ?>
 
 <!-- Get the Current Route Source Dynamically -->
