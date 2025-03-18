@@ -1,0 +1,9 @@
+Custom Cognito Selects - Version 1.0.0
+
+Just one Rule: 
+   Call the customCognitoSelect(); function after the Cognito.mount() function.
+
+   Visit the https://revolutionmarinegroup.com/ site to find an example
+   
+   Let me know if you have any questions.
+      -- Jasiel Chao        

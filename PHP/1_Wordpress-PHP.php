@@ -56,9 +56,6 @@
 
     // Get caption for image
     $imgCaption = wp_get_attachment_caption($customCardImg);
-
-
-
 ?>
 
 <!-- Get the Current Route Source Dynamically -->
@@ -109,6 +106,46 @@
     <?php
         $totalpost = $the_query->found_posts; 
     ?>
+
+</div>
+
+<!-- Wordpress Query - Category -->   
+<div>
+    <?php # Get all post with a specific category
+			$args = array(
+				'post_type' => 'post',
+				'category_name'=> 'event',
+                'orderby' => 'date',
+                'order' => 'DESC',
+				'posts_per_page' => -1,
+
+			);
+			$the_query = new WP_Query( $args ); 
+    ?>
+
+
+    <?php # Get all post that doesn't have a specific category
+
+        # Gets the ID of the 'event' category
+        $event_category = get_category_by_slug('event');
+
+        # Check if the category exists before continuing
+        if ($event_category) {
+            $args = array(
+                'post_type'      => 'post',
+                'posts_per_page' => -1,
+                'category__not_in' => array($event_category->term_id), # Excludes the "event" category
+            );
+        } else {
+            $args = array(
+                'post_type'      => 'post',
+                'posts_per_page' => -1,
+            );
+        }
+
+        $the_query = new WP_Query($args);
+    ?>
+
 
 </div>
 
