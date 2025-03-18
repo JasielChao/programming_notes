@@ -102,6 +102,28 @@
         // Restore original Post Data.
         wp_reset_postdata();
     ?>
+
+    <?php # Custom sort and filter
+        $args = array(
+            'post_type'      => 'inventory',
+            'posts_per_page' => -1,
+            'meta_query'     => array(
+                array(
+                    'key'     => 'afv_lightspeed_condition',
+                    'compare' => '!=',
+                    'value'   => '0',
+                ),
+                'order_by_array' => array(
+                    'key' => 'afv_lightspeed_webprice', // Define the field to sort by
+                    'type' => 'NUMERIC', // Treat the field as a numeric value for sorting
+                    'compare' => 'NUMERIC',
+                )
+            ),
+            'orderby' => array( 'order_by_array' => 'DESC' ), // Sort in descending order (highest price first)
+        );
+        $the_query = new WP_Query( $args );
+    ?>
+
     <!-- Count total post  --> 
     <?php
         $totalpost = $the_query->found_posts; 
