@@ -56,6 +56,19 @@ if (isset($b)) {
         if (str_contains('How are you', 'are')) { 
             echo 'true';
         }
+
+        /* String contains a least one substring of multiple options */
+        $text = "Hola mundo, esto es PHP";
+        $words = ["Hola", "PHP", "JavaScript"];
+
+        $found = array_filter($words, fn($word) => str_contains($text, $word));
+
+        if (!empty($found)) {
+            echo "Se encontró al menos una palabra.";
+        } else {
+            echo "Ninguna coincidencia.";
+        }
+
     ?>
 
     <!-- Substring Functions -->
