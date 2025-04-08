@@ -14,7 +14,7 @@
 /* For Images */
 (function() {
     // Get all images with the class "swiper-slide-image"
-    const images = document.querySelectorAll(".scc-gc-desktop-thumbnails img");
+    const images = document.querySelectorAll(".tabs-block img");
 
     // Iterate through each image and download it
     images.forEach((img, index) => {
@@ -44,7 +44,7 @@
 /* For Images Links */
 (function() {
     // Get all images with the class "swiper-slide-image"
-    const imagesLink = document.querySelectorAll(".pp-photo-gallery-content a");
+    const imagesLink = document.querySelectorAll(".fl-module-photo-gallery a");
 
     // Iterate through each image and download it
     imagesLink.forEach((imgLink, index) => {

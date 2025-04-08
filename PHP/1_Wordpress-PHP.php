@@ -16,6 +16,28 @@
     $post_thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'large');
     $post_thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
 
+    // Get caption for featured image
+    $post_thumbnail_Caption = get_post(get_post_thumbnail_id())->post_excerpt; 
+
+
+    // Get Alt from Image ID
+    $image_id = 123; // Reemplaza con el ID de la imagen
+    $alt_text = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+
+    echo $alt_text;
+
+    // Get Alt from Image URL
+    $image_url = 'https://yourwebsite.com/wp-content/uploads/2025/03/your-image.jpg'; // Reemplaza con la URL de tu imagen
+
+    // Step 1: Get the image ID from the URL
+    $image_id = attachment_url_to_postid( $image_url );
+
+    // Step 2: Get the alt attribute using the image ID
+    if ( $image_id ) {
+        $alt_text = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+    }
+
+
     # post thumbnail Sizes
 
     //Default WordPress
@@ -29,6 +51,30 @@
     the_post_thumbnail( 'shop_thumbnail' ); // Shop thumbnail (180 x 180 hard cropped)
     the_post_thumbnail( 'shop_catalog' );   // Shop catalog (300 x 300 hard cropped)
     the_post_thumbnail( 'shop_single' );    // Shop single (600 x 600 hard cropped)
+
+    // Carbon fields
+    $customCardImg = get_post_thumbnail_id(); // O el ID de la imagen que quieres
+    $img_size = 'medium'; // Puedes usar 'thumbnail', 'medium', 'large', 'full' o tamaños personalizados
+
+    $image = wp_get_attachment_image_src($customCardImg, $img_size);
+
+    if ($image) {
+        $img_url = $image[0]; // La URL de la imagen en el tamaño especificado
+        echo '<img src="' . esc_url($img_url) . '" alt="Custom Image">';
+    }
+
+    $img_thumbnail = wp_get_attachment_image_src($customCardImg, 'thumbnail')[0]; // 150x150 
+    $img_medium = wp_get_attachment_image_src($customCardImg, 'medium')[0]; // 300x300
+    $img_large = wp_get_attachment_image_src($customCardImg, 'large')[0]; // 1024x1024
+    $img_full = wp_get_attachment_image_src($customCardImg, 'full')[0]; // Tamaño original
+
+    // Si necesitas un tamaño personalizado, puedes registrarlo en functions.php con:
+    add_image_size('custom-size', 400, 300, true); // 400x300px, recorte exacto
+    // Y luego obtenerlo con:
+    $img_custom = wp_get_attachment_image_src($customCardImg, 'custom-size')[0];
+
+    // Get caption for image
+    $imgCaption = wp_get_attachment_caption($customCardImg);
 ?>
 
 <!-- Get the Current Route Source Dynamically -->
@@ -75,10 +121,72 @@
         // Restore original Post Data.
         wp_reset_postdata();
     ?>
+
+    <?php # Custom sort and filter
+        $args = array(
+            'post_type'      => 'inventory',
+            'posts_per_page' => -1,
+            'meta_query'     => array(
+                array(
+                    'key'     => 'afv_lightspeed_condition',
+                    'compare' => '!=',
+                    'value'   => '0',
+                ),
+                'order_by_array' => array(
+                    'key' => 'afv_lightspeed_webprice', // Define the field to sort by
+                    'type' => 'NUMERIC', // Treat the field as a numeric value for sorting
+                    'compare' => 'NUMERIC',
+                )
+            ),
+            'orderby' => array( 'order_by_array' => 'DESC' ), // Sort in descending order (highest price first)
+        );
+        $the_query = new WP_Query( $args );
+    ?>
+
     <!-- Count total post  --> 
     <?php
         $totalpost = $the_query->found_posts; 
     ?>
+
+</div>
+
+<!-- Wordpress Query - Category -->   
+<div>
+    <?php # Get all post with a specific category
+			$args = array(
+				'post_type' => 'post',
+				'category_name'=> 'event',
+                'orderby' => 'date',
+                'order' => 'DESC',
+				'posts_per_page' => -1,
+
+			);
+			$the_query = new WP_Query( $args ); 
+    ?>
+
+
+    <?php # Get all post that doesn't have a specific category
+
+        # Gets the ID of the 'event' category
+        $event_category = get_category_by_slug('event');
+
+        # Check if the category exists before continuing
+        if ($event_category) {
+            $args = array(
+                'post_type'      => 'post',
+                'posts_per_page' => -1,
+                'category__not_in' => array($event_category->term_id), # Excludes the "event" category
+            );
+        } else {
+            $args = array(
+                'post_type'      => 'post',
+                'posts_per_page' => -1,
+            );
+        }
+
+        $the_query = new WP_Query($args);
+    ?>
+
 
 </div>
 

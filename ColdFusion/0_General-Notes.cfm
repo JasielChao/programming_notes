@@ -216,3 +216,24 @@ Returns
     <cfelse>
             <p>Previous Dates</p>
     </cfif>
+
+
+<!--- Let's update the year dynamically --->
+<cfset currentYear = Year(Now())>
+<cfset today = Now()>
+<cfset targetMonth = 10> <!-- October -->
+<cfset targetDay = 25>
+
+<cfif Month(today) GT targetMonth OR (Month(today) EQ targetMonth AND Day(today) GT targetDay)>
+  <!--- The current date is after October 25th. --->
+  <cfset printYear = currentYear>
+<cfelse>
+  <!--- The current date is before or on October 25th. --->
+  <cfset printYear = currentYear - 1>
+</cfif>
+
+<p>
+	Last updated: October 25, <cfoutput>#printYear#</cfoutput>.
+</p>
+
+

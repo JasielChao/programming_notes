@@ -1269,7 +1269,7 @@
 
 <script>
     /* ******************************************************
-        Custom Selects Logic - Version 1.0.1
+        Custom Selects Logic - Version 1.0.2
     ****************************************************** */
 
     var x, i, j, l, ll, selElmnt, a, b, c;
@@ -1288,7 +1288,7 @@
         /*for each element, create a new DIV that will contain the option list:*/
         b = document.createElement("DIV");
         b.setAttribute("class", "select-items select-hide");
-        for (j = 1; j < ll; j++) {
+        for (j = 0; j < ll; j++) {
             /*for each option in the original select element,
             create a new DIV that will act as an option item:*/
             c = document.createElement("DIV");
@@ -1303,6 +1303,7 @@
                 for (i = 0; i < sl; i++) {
                     if (s.options[i].innerHTML == this.innerHTML) {
                         s.selectedIndex = i;
+                        s.dispatchEvent(new Event("change")); // Ensure that the change is reflected
                         h.innerHTML = this.innerHTML;
                         y = this.parentNode.getElementsByClassName("same-as-selected");
                         yl = y.length;

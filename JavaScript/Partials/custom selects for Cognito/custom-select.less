@@ -1,0 +1,90 @@
+/* LESS Imports, Required for all pages                        */
+@import (reference) "../global/global-variables";
+@import (reference) "../global/global-reference";
+
+
+.custom-select () {
+    position: relative;
+    font-family: Arial;
+
+    select {
+        display: none; 
+    }
+
+    .select-items div,.select-selected {
+        display: block;
+        min-height: 50px;
+        padding-left: 20px;
+        border: none;
+        background: #EFF0F2;
+        .font-variation(@font-family-primary, 18, 400, -10, 28);
+        color: @color-palette-3;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .select-selected {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 50px;
+        padding-left: 20px;
+        border-radius: 7px;
+        border: none;
+        background: #EFF0F2;
+        .font-variation(@font-family-primary, 18, 400, -10, 28);
+        color: @color-palette-3;
+        cursor: pointer;
+        user-select: none;
+
+        &::after{
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            margin-top: -8px;
+            z-index: 1;
+            width: 12px;
+            height: 12px;
+            border: 1.5px solid @color-palette-3;
+            border-top: 1.5px solid transparent;
+            border-right: 1.5px solid transparent;
+            transform: rotate(-45deg);
+            transition: .3s;
+            pointer-events: none;
+        }
+
+        &.select-arrow-active:after {
+            transform: rotate(-225deg);
+            margin-top: 0px;
+        }
+    }
+
+    .select-items {
+        position: absolute;
+        top: 65px;
+        width: 100%;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        border-radius: @border-radius-s;
+        background: rgba(255, 255, 255, .69);
+        backdrop-filter: blur(10px) brightness(1.2);
+        overflow: hidden;
+        z-index: 2;
+
+        div {
+            padding: 12px 20px;
+            cursor: pointer;
+            color: @color-palette-3;
+            .font-variation(@font-family-primary, 15, 300, -10, 30);
+
+            &:hover {
+                background: @color-palette-2;
+                color: @color-palette-3;
+            }
+        }
+    }
+
+    .select-hide {
+        display: none;
+    }
+}
