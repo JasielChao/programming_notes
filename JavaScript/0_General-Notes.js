@@ -120,10 +120,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
 })
 
 /* ******************************************************************** */
-/* End: Objetos JS */
-/* ******************************************************************** */
-
-/* ******************************************************************** */
 /* Template Strings y Concatenación */
 /* ******************************************************************** */
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -139,6 +135,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
    console.log(`${producto} $${precio} Dolares, marca: ${marca}`)
 
 })
+
 /* ******************************************************************** */
-/* End: Template Strings y Concatenación */
+/* Arrays o Arreglos */
 /* ******************************************************************** */
+document.addEventListener("DOMContentLoaded", ()=>{
+
+   // Arrays o Arreglos
+   const tecnologias = [20, 30, 40, true, "React.js"];
+   console.table(tecnologias);
+   console.log(tecnologias[1]);
+
+})
+
+
+
+
