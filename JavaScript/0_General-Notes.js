@@ -142,9 +142,42 @@ document.addEventListener("DOMContentLoaded", ()=>{
 document.addEventListener("DOMContentLoaded", ()=>{
 
    // Arrays o Arreglos
-   const tecnologias = [20, 30, 40, true, "React.js"];
-   console.table(tecnologias);
-   console.log(tecnologias[1]);
+   const miArray = [20, 30, 40, true, "React.js"];
+   console.table(miArray);
+   console.log(miArray[1]);
+
+   const tecnologias = ['HTML', 'CSS', 'JavaScript', 'React.js'];
+
+
+   // Para agregar un elemento al final de un arreglo o array
+   tecnologias.push('Node.js'); // push no se recomienda con react porque muta el state
+   console.log(tecnologias);
+
+   // Para agregar uno o más elementos al final de un arreglo o array podemos usar el operador spread
+   const tecnologias2 = [...tecnologias, 'Node.js'];
+   console.log(tecnologias2);
+
+   // Con .filter() podemos recorrer un array viendo cada elemento sin retornar elementos vacios en caso de que la condicion no se cumpla
+   // Devuelve un nuevo array con los elementos que cumplen una condición (true en el callback).
+   const tecnologias3 = tecnologias.filter(function(item) {
+         // Guardamos en el nuevo arreglo todos los elementos que no sean igual a HTML
+         if(item !== 'HTML') {
+            return item;
+        }
+    })
+    console.log(tecnologias3);
+
+   // Con .map() podemos recorrer un array viendo cada elemento, a diferencia de .filter() este va a retornar algo en cada caso
+   // Devuelve un nuevo array con el resultado de aplicar una función a cada elemento.
+   const tecnologias4 = tecnologias.map(function(item) {
+      if(item === 'Node.js') {
+         return 'Nest.js'
+      } else {
+         return item
+      }
+   });
+
+   console.log(tecnologias4);
 
 })
 
