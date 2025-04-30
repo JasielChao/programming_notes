@@ -167,6 +167,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
     })
     console.log(tecnologias3);
 
+   // .filter() en arrow function
+   // Hace lo mismo que la de arriba, pero más compacta
+   const tecnologias3_2 = tecnologias.filter(item => item !== 'HTML')
+   console.log(tecnologias3_2);
+
    // Con .map() podemos recorrer un array viendo cada elemento, a diferencia de .filter() este va a retornar algo en cada caso
    // Devuelve un nuevo array con el resultado de aplicar una función a cada elemento.
    const tecnologias4 = tecnologias.map(function(item) {
@@ -179,7 +184,93 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
    console.log(tecnologias4);
 
+
+   // Destructuring arrays
+   /* En este caso, el destructuring del array nos daria como resultado
+      que podamos llamar el valor array[3] por el nombre reactjs
+
+      Las comas vacias son como brinco de posiciones, por lo que el console.log(reactjs)
+      va a retornar la tercera posicion, que en este caso seria 'React.js'
+   */
+   const [ , , , reactjs] = tecnologias
+   console.log(reactjs)
+
+   // Recorrer arrays
+   // for()
+   for (let i = 0; i < array.length; i++) {
+      console.log(array[i]);
+   }
+
+   // forEach()
+   array.forEach(element => {
+      console.log(element);
+   });
+
+   // map()
+   /* La diferencia entre .map() y forEach() es que map debe retornar algo y generaria un arreglo nuevo */
+   const arrayMap = array.map(element => {
+       return element;
+   });
+
+   // Si usamos () en vez de {} no tenermos que escribir return
+   const arrayMap2 = array.map(element => (
+      element
+   ));
+
+   // for ... of
+   for(let element of array){
+      console.log(element);
+   }
+
+
+   // Metodos utiles
+   /* array.includes('anyString') devuelve true o false dependiendo si el valor deseado existe dentro del array */
+   let resultado = tecnologias.includes('CSS');
+
+   // Some - Devuelve si al menos uno cumple la condición
+   resultado = numeros.some( numero => numero > 15 )
+
+   // Find - Devuelve el primer elemento que cumple una condición
+   resultado = numeros.find( numero => numero > 20 )
+
+   // Every - Retorna true o false si todos cumplen la condición
+   resultado = numeros.every( numero => numero > 5 )
+
+   // Reduce - Retorna un acumulado del total
+   resultado = numeros.reduce( (total, numero) =>  total + numero, 0)
+
+   console.log(resultado)
+
 })
+
+
+/* ******************************************************************** */
+/* Functions - Funciones */
+/* ******************************************************************** */
+document.addEventListener("DOMContentLoaded", ()=>{
+   // Regular Function Declaration
+   function sumar(numero1 = 0, numero2 = 0) {
+      console.log(numero1 + numero2)
+   }
+
+   /** Function Expression
+    *  A diferencia de la expresion regular, las Functions Expression deben ser declaradas 
+    * antes de ser usadas, ya que cuentan como variables
+    */
+   const sumar = function(numero1 = 0, numero2 = 0) {
+      console.log(numero1 + numero2)
+   }
+
+   /** Arrow Functions
+    *  A diferencia de la expresion regular, las Arrow Functions tambien deben ser 
+    * declaradas antes de ser usadas, ya que cuentan como variables
+    */
+   const sumar = (numero1 = 0, numero2 = 0) => console.log(numero1 + numero2)
+
+
+  
+})
+
 
 
 
