@@ -30,9 +30,9 @@ if (isset($b)) {
 </div>
 
 <div style="padding: 4rem; display:none;">
-	<?php /* Only for test 
+	<?php /* Only for test */
 		include_once( ASNET_CORE_CFDUMP ); new dBug($muh_vessel);
-	*/?>
+	?>
 </div>
 
 <!-- String and Substring PHP -->

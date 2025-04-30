@@ -16,15 +16,6 @@
     <title>#request.defaultSitePageTitle#</title>
 </cfif>
 
-<!--  Var Dump ColdFusion  Please remove it when you finish the test -->   
-<div style="display: none; max-width: 98vw;max-height: 80vh;position: absolute;z-index: 9;left: 0; color: black;">
-    <pre>
-        <cfoutput>
-            <cfdump var="#request.myNews#">
-        </cfoutput>
-    </pre>
-</div> 
-
 <!--- Counts List element --->
 <cfoutput>
     <p>Count: #articlePhotos.recordcount# </p>
@@ -237,3 +228,33 @@ Returns
 </p>
 
 
+
+<!--- Get Days Difference --->
+<cffunction name="daysDifference" access="public" returntype="numeric">
+    <cfargument name="inputDate" type="string" required="true">
+    
+    <!-- Parse the input string into a valid date object -->
+    <cfset local.parsedDate = ParseDateTime(arguments.inputDate)>
+    
+    <!-- Get the current date and time -->
+    <cfset local.nowDate = Now()>
+
+    <!-- Calculate the difference in days -->
+    <cfreturn DateDiff("d", local.parsedDate, local.nowDate)>
+</cffunction>
+
+<!--- Example usage: --->
+<cfset myDate = "2023-12-08 09:27:31">
+<cfset days = daysDifference(myDate)>
+<cfoutput>#days# days difference from #myDate#.</cfoutput>
+
+
+
+
+
+<!--- ---------------------------- --->
+<!---------- Query ---------->
+<!--- ---------------------------- --->
+<cfoutput query="jobPosts" startRow="1" maxRows="1">
+
+</cfoutput>
