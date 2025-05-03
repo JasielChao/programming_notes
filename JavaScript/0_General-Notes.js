@@ -271,6 +271,46 @@ document.addEventListener("DOMContentLoaded", ()=>{
   
 })
 
+/* ******************************************************************** */
+/* New - Nuevo - Util */
+/* ******************************************************************** */
+document.addEventListener("DOMContentLoaded", ()=>{
+   // Optional chaining (?)
+   const alumno = {
+      nombre: 'Juan',
+      clase: 'Programación 1',
+      aprobado: true,
+      examenes: {
+         examen1: 90
+      }
+   }
+
+   /* El optional chaining (?) lo que va a hacer es que si la propiedad no existe,
+      no obtengamos un error en el codigo, sino que retorna un undefined 
+      
+      Esto nos ahorra tener que escribir un condicional
+   */
+   console.log(alumno.examenes?.examen1)
+   console.log('Después de ALUMNO')
+
+   /* Nullish coalescing operator (??)
+
+      Es un operador logico que retorna el valor del lado derecho cuando el 
+      valor del lado izquiero es null o undefined
+   */
+   const pagina = pageUrlParameter ?? 1
+   console.log(pagina)
+
+
+   /* Evaluación de corto circuito
+       Es un operador logico que retorna el valor del lado derecho cuando el 
+      valor del lado izquiero es true o existe
+   */
+   const auth = true
+   auth && console.log('Usuario Autenticado') 
+
+  
+})
 
 
 
