@@ -102,15 +102,15 @@ if (isset($b)) {
 
     <!-- Cut String without cutting a word -->
     <?php
-         $string_array = str_split($guest_review);
-         $guest_review = "";
-         for ($i=0; $i < count($string_array); $i++) { 
+        $string_array = str_split($excerpt);
+        $excerpt = "";
+        for ($i=0; $i < count($string_array); $i++) { 
 
-             if($i > 170 && strcmp($string_array[$i], ' ') == 0){
-                 break;
-             }
+            if($i > 170 && strcmp($string_array[$i], ' ') == 0){
+                break;
+            }
 
-             $guest_review .= $string_array[$i];
+            $excerpt .= $string_array[$i];
          }
     ?>
 
