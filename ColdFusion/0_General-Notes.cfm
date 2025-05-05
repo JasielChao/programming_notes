@@ -16,6 +16,15 @@
     <title>#request.defaultSitePageTitle#</title>
 </cfif>
 
+<!--  Var Dump ColdFusion  Please remove it when you finish the test -->   
+<div style="display: none; max-width: 98vw;max-height: 80vh;position: absolute;z-index: 9;left: 0; color: black;">
+    <pre>
+        <cfoutput>
+            <cfdump var="#request.myNews#">
+        </cfoutput>
+    </pre>
+</div> 
+
 <!--- Counts List element --->
 <cfoutput>
     <p>Count: #articlePhotos.recordcount# </p>
