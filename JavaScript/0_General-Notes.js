@@ -308,10 +308,28 @@ document.addEventListener("DOMContentLoaded", ()=>{
    */
    const auth = true
    auth && console.log('Usuario Autenticado') 
-
-  
 })
 
 
+/* ******************************************************************** */
+/* Import */
+/* ******************************************************************** */
+import {sumar, restar, multiplicar, division} from './funciones.js'
+document.addEventListener("DOMContentLoaded", ()=>{
+   /* Al igual que react podemos importar modulos en JS 
+      Para que esto funcione en html tenemos que especificar el type module
 
+      Ex:
+      <script src="js/24.js" type="module"></script>
+   */
+   const resultado1 = sumar(20, 10)
+   const resultado2 = restar(20, 10)
+   const resultado3 = multiplicar(20, 10)
+   const resultado4 = division(20, 10)
+   
+   console.log(resultado1)
+   console.log(resultado2)
+   console.log(resultado3)
+   console.log(resultado4)
+})
 
