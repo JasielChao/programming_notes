@@ -9,6 +9,23 @@
     #variablename#
 </cfoutput>
 
+
+<!--- Extract each value using ListGetAt() --->
+<cfset rangeParam = "0,50">
+<cfset minValue = ListGetAt(rangeParam, 1)>
+<cfset maxValue = ListGetAt(rangeParam, 2)>
+
+<!--- Optional: Convert to numeric values --->
+<cfset minValue = val(minValue)>
+<cfset maxValue = val(maxValue)>
+
+<!--- Output for testing --->
+<cfoutput>
+    Min: #minValue# <br>
+    Max: #maxValue#
+</cfoutput>
+
+
 <!-- check if a variable exists coldfusion -->
 <cfif IsDefined("customTitle")>
     <title>#customTitle#</title>
