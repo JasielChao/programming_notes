@@ -30,9 +30,9 @@ if (isset($b)) {
 </div>
 
 <div style="padding: 4rem; display:none;">
-	<?php /* Only for test 
+	<?php /* Only for test */
 		include_once( ASNET_CORE_CFDUMP ); new dBug($muh_vessel);
-	*/?>
+	?>
 </div>
 
 <!-- String and Substring PHP -->
@@ -56,6 +56,19 @@ if (isset($b)) {
         if (str_contains('How are you', 'are')) { 
             echo 'true';
         }
+
+        /* String contains a least one substring of multiple options */
+        $text = "Hola mundo, esto es PHP";
+        $words = ["Hola", "PHP", "JavaScript"];
+
+        $found = array_filter($words, fn($word) => str_contains($text, $word));
+
+        if (!empty($found)) {
+            echo "Se encontró al menos una palabra.";
+        } else {
+            echo "Ninguna coincidencia.";
+        }
+
     ?>
 
     <!-- Substring Functions -->
@@ -89,15 +102,15 @@ if (isset($b)) {
 
     <!-- Cut String without cutting a word -->
     <?php
-         $string_array = str_split($guest_review);
-         $guest_review = "";
-         for ($i=0; $i < count($string_array); $i++) { 
+        $string_array = str_split($excerpt);
+        $excerpt = "";
+        for ($i=0; $i < count($string_array); $i++) { 
 
-             if($i > 170 && strcmp($string_array[$i], ' ') == 0){
-                 break;
-             }
+            if($i > 170 && strcmp($string_array[$i], ' ') == 0){
+                break;
+            }
 
-             $guest_review .= $string_array[$i];
+            $excerpt .= $string_array[$i];
          }
     ?>
 
@@ -133,6 +146,65 @@ if (isset($b)) {
     $string = strtok($string, "&");
 ?>
 
+<!-- Array Functions -->
+<?php
+    $multyArray = array(
+        array(
+            "name" =>"Length" ,
+            "value" => "95′ ",
+        ),
+        array(
+            "name" => "Beam",
+            "value" => "22′ 0″ ",
+        ),
+        array(
+            "name" => "Draft",
+            "value" => "7′ 9″",
+        ),
+        array(
+            "name" => "Engines",
+            "value" => "Twin CAT C32 1925 H.P."
+        ),
+    );
+
+    /* 
+        Para verificar si existe un elemento en el array con la clave ["name"] que tenga el valor "Length", 
+        puedes usar array_search() o recorrer el array con array_filter().
+    */
+
+    /* Opción 1: Usando array_search()
+        Ventajas:
+        Es eficiente porque usa array_column() para extraer solo la columna name y busca el valor directamente.
+    */
+
+    $index = array_search("Length", array_column($multyArray, 'name'));
+    
+    if ($index !== false) {
+        echo "Encontrado en el índice $index. El valor es: " . $multyArray[$index]['value'];
+    } else {
+        echo "No encontrado.";
+    }
+
+    /* Opción 1: Usando array_filter()
+        Ventajas:
+        Si hay varias coincidencias, puedes obtener todas.
+    */
+
+    $result = array_filter($multyArray, function ($item) {
+        return $item['name'] === "Length";
+    });
+    
+    if (!empty($result)) {
+        $firstMatch = reset($result); // Obtener el primer resultado
+        echo "Encontrado. El valor es: " . $firstMatch['value'];
+    } else {
+        echo "No encontrado.";
+    }
+    
+    
+
+
+?>
 <!-- Foreach -->
 <?php 
     foreach ($arr as &$value) {

@@ -1,4 +1,4 @@
-<?php /* Cleant Text Function - Version 1.0.1
+<?php /* Cleant Text Function - Version 1.0.3
         
         Useful Function to clean the WordPress or MLS dirty text. 
 
@@ -13,28 +13,31 @@
         
     */
 
-function asnet_cleanText($dirtyText) {
+function asnet_cleanText($dirtyText, $capitalize = true) {
     // Remove style attributes, <br> tags, and &nbsp;
     $cleanText = preg_replace(
         array(
             '/ style=("|\')(.*?)("|\')/',   // Remove style attributes
             '/<br\s*\/?>/i',                // Remove all <br> variations
             '/&nbsp;/i',                     // Remove &nbsp;
-            '/<p>\s*<\/p>/'                  // Remove empty <p> tags
+            '/<p>\s*<\/p>/',                  // Remove empty <p> tags
+            '/<strong>\s*<\/strong>/'                  // Remove empty <strong> tags
         ), 
         '', 
         $dirtyText
     );
     
-    // Convert text inside <h1>, <h2>, <h3> tags to capitalize
-    $cleanText = preg_replace_callback(
-        '/<h[1-3]>(.*?)<\/h[1-3]>/i', // Match <h1>, <h2>, and <h3> tags
-        function($matches) {
-            return ucfirst(strtolower($matches[0])); // Convert entire matched tag and content to capitalize
-        },
-        $cleanText
-    );
+    if($capitalize === true){
+        // Convert text inside <h1>, <h2>, <h3> tags to capitalize
+        $cleanText = preg_replace_callback(
+            '/<h[1-3]>(.*?)<\/h[1-3]>/i', // Match <h1>, <h2>, and <h3> tags
+            function($matches) {
+                return ucfirst(strtolower($matches[0])); // Convert entire matched tag and content to capitalize
+            },
+            $cleanText
+        );
+    }
 
     return $cleanText;
 }
-
+    

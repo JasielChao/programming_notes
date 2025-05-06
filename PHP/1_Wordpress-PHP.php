@@ -78,7 +78,10 @@
 ?>
 
 <!-- Get the Current Route Source Dynamically -->
-<?php echo get_template_directory_uri();?>
+<?php 
+$templateDirectory_uri = get_template_directory_uri();
+echo $templateDirectory_uri;
+?>
 
 <!-- To include a partial file-->
 <?php include get_template_directory() . '/template-parts/cognitos/cognito-form-1.php' ?>
@@ -183,6 +186,25 @@
                 'posts_per_page' => -1,
             );
         }
+
+        $the_query = new WP_Query($args);
+    ?>
+
+
+    <?php # Get all post using tag
+
+        $args = array(
+            'post_type'      => 'news',
+            'posts_per_page' => 9,
+            'paged'          => $paged,
+            'meta_key'       => $meta_key,
+            'orderby'        => $order_by,
+            'order'          => $order,
+            'search_title'   => $search,
+            'tag__in'        => array(12, 34), // Filtra por IDs de etiquetas
+            'tag_slug__in'   => array('events', 'updates'), // Filtra por slugs de etiquetas
+            'tag__not_in'    => array(64), // Excluye etiquetas específicas
+        );
 
         $the_query = new WP_Query($args);
     ?>
