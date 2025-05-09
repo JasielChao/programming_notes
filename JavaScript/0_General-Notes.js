@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 /* ******************************************************************** */
 /* Import */
 /* ******************************************************************** */
-import {sumar, restar, multiplicar, division} from './funciones.js'
+import cualquierNombre, {sumar, restar, multiplicar, division} from './funciones.js'
 document.addEventListener("DOMContentLoaded", ()=>{
    /* Al igual que react podemos importar modulos en JS 
       Para que esto funcione en html tenemos que especificar el type module
@@ -331,5 +331,21 @@ document.addEventListener("DOMContentLoaded", ()=>{
    console.log(resultado2)
    console.log(resultado3)
    console.log(resultado4)
+   cualquierNombre(); // Va a instanciar el export default si existe
+
+   /* Ejemplo del export en el fichero funciones.js:
+
+      export const sumar = (n1, n2) => n1 + n2
+
+      export const restar = (n1, n2) => n1 - n2
+
+      export const multiplicar = (n1, n2) =>  n1 * n2
+
+      export const division = (n1, n2)  => n1 / n2
+
+      // Solo puede existir un export default por fichero
+      const holaMundo = ()  => console.log("Hola Mundo")
+      export default holaMundo
+   */
 })
 
