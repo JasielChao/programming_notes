@@ -121,14 +121,15 @@
         <!-- KEY:COGNITO v2 -->
         <div>
             <!-- [[KEY:COGNITO v2]] -->
-                <script src="https://www.cognitoforms.com/f/seamless.js" data-key="or_12nlnoUKokQ0b0rrIVQ" data-form="1"></script>
+                <div id="cognito-here"></div>
+                <script src="https://www.cognitoforms.com/f/seamless.js" data-key="9QYkc2DbU0OwUOxFtKgMng"></script>
                 <script>
-                    Cognito.mount("2", ".cognito").prefill(
+                    Cognito.mount("1", "#cognito-here").prefill(
                     {
-                        "PageTitle": document.title,
-                        "PageUrl": window.location.href
+                        "URL": window.location.href
                     });
                 </script> 
+
         </div>
 
         <!-- SeamLess Cognito - Lazy Load - PHP -->

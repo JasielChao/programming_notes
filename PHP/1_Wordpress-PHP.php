@@ -336,7 +336,12 @@ echo $templateDirectory_uri;
 			'data'  => array(
 				'size' => 'large',
 				'is-active' => true,
-			)
+            ),
+            'paragraphs' => <<<HTML
+                <p>As a newly-minted partner with President Yachts, we now have the opportunity to directly offer their exceptional custom yacht capabilities directly to our own clientele.</p>
+                <p>Your personal Luke Brown project management team will be with you at the helm of the entire process, including being on the ground at President’s private shipyard during construction, as well as in Fort Lauderdale to facilitate a seamless handover of your new dream yacht. Your vision is our passion, and your expectations will undoubtedly be exceeded.</p>
+                <p>To inquire about pursuing your next ocean-bound craft with Luke Brown and President Yachts, please reach out to our account management team.</p>
+            HTML,
 		) 
 	);
 
