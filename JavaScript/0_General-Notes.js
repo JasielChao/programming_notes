@@ -308,10 +308,97 @@ document.addEventListener("DOMContentLoaded", ()=>{
    */
    const auth = true
    auth && console.log('Usuario Autenticado') 
-
-  
 })
 
+
+/* ******************************************************************** */
+/* Import */
+/* ******************************************************************** */
+import cualquierNombre, {sumar, restar, multiplicar, division} from './funciones.js'
+document.addEventListener("DOMContentLoaded", ()=>{
+   /* Al igual que react podemos importar modulos en JS 
+      Para que esto funcione en html tenemos que especificar el type module
+
+      Ex:
+      <script src="js/24.js" type="module"></script>
+   */
+   const resultado1 = sumar(20, 10)
+   const resultado2 = restar(20, 10)
+   const resultado3 = multiplicar(20, 10)
+   const resultado4 = division(20, 10)
+   
+   console.log(resultado1)
+   console.log(resultado2)
+   console.log(resultado3)
+   console.log(resultado4)
+   cualquierNombre(); // Va a instanciar el export default si existe
+
+   /* Ejemplo del export en el fichero funciones.js:
+
+      export const sumar = (n1, n2) => n1 + n2
+
+      export const restar = (n1, n2) => n1 - n2
+
+      export const multiplicar = (n1, n2) =>  n1 * n2
+
+      export const division = (n1, n2)  => n1 / n2
+
+      // Solo puede existir un export default por fichero
+      const holaMundo = ()  => console.log("Hola Mundo")
+      export default holaMundo
+   */
+})
+
+/* ******************************************************************** */
+/* Fetch API con Promises */
+/* ******************************************************************** */
+document.addEventListener("DOMContentLoaded", ()=>{
+   /* https://jsonplaceholder.typicode.com/
+
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+      .then(response => response.json())
+      .then(json => console.log(json))
+   */
+
+  
+   // Fetch API con Promises
+   const url = 'https://jsonplaceholder.typicode.com/comments'
+
+   fetch(url)
+      .then((response) => {
+         // console.log(response);
+         if(response.status == 200) {
+               return response.json()
+         }
+         throw new Error('Hubo un error...')
+      })
+      .then(data => console.log(data)) // data puede ser nombrado de cualquier forma
+      .catch(error => console.log(error.message))
+
+
+   /* Fetch API con Async Await y Try Catch
+      
+      Debemos colocar async antes de declarar la funcion await dentro de la funcion
+   */
+   const consultarAPI = async () => {
+      try {
+         const response = await fetch(url) // Esperamos a que termine el fetch
+
+         if(!response.ok) {
+               throw new Error('Hubo un error...')
+         }
+
+         const data = await response.json() // Esperamos a que termine de obtener el json
+         console.log(data)
+         
+      } catch (error) {
+         console.log(error.message)
+      }
+   }
+
+   consultarAPI();
+
+})
 
 
 
