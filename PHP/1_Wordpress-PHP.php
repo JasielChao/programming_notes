@@ -10,6 +10,10 @@
     $post_published_date = get_the_date();
     $post_category = get_the_category( $post_id);
     $post_category[0]->cat_name;
+    $post_thumbnail = get_the_post_thumbnail_url();
+    $post_thumbnail_small = get_the_post_thumbnail_url(get_the_ID(), 'large');
+    $template_uri = get_template_directory();
+    $dir_uri = get_template_directory_uri();
 
     # post thumbnail
     $post_thumbnail = get_the_post_thumbnail_url();
