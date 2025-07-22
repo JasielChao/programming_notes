@@ -76,6 +76,33 @@
         <!-- Case 3  -->
 </cfif>
 
+
+
+<!--- Checking if the URL parameter exist --->
+<cfif structKeyExists(url,'filter')>
+    <!--- Setting the existing URL parameter to a variable--->
+    <cfset variableFilter=url.filter>  
+<cfelse>
+    <!--- The  URL parameter dont exist--->
+    <cfset variableFilter="showAll">
+</cfif>
+
+<cfif Find(LCase(variableFilter), LCase(ARTICLE_TAG)) OR variableFilter EQ "showAll">
+    <!--- The Card --->
+</cfif>
+
+<cfset myString = "Hello World">
+<cfset subString = "world">
+
+<cfif Find(LCase(variableFilter), LCase(ARTICLE_TAG))>
+    <cfoutput>The string "#myString#" contains the substring "#subString#" (case-insensitive).</cfoutput>
+<cfelseif  Find(LCase(subString), LCase(myString))>
+        <!-- Case 2  -->
+<cfelse>
+    <cfoutput>The string "#myString#" does not contain the substring "#subString#" (case-insensitive).</cfoutput>
+</cfif>
+
+
  <!--- Include --->
  <cfinclude template="partials/partial.file.cfm" />
 

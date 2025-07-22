@@ -14,7 +14,7 @@
 /* For Images */
 (function() {
     // Get all images with the class "swiper-slide-image"
-    const images = document.querySelectorAll(".tabs-block img");
+    const images = document.querySelectorAll("img");
 
     // Iterate through each image and download it
     images.forEach((img, index) => {
@@ -22,7 +22,8 @@
         const link = document.createElement("a");
 
         // Set the href of the link to the image URL
-        link.href = img.src;
+        let src = img.src;
+        link.href = src.replace("-scaled", "");
         link.target = "blank";
 
         // Assign a name to the file (you can customize this)
@@ -44,7 +45,7 @@
 /* For Images Links */
 (function() {
     // Get all images with the class "swiper-slide-image"
-    const imagesLink = document.querySelectorAll(".fl-module-photo-gallery a");
+    const imagesLink = document.querySelectorAll(".e-gallery-item");
 
     // Iterate through each image and download it
     imagesLink.forEach((imgLink, index) => {
