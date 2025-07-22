@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nav Dropdown - Version 1.0.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>     
+
+<body>
+
+<h2>Tabs Nav</h2>
+
+   <!-- Tabs Nav -->
+    <nav class="tabs-nav fade-in">
+        <button class="active" data-filter="new-river">New River</button>
+        <button data-filter="another-place">Another Place</button>
+    </nav>
+
+    <div class="tab-wrap active fade-in" data-tab="new-river">
+        <?php
+            get_template_part( 'template-parts/partials/video-iframe', null, 
+                array( 
+                    'iframe_id' => "new-river-video",
+                    'youtube_video_id' => '4YFHDjig1hc',
+                    'iframe_title' => "New River Live Feed",
+                    'iframe_thumb' => wp_get_attachment_image_src(160, 'full')[0],
+                    'iframe_thumb_small' => wp_get_attachment_image_src(160, 'medium_large')[0],
+                    'iframe_lazyload' => true,
+                    'additional_classes' => 'scroll-show-image full-width',
+                ) 
+            );
+        ?>
+    </div>
+
+    <div class="tab-wrap fade-in" data-tab="another-place">
+        <?php
+            get_template_part( 'template-parts/partials/video-iframe', null, 
+                array( 
+                    'iframe_id' => "another-place-video",
+                    'youtube_video_id' => '4YFHDjig1hc',
+                    'iframe_title' => "New River Live Feed",
+                    'iframe_thumb' => wp_get_attachment_image_src(131, 'full')[0],
+                    'iframe_thumb_small' => wp_get_attachment_image_src(131, 'medium_large')[0],
+                    'iframe_lazyload' => true,
+                    'additional_classes' => 'scroll-show-image full-width',
+                ) 
+            );
+        ?>
+    </div>
+
+<script defer>
+  /* ******************************************************
+        Tabs Logic
+    ****************************************************** */
+    const tabsNav_Array = document.querySelectorAll('.main-section .tabs-nav button');
+    const tabs_Array = document.querySelectorAll('.main-section .tab-wrap');
+    
+    if(tabsNav_Array && tabs_Array ){
+        for (let i = 0; i < tabsNav_Array .length; i++) {
+
+            tabsNav_Array[i].addEventListener("click", ()=>{
+
+                // Remove all the active and is-visible classes
+                for (let j = 0; j < tabsNav_Array .length; j++) {
+                    if(tabsNav_Array[j].classList.contains("active")){
+                        tabsNav_Array[j].classList.remove("active");
+                    }
+
+                    if(tabs_Array[j].classList.contains("active")){
+                        tabs_Array[j].classList.remove("active");
+                    }
+
+                    if(tabs_Array[j].classList.contains("is-visible")){
+                        tabs_Array[j].classList.remove("is-visible");
+                    }
+                }
+
+                // Add active and is-visible classes
+                tabsNav_Array[i].classList.add("active");
+
+                let dataFilter = tabsNav_Array[i].dataset.filter;
+                let activeGallery = document.querySelector('[data-tab="' + dataFilter + '"]');
+
+                if(activeGallery){
+                    activeGallery.classList.add("active");
+
+                    setTimeout(() => {
+                            activeGallery.classList.add("is-visible");
+                    }, 50);
+                }
+
+            })
+        }
+    }
+</script>
+
+</body>
+</html>
