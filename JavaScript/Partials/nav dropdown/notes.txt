@@ -1,0 +1,7 @@
+Custom Selects - Version 1.0.1
+Author: Jasiel Chao 
+    
+   Just one Rule: 
+   Surround each select input with a "custom-select" DIV element. I added two examples below.
+   Let me know if you have any questions.
+            --    Jasiel Chao     

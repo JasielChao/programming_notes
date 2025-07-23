@@ -300,8 +300,6 @@ if (isset($b)) {
     ];
 ?>
 
-
-
 <!--- Dates --->
 <?php 
 	# Check if date between two dates
@@ -318,4 +316,20 @@ if (isset($b)) {
     }
 
 
+?>
+
+<!--- Passing HTML to as PHP --->
+<?php
+    $name = "Luke Brown";
+    $brand = "President Yachts";
+
+    $cc_paragraph = <<<HTML
+    <p>
+        With unique and aggressive styling, pavement-peeling power, unmatched luxury, and functional convenience features, 
+        every model in our lineup will get your job done and command attention everywhere it goes.
+    </p>
+    <p>
+        To inquire about pursuing your next ocean-bound craft with {$name} and {$brand}, please reach out to our account management team.
+    </p>
+    HTML;
 ?>
