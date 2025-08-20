@@ -61,9 +61,9 @@
                             customCognitoSelect();
 
                         } else {
-                            // Retry in 300ms if form is not found
-                            console.log("Retry in 300ms if form is not found");
-                            setTimeout(waitForCognitoForm, 300);
+                            // Retry in 500ms if form is not found
+                            console.log("Retry in 500ms if form is not found");
+                            setTimeout(waitForCognitoForm, 500);
                         }
                     }
 

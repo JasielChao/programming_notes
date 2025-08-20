@@ -10,7 +10,7 @@
 
 <h2>Custom Selects</h2>
 
-<!--- Custom Cognito Selects - Version 1.0.0
+<!--- Custom Cognito Selects - Version 1.0.2
     Just one Rule: 
         Call the customCognitoSelect(); function after the Cognito.mount() function.
 
@@ -23,10 +23,10 @@
 
 <script>
     /* ******************************************************
-        Custom Cognito Selects Logic - Version 1.0.0
+        Custom Cognito Selects Logic - Version 1.0.2
     ****************************************************** */
     const customCognitoSelect = () => {
-        let selectContainers, parentRow, selectElement, selectedDiv, optionListDiv, optionDiv, counter = 0;
+        let selectContainers, parentNode, selectElement, selectedDiv, optionListDiv, optionDiv, counter = 0;
         
         // Find all Cognito select elements
         selectContainers = document.querySelectorAll(".cog-select .cog-picker");
@@ -36,13 +36,17 @@
             container.classList.add("custom-select");
             
             // Find the closest parent row
-            parentRow = container.parentElement;
+            parentNode = container.parentElement;
             while (counter < 10) {
-                if (parentRow.classList.contains("cog-row")) {
-                    parentRow.style.zIndex = "2";
+                if (parentNode.classList.contains("cog-row")) {
+                    parentNode.style.zIndex = "2";
+                }
+
+                if (parentNode.nodeName === 'FORM') {
                     break;
                 }
-                parentRow = parentRow.parentElement;
+
+                parentNode = parentNode.parentElement;
                 counter++;
             }
 
