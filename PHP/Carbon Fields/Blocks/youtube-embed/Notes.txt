@@ -1,0 +1,5 @@
+1 - the .php file must be included in the functions.php file of the theme
+
+2 - the .css compiled file must be in the "/wp-content/assets/css/blocks/" folder
+
+3 - the example-youtube-video-id.png image must be in the "/wp-content/assets/images/" folder

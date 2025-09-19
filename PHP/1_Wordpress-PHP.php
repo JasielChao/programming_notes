@@ -4,12 +4,18 @@
 <?php  
     /* Post Data */
     $post_id = get_the_ID();
+    $post_link = get_permalink($post_id);
     $post_url = get_post_permalink();
     $post_slug = get_post_field( 'post_name', get_post() );
     $post_title = get_the_title();
     $post_published_date = get_the_date();
     $post_category = get_the_category( $post_id);
     $post_category[0]->cat_name;
+    $post_tags = get_the_tags();
+    $post_thumbnail = get_the_post_thumbnail_url();
+    $post_thumbnail_small = get_the_post_thumbnail_url(get_the_ID(), 'large');
+    $template_uri = get_template_directory();
+    $dir_uri = get_template_directory_uri();
 
     # post thumbnail
     $post_thumbnail = get_the_post_thumbnail_url();
@@ -46,6 +52,7 @@
     the_post_thumbnail( 'medium_large' );  // Medium Large (added in WP 4.4) resolution (768 x 0 infinite height)
     the_post_thumbnail( 'large' );         // Large resolution (1024 x 1024 max height 1024px)
     the_post_thumbnail( 'full' );          // Full resolution (original size uploaded)
+    
 
     //With WooCommerce
     the_post_thumbnail( 'shop_thumbnail' ); // Shop thumbnail (180 x 180 hard cropped)
@@ -53,28 +60,30 @@
     the_post_thumbnail( 'shop_single' );    // Shop single (600 x 600 hard cropped)
 
     // Carbon fields
-    $customCardImg = get_post_thumbnail_id(); // O el ID de la imagen que quieres
+    $img_id = get_post_thumbnail_id(); // O el ID de la imagen que quieres
     $img_size = 'medium'; // Puedes usar 'thumbnail', 'medium', 'large', 'full' o tamaños personalizados
 
-    $image = wp_get_attachment_image_src($customCardImg, $img_size);
+    $image = wp_get_attachment_image_src($img_id, $img_size);
 
     if ($image) {
         $img_url = $image[0]; // La URL de la imagen en el tamaño especificado
         echo '<img src="' . esc_url($img_url) . '" alt="Custom Image">';
     }
 
-    $img_thumbnail = wp_get_attachment_image_src($customCardImg, 'thumbnail')[0]; // 150x150 
-    $img_medium = wp_get_attachment_image_src($customCardImg, 'medium')[0]; // 300x300
-    $img_large = wp_get_attachment_image_src($customCardImg, 'large')[0]; // 1024x1024
-    $img_full = wp_get_attachment_image_src($customCardImg, 'full')[0]; // Tamaño original
+    $img_thumbnail = wp_get_attachment_image_src($img_id, 'thumbnail')[0]; // 150x150 
+    $img_medium = wp_get_attachment_image_src($img_id, 'medium')[0]; // 300x300
+    $img_large = wp_get_attachment_image_src($img_id, 'large')[0]; // 1024x1024
+    $img_full = wp_get_attachment_image_src($img_id, 'full')[0]; // Tamaño original (WP aun podria scalarlo)
+    $img_original = wp_get_original_image_url($img_id); // Tamaño original
 
     // Si necesitas un tamaño personalizado, puedes registrarlo en functions.php con:
     add_image_size('custom-size', 400, 300, true); // 400x300px, recorte exacto
     // Y luego obtenerlo con:
-    $img_custom = wp_get_attachment_image_src($customCardImg, 'custom-size')[0];
+    $img_custom = wp_get_attachment_image_src($img_id, 'custom-size')[0];
 
     // Get caption for image
-    $imgCaption = wp_get_attachment_caption($customCardImg);
+    $imgCaption = wp_get_attachment_caption($img_id);
+    $image_alt = get_post_meta( $img_id, '_wp_attachment_image_alt', true );
 ?>
 
 <!-- Get the Current Route Source Dynamically -->
@@ -336,7 +345,12 @@ echo $templateDirectory_uri;
 			'data'  => array(
 				'size' => 'large',
 				'is-active' => true,
-			)
+            ),
+            'paragraphs' => <<<HTML
+                <p>As a newly-minted partner with President Yachts, we now have the opportunity to directly offer their exceptional custom yacht capabilities directly to our own clientele.</p>
+                <p>Your personal Luke Brown project management team will be with you at the helm of the entire process, including being on the ground at President’s private shipyard during construction, as well as in Fort Lauderdale to facilitate a seamless handover of your new dream yacht. Your vision is our passion, and your expectations will undoubtedly be exceeded.</p>
+                <p>To inquire about pursuing your next ocean-bound craft with Luke Brown and President Yachts, please reach out to our account management team.</p>
+            HTML,
 		) 
 	);
 

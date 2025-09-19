@@ -1,0 +1,103 @@
+/* the .css compiled file must be in the "/wp-content/assets/css/blocks/" folder */
+
+.asnet-youtube-embed {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: auto;
+	min-height: 250px;
+	padding-top: 50%;
+	overflow: hidden;
+	border-radius: 0;
+	z-index: 0;
+	background-color: #000;
+
+	&.full-screen {
+		width: 100%;
+		height: 100vh;
+		padding-top: 0;
+		border-radius: 0;
+
+		iframe {
+			width: 115%;
+			height: 400%;
+		}
+	}
+
+	iframe {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		display: block;
+		width: 120%;
+		height: 180%;
+		z-index: -1;
+	}
+
+	.video-thumb, .iframe-thumb {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		opacity: 1;
+		transition: opacity 1.5s ease-in-out;
+
+		&.fade-out-thumb {
+			opacity: 0;
+		}
+	}
+
+	a.iframe-link {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	@media(max-width: 1550px){
+
+		&.full-screen {
+			iframe {
+				width: 125%;
+			}
+		}
+	}
+
+	@media(max-width: 1280px){
+
+		&.full-screen {
+			iframe {
+				width: 185vh;
+			}
+		}
+		
+		.video-thumb, .iframe-thumb {
+			max-height: 100vh;
+			max-width: 100vw;
+		}
+	}
+
+	@media(max-width: 768px){
+
+		&.full-screen.full-screen-responsive {
+            height: 60vh;
+        }
+    }
+
+	@media(max-width: 550px){
+
+		&.full-screen.full-screen-responsive {
+            height: 45vh;
+            min-height: 380px;
+            max-height: 440px;
+        }
+
+		&.full-screen.no-video {
+			height: 380px;
+		}
+	}
+}
