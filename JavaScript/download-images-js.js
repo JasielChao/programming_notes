@@ -14,7 +14,7 @@
 /* For Images */
 (function() {
     // Get all images with the class
-    const images = document.querySelectorAll(".carousel img");
+    const images = document.querySelectorAll(".slick-list .slick-slide img");
 
     // Iterate through each image and download it
     images.forEach((img, index) => {
@@ -44,7 +44,7 @@
 /* For Images Links */
 (function() {
     // Get all images with the class "swiper-slide-image"
-    const imagesLink = document.querySelectorAll(".gallery-image a");
+    const imagesLink = document.querySelectorAll(".gallery-block a");
 
     // Iterate through each image and download it
     imagesLink.forEach((imgLink, index) => {
@@ -79,7 +79,7 @@
 
 /* For Images Links (V2)*/
 (async function() {
-    const imagesLink = document.querySelectorAll(".gallery-image a");
+    const imagesLink = document.querySelectorAll(".gallery-block a");
 
     for (let [index, imgLink] of imagesLink.entries()) {
         try {
@@ -103,6 +103,74 @@
         }
     }
 })();
+
+(async function () {
+    // Get all images inside the carousel
+    const images = document.querySelectorAll("a.image-slide-anchor");
+
+    // Helper: derive a safe filename from a URL or fallback to index
+    function filenameFromUrl(url, index) {
+        try {
+        const u = new URL(url);
+        const pathname = u.pathname.split("/").filter(Boolean).pop() || `image_${index+1}`;
+        // keep extension if exists
+        return pathname.includes(".") ? pathname : `${pathname}.jpg`;
+        } catch (e) {
+        return `image_${index+1}.jpg`;
+        }
+    }
+
+    for (const [index, img] of Array.from(images).entries()) {
+        const src = img.href
+
+        // optionally remove query string if you want a "clean" URL:
+        let cleanUrl;
+        try {
+        const u = new URL(src);
+        cleanUrl = u.origin + u.pathname;
+        } catch (e) {
+        cleanUrl = src;
+        }
+
+        const filename = filenameFromUrl(cleanUrl, index);
+
+        try {
+        // Try to fetch the image as a blob (requires CORS on the remote server)
+        const response = await fetch(cleanUrl, { mode: "cors" });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const blob = await response.blob();
+
+        // Create object URL and force download
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.style.display = "none";
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(blobUrl);
+
+        console.log(`Downloaded: ${filename}`);
+        } catch (err) {
+        // Fallback: open the image in a new tab (browser will handle it)
+        console.warn(`Could not download ${cleanUrl} via fetch (CORS?), opening in new tab.`, err);
+        const a = document.createElement("a");
+        a.href = src;           // use original src in case cleaning removed needed params
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        }
+
+        // small delay to avoid overwhelming the browser/network
+        await new Promise(r => setTimeout(r, 200));
+    }
+
+    console.log(`${images.length} images processed.`);
+})();
+        
 
 
 

@@ -103,7 +103,12 @@ echo $templateDirectory_uri;
     <!-- First Way  -->   
     <?php
 
-            $query = new WP_Query( array( 'post_type' => 'page' ) );
+            $query = new WP_Query( array( 
+                    'post_type' => 'page',
+                    'orderby'   => 'date',
+                    'order'     => 'DESC',
+                    'posts_per_page' => 10,
+                ) );
             $posts = $query->posts;
 
             foreach($posts as $post) {
