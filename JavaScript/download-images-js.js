@@ -44,7 +44,7 @@
 /* For Images Links */
 (function() {
     // Get all images with the class "swiper-slide-image"
-    const imagesLink = document.querySelectorAll(".gallery-block a");
+    const imagesLink = document.querySelectorAll("#box2 a");
 
     // Iterate through each image and download it
     imagesLink.forEach((imgLink, index) => {
