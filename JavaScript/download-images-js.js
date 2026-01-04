@@ -14,7 +14,7 @@
 /* For Images */
 (function() {
     // Get all images with the class
-    const images = document.querySelectorAll(".slick-list .slick-slide img");
+    const images = document.querySelectorAll(".slick-slide img");
 
     // Iterate through each image and download it
     images.forEach((img, index) => {

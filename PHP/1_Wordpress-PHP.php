@@ -438,3 +438,47 @@ add_action('init', function() {
 	add_rewrite_rule('(.?.+?)/page/?([0-9]{1,})/?$', 'index.php?pagename=$matches[1]&paged=$matches[2]', 'top');
 });
 ?>
+
+
+<?php
+/**
+ * Formas de verificar si un post tiene una categoría específica
+ */
+
+$post_id = get_the_ID(); // O el ID que prefieras
+
+// 1. Usando has_category() - RECOMENDADO
+// Puedes usar el ID, el nombre o el slug de la categoría.
+if ( has_category( 'events', $post_id ) ) {
+    // El post tiene la categoría 'events'
+    echo "Este es un evento.";
+}
+
+// 2. Usando in_category() - Similar, muy común en el Loop
+if ( in_category( 'past-events', $post_id ) ) {
+    // El post tiene la categoría 'past-events'
+    echo "Este es un evento pasado.";
+}
+
+// 3. Verificar múltiples categorías (Lógica OR)
+if ( has_category( array( 'events', 'news' ), $post_id ) ) {
+    echo "Es un evento O una noticia.";
+}
+
+/**
+ * Diferencia técnica:
+ * - has_category() es técnicamente un "wrapper" de has_term() para la taxonomía 'category'.
+ * - in_category() es una función más antigua pero sigue siendo perfectamente válida.
+ * Ambas funcionan fuera del loop si proporcionas el $post_id.
+ */
+
+// Ejemplo práctico en un condicional complejo:
+$is_event = has_category( 'events', $post_id );
+$is_past  = has_category( 'past-events', $post_id );
+
+if ( $is_event && ! $is_past ) {
+    echo "Evento próximo.";
+} elseif ( $is_event && $is_past ) {
+    echo "Evento finalizado.";
+}
+?>

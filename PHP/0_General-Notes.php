@@ -200,8 +200,6 @@ if (isset($b)) {
     } else {
         echo "No encontrado.";
     }
-    
-    
 
 
 ?>
