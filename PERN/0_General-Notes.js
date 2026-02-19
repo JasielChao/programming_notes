@@ -50,6 +50,9 @@
          npm i express
          npm i -D @types/express
 
+      - Instalar para la validacion de datos: 
+         npm i express-validator
+
 
     6 *** Sequelize
       - Instalar las dependicias en la terminal: 
@@ -89,6 +92,8 @@
          import colors from 'colors';
          console.log(colors.bgGreen.bold('Conexion exitosa a la BD'));
          console.log(colors.green('Conexion exitosa a la BD'));
+
+
      
 
 */
