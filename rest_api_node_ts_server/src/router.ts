@@ -1,6 +1,6 @@
 import { Router } from "express"
-import { body } from 'express-validator';
-import { creatProduct } from "./handlers/product";
+import { body, param } from 'express-validator';
+import { getProduct, getProductById, creatProduct, updateProduct, updateProductAvailability, deleteProduct } from "./handlers/product";
 import { handleInputErrors} from "./middleware";
 
 const router = Router();
@@ -11,11 +11,18 @@ const router = Router();
     2- Request
     3- Response
 */
-router.get('/', (req, res) => {
-    res.send('Hola mundo desde Express')
-})
+router.get('/', getProduct)
 
-router.post('/api/products', 
+/*  Para pasar un valor dinamico por la URL ponemos : y el nombre que deseamos para el parametro 
+    Ejemplo de la URL: http://localhost:4000/api/products/1
+*/
+router.get('/:id', 
+    param('id').isInt().withMessage('ID no valido'), // Para validar que el id sea un numero
+    handleInputErrors,
+    getProductById
+)
+
+router.post('/', 
 
     // Validacion
     body('name')
@@ -30,16 +37,33 @@ router.post('/api/products',
     creatProduct
 )
 
-router.put('/', (req, res) => {
-    res.send('put: Hola mundo desde Express')
-})
+router.put('/:id',
+    // Validacion
+    param('id').isInt().withMessage('ID no valido'), // Para validar que el id sea un numero
+    body('name')
+        .notEmpty().withMessage('El nombre del Producto no puede ir vacio'),
+    body('price')
+    .isNumeric().withMessage('Valor no valido')
+    .notEmpty().withMessage('El nombre del Precio no puede ir vacio')
+    .custom(value => value > 0).withMessage('El valor no puede ser menor que cero'),
+    body('availability').isBoolean().withMessage('Valor para disponibilidad no valido'),
+    handleInputErrors,
+    updateProduct
+)
 
-router.patch('/', (req, res) => {
-    res.send('patch: Hola mundo desde Express')
-})
+router.patch('/:id', 
+     // Validacion
+    param('id').isInt().withMessage('ID no valido'), // Para validar que el id sea un numero
+    handleInputErrors,
+    updateProductAvailability
+)
 
-router.delete('/', (req, res) => {
-    res.send('delete: Hola mundo desde Express')
-})
+router.delete('/:id', 
+     // Validacion
+    param('id').isInt().withMessage('ID no valido'), // Para validar que el id sea un numero
+    handleInputErrors,
+    deleteProduct
+)
+
 
 export default router;

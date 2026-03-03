@@ -24,7 +24,15 @@ const server = express();
 // Leer datos de formularios
 server.use(express.json());
 
-// To use the router
-server.use('/', router);
+/* To use the router
+    Nota: Se pueden crear tantos router como necesitemos para cada URL
+    Ejemplo:
+
+    import ejemploRouter from "./router"
+
+    server.use('/ejemplo', ejemploRouter);
+
+*/
+server.use('/api/products', router);
 
 export default server;
