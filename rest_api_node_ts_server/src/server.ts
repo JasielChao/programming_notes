@@ -9,7 +9,7 @@ async function connnectDB() {
     try {
        await db.authenticate();
        db.sync(); // sync(): es para que se mantenga sincronizado con cualquier cambio en la DB 
-       console.log(colors.bgGreen.bold('Conexion exitosa a la BD'));
+       // console.log(colors.bgGreen.bold('Conexion exitosa a la BD'));
     } catch (error) {
         console.log(error);
         console.log('Error al conectar a la base de datos');
@@ -34,5 +34,9 @@ server.use(express.json());
 
 */
 server.use('/api/products', router);
+
+server.get('/api', (req, res) => {
+    res.json({msg: 'Desde API'})
+});
 
 export default server;
