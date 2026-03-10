@@ -98,3 +98,47 @@
 
 */
    
+/* Create New Proyect - Frontend: 
+   ******************************************
+   1  *** New terminal: npm create vite@latest
+      Llenar la informacion del init o dar enter a todo y se crea un nuevo package.json
+
+      -  Select a framework:  React
+
+      - Select a variant: JavaScript + SWC
+
+      - Use Vite 8 beta (Experimental)?: No
+
+      - Install with npm and start now?  No
+
+
+      Luego unir las dos carpetas (backend y frotend) en una sola carpeta 
+
+
+      2  *** Tailwind
+         - npm i tailwindcss @tailwindcss/vite
+
+         Vamos al fichero vite.config.js y importamos tailwind
+
+            import { defineConfig } from 'vite'
+            import react from '@vitejs/plugin-react-swc'
+            import tailwindcss from '@tailwindcss/vite'
+
+            // https://vite.dev/config/
+            export default defineConfig({
+               plugins: [react(), tailwindcss()],
+            })
+
+
+         Vamos al fichero index.css y importamos tailwind
+
+         @import "tailwindcss";
+
+
+      3 *** Install React Router
+        - npm i react-router-dom
+
+     
+
+
+*/
