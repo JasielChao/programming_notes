@@ -1,10 +1,31 @@
-import { Link, Form } from "react-router-dom";
+import { Link, Form, useActionData, ActionFunctionArgs } from "react-router-dom";
+import ErrorMessege from './../components/ErrorMessege'
 
-export async function action() {
-    console.log('Desde actionForm function')
+// Funcion para el action del formulario
+export async function action({request} :  ActionFunctionArgs) {
+    // Var para recuperar los daatos del FormData
+    const data = Object.fromEntries(await request.formData())
+
+    let error = "";
+    if(Object.values(data).includes('')){
+        error = 'All fields are required'
+    }
+
+    if(error.length){
+        console.log("Error: " + error);
+        return error;
+    }
+
+    console.log(data)
+    return {}
 }
 
 const NewProducts = () => {
+
+
+    // Obtenemos el valor retornado en la funcion action
+    const error = useActionData() as string
+
     return ( 
           <>
             <div className="flex justify-between">
@@ -15,6 +36,8 @@ const NewProducts = () => {
                     Back to Products
                 </Link>
             </div>
+
+            {error && <ErrorMessege>{error}</ErrorMessege>}
 
             <Form className="mt-10" 
                 method="post"
