@@ -1,6 +1,6 @@
 import {createBrowserRouter} from 'react-router-dom'
 import Layout from './layouts/Layout'
-import Products from './views/Products'
+import Products, {loader as productsLoader} from './views/Products'
 import NewProducts, {action as newProductAction} from './views/NewProducts'
 
 export const router = createBrowserRouter([
@@ -10,7 +10,8 @@ export const router = createBrowserRouter([
        children: [ // Elementos hijos
             {
                 index: true, // Para que se carge inicialmente en la vista padre
-                element: <Products />
+                element: <Products />,
+                loader: productsLoader
             },
             {
                 path: 'products/new', // Home

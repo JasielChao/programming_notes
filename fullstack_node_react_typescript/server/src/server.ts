@@ -2,6 +2,8 @@ import express from "express";
 import router from "./router"
 import db from "./config/db";
 import colors from 'colors';
+import cors, { CorsOptions } from 'cors';
+import morgan from 'morgan';
 
 
 // Conectar a base de datos
@@ -21,8 +23,28 @@ connnectDB();
 // Instancia de express
 const server = express();
 
+// Permitir conexiones
+const corsOptions : CorsOptions = {
+    origin: function(origin, callback) {
+        if(origin === process.env.FRONTEND_URL){
+            callback(null, true) // permitir la conexion
+            console.log("permitir conexion")
+        }else{
+            console.log("No permitir conexion: " + origin)
+            callback(new Error('Ups! CORS Error')) 
+        }
+    }
+}
+
+server.use(cors(corsOptions))
+
 // Leer datos de formularios
 server.use(express.json());
+
+server.use(morgan('dev'))
+
+
+server.use('/api/products', router)
 
 // To use the router
 server.use('/', router);

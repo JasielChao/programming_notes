@@ -1,6 +1,6 @@
 /* General Notes PERN:   */
 
-/* Create New Proyect: 
+/* Create New Proyect - Server:
    ******************************************
    1  *** New terminal: npm init
       - Llenar la informacion del init o dar enter a todo y se crea un nuevo package.json
@@ -73,6 +73,19 @@
 
 
    7 *** Variables de entorno
+
+      - La variable de entorno (IP del servidor)
+         Ejemplos: 
+            DATABASE_URL=mysql://USER:PASSWORD@HOST:PORT/DATABASE
+            DATABASE_URL=mysql://myuser:mypassword@localhost:3306/mydatabase
+            DATABASE_URL=mysql://USER:PASSWORD@SERVER_IP:3306/DATABASE
+            DATABASE_URL=mysql://myuser:mypassword@123.45.67.89:3306/mydatabase
+
+         Notas: 
+            - Normalmente en CloudPanel
+               HOST = localhost
+               PORT = 3306
+
       - Instalar las dependicias en la terminal: 
          npm i dotenv
 
@@ -81,7 +94,7 @@
       // Para acceder al fichero .env desde otro fichero
       import dotenv from 'dotenv';
       dotenv.config();
-      console.log(process.env.EXTERNAL_DATABASE_URL);
+      console.log(process.env.DATABASE_URL);
 
 
    8 *** Colors
@@ -94,11 +107,29 @@
          console.log(colors.green('Conexion exitosa a la BD'));
 
 
+   9 *** Cors: Para autorizar dominios a acceder a nuestra base de datps
+      Instalamos las dependecias
+         - npm i cors
+         - npm i -D @types/cors
+
+      En el server\src\server.ts importamos cors
+
+         - import cors, { CorsOptions } from 'cors';
+
+
+   9 *** Morgan
+      Instalamos las dependecias
+         - npm i morgan
+         - npm i -D @types/morgan
+
+      En el server\src\server.ts importamos morgan
+        
+
      
 
 */
    
-/* Create New Proyect - Frontend: 
+/* Create New Proyect - Client: 
    ******************************************
    1  *** New terminal: npm create vite@latest
       Llenar la informacion del init o dar enter a todo y se crea un nuevo package.json
@@ -135,8 +166,10 @@
          @import "tailwindcss";
 
 
-      3 *** Install React Router
+      3 *** Install more
         - npm i react-router-dom
+        - npm i valibot
+        - npm i axios
 
      
 

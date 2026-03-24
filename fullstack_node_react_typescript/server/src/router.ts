@@ -12,7 +12,7 @@ const router = Router();
     3- Response
 */
 router.get('/', (req, res) => {
-    res.send('Hola mundo desde Express')
+    res.send('get: Hola mundo desde Express')
 })
 
 router.post('/api/products', 
