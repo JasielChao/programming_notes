@@ -1,6 +1,6 @@
 import { safeParse } from 'valibot';
 import axios from 'axios' 
-import {DraftproductSchema} from '../types'
+import {DraftproductSchema, ProductsSchema, Product, ProductSchema} from '../types'
 
 type ProductData = {
     [k: string]: FormDataEntryValue;
@@ -34,11 +34,39 @@ export async function getProducts() {
     try {
         const url = `${import.meta.env.VITE_API_URL}/api/products/`
         const { data } = await axios(url)
-        console.log(data)
-        console.log('Desde get products')
+        const result = safeParse(ProductsSchema, data.data)
+
+        if(result.success){
+            return result.output
+        }else{
+           throw new Error('Hubo un error en el getProducts') 
+        }
 
     } catch (error) {
         console.log('Error get products')
         console.log(error)
     }
+}
+
+export async function getProductById(id : Product['id']) {
+    try {
+        const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`
+        const { data } = await axios(url)
+        const result = safeParse(ProductSchema, data.data)
+
+        if(result.success){
+            return result.output
+        }else{
+           throw new Error('Hubo un error en el getProducts') 
+        }
+
+    } catch (error) {
+        console.log('Error get products')
+        console.log(error)
+    }
+}
+
+export async function updateProduct(data : ProductData, id : Product['id']) {
+    console.log(data)
+    console.log(id)
 }

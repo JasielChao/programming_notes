@@ -1,6 +1,6 @@
 import { Router } from "express"
-import { body } from 'express-validator';
-import { creatProduct } from "./handlers/product";
+import { body, param } from 'express-validator';
+import { creatProduct, getProducts, getProductById, updateProduct } from "./handlers/product";
 import { handleInputErrors} from "./middleware";
 
 const router = Router();
@@ -11,9 +11,12 @@ const router = Router();
     2- Request
     3- Response
 */
-router.get('/', (req, res) => {
-    res.send('get: Hola mundo desde Express')
-})
+router.get('/', getProducts)
+
+router.get('/:id', 
+    param('id').isInt().withMessage('ID not valid'),
+    handleInputErrors,
+    getProductById)
 
 router.post('/api/products', 
 
@@ -30,9 +33,19 @@ router.post('/api/products',
     creatProduct
 )
 
-router.put('/', (req, res) => {
-    res.send('put: Hola mundo desde Express')
-})
+router.put('/:id', 
+     // Validacion
+    body('name')
+        .notEmpty().withMessage('El nombre del Producto no puede ir vacio'),
+    body('price')
+    .isNumeric().withMessage('Valor no valido')
+    .notEmpty().withMessage('El nombre del Precio no puede ir vacio')
+    .custom(value => value > 0).withMessage('El valor no puede ser menor que cero'),
+    body('availability')
+    .isBoolean().withMessage('Valor no disponibilidad no valido'),
+    handleInputErrors,
+    updateProduct
+)
 
 router.patch('/', (req, res) => {
     res.send('patch: Hola mundo desde Express')
