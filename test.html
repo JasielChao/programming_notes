@@ -1,74 +1,49 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/instantsearch.css@7/themes/satellite-min.css"
-    />
-    <title>InstantSearch | Autocomplete</title>
-  </head>
 
-  <body>
-    <header class="header">
-      <div id="autocomplete"></div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/instantsearch.css@7/themes/satellite-min.css" />
+  <title>InstantSearch | Autocomplete</title>
+</head>
 
-    <div class="container">
-      <div>
-        <div id="categories"></div>
-      </div>
-      <div>
-        <div id="hits"></div>
-        <div id="pagination"></div>
-      </div>
-    </div>
+<body>
+	<div class="logo aos-init aos-animate" data-aos="fade-in" data-fadeseq="" data-aos-delay="600">
+		<a href="/solaris-power-yachts/"><img src="/wp-content/themes/asnet-core/assets/images/solaris.svg" style="width: 14rem;height: 2.5rem;"></a>
+	</div>
+	<br>
+	<div class="new-yachts-container aos-init aos-animate" data-aos="fade-in">
 
+		<a href="https://seanetco.com/solaris-power/52-open-st/" class="new-yacht" data-model-type="open-high-windshield">
+			<div class="image-container">
+				
+				<img src="https://seanetyachts.imgix.net/2025/10/52-open-st-01.jpg?auto=format&amp;fit=clip&amp;lossless=1" alt="52 Open ST">
+				</div>
+							<div class="overlay"></div>
+			<div class="yacht-title">52 Open ST</div>
+			<div class="yacht-category ">Motor Yachts</div>
+		</a>
 
-    <script>
-        import algoliasearch from 'algoliasearch/lite';
-        import instantsearch from 'instantsearch.js';
-        import historyRouter from 'instantsearch.js/es/lib/routers/history';
-        import {
-        searchBox,
-        hierarchicalMenu,
-        hits,
-        pagination,
-        } from 'instantsearch.js/es/widgets';
+		<a href="https://seanetco.com/solaris-power/44-open-st/" class="new-yacht" data-model-type="open-high-windshield">
+			<div class="image-container">
+				
+				<img src="https://seanetyachts.imgix.net/2025/10/44-st-05.jpg?auto=format&amp;fit=clip&amp;lossless=1" alt="44 Open St">
+				</div>
+							<div class="overlay"></div>
+			<div class="yacht-title">44 Open St</div>
+			<div class="yacht-category ">Motor Yachts</div>
+		</a>
 
-        import '@algolia/autocomplete-theme-classic';
+		<a href="https://seanetco.com/solaris-power/60-open-st/" class="new-yacht" data-model-type="open-high-windshield">
+												<div class="image-container">
+				
+				<img src="https://seanetyachts.imgix.net/2025/10/60-open-st-01.jpg?auto=format&amp;fit=clip&amp;lossless=1" alt="60 Open St">
+				</div>
+							<div class="overlay"></div>
+			<div class="yacht-title">60 Open St</div>
+			<div class="yacht-category ">Motor Yachts</div>
+		</a>
+	</div>
+</body>
 
-        const searchClient = algoliasearch(
-        'latency',
-        '6be0576ff61c053d5f9a3225e2a90f76',
-        );
-        const INSTANT_SEARCH_INDEX_NAME = 'instant_search';
-        const instantSearchRouter = historyRouter();
-        const search = instantsearch({
-        searchClient,
-        indexName: INSTANT_SEARCH_INDEX_NAME,
-        routing: instantSearchRouter,
-        });
-
-        search.addWidgets([
-        searchBox({
-            container: '#searchbox',
-            placeholder: 'Search for products',
-        }),
-        hierarchicalMenu({
-            container: '#categories',
-            attributes: ['hierarchicalCategories.lvl0', 'hierarchicalCategories.lvl1'],
-        }),
-        hits({
-            container: '#hits',
-        }),
-        pagination({
-            container: '#pagination',
-        }),
-        ]);
-
-        search.start();
-
-    </script>
-  </body>
 </html>

@@ -14,7 +14,7 @@
 /* For Images */
 (function() {
     // Get all images with the class
-    const images = document.querySelectorAll(".slick-slide img");
+    const images = document.querySelectorAll(".e-n-accordion img");
 
     // Iterate through each image and download it
     images.forEach((img, index) => {
@@ -44,7 +44,7 @@
 /* For Images Links */
 (function() {
     // Get all images with the class "swiper-slide-image"
-    const imagesLink = document.querySelectorAll("#box2 a");
+    const imagesLink = document.querySelectorAll(".gallery-container y a");
 
     // Iterate through each image and download it
     imagesLink.forEach((imgLink, index) => {
@@ -79,7 +79,7 @@
 
 /* For Images Links (V2)*/
 (async function() {
-    const imagesLink = document.querySelectorAll(".gallery-block a");
+    const imagesLink = document.querySelectorAll(".gallery-container  a");
 
     for (let [index, imgLink] of imagesLink.entries()) {
         try {

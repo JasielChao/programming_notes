@@ -4,6 +4,7 @@
 <?php  
     /* Post Data */
     $post_id = get_the_ID();
+    $post_type = get_post_type( $post_id );
     $post_link = get_permalink($post_id);
     $post_url = get_post_permalink();
     $post_slug = get_post_field( 'post_name', get_post() );
